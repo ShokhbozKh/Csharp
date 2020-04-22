@@ -1,0 +1,49 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(student => student.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(student => student.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(student => student.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(student => student.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(student => student.IndexNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(student => student.IndexNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(student => student.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(student => student.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(student => student.Study.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(student => student.Study.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdStudent">Edit</a> |
+    <a asp-action="Index">Back to List</a>  |
+    <a asp-action="Index" asp-controller="Enrollments" asp-route-id="@Model.IdStudent">See Enrollments</a>
+</div>
