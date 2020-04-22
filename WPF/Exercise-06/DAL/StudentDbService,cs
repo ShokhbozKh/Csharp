@@ -1,0 +1,96 @@
+using Exercise_07.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Windows.Data;
+
+namespace Exercise_07.DAL
+{
+    class StudentDbService
+    {
+        private static readonly ObservableCollection<Student> studentsList = new ObservableCollection<Student>();
+        private static readonly DbModel context = new DbModel();
+        public static ObservableCollection<Student> GetStudents()
+        {
+            try
+            {
+                var students = context.Students.ToList();
+
+                foreach(Student student in students)
+                {
+                    studentsList.Add(student);
+                }
+                //int g = 0;
+                return studentsList;
+            } catch(SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return null;
+        }
+
+        public static void RemoveStudent(Student student)
+        {
+            studentsList.Remove(student);
+            
+            // Remove from db
+            context.Students.Remove(student);
+            context.SaveChanges();
+        }
+
+        public static void UpdateStudent(Student studentToUpdate)
+        {
+            var obj = studentsList.FirstOrDefault(x => x.IdStudent == studentToUpdate.IdStudent);
+
+            if(obj != null)
+            {
+                obj = studentToUpdate;
+            }
+
+            CollectionViewSource.GetDefaultView(studentsList).Refresh();
+
+            //int g = 0;
+
+            // Update on db
+            //int g = 0;
+
+            var entity = context.Students.Find(studentToUpdate.IdStudent);
+            if(entity == null)
+            {
+                return;
+            }
+
+            context.Entry(entity).CurrentValues.SetValues(studentToUpdate);
+            context.SaveChanges();
+        }
+
+        public static void AddStudent(Student student)
+        {
+            studentsList.Add(student);
+            //int g = 0;
+
+            // Add to db
+            context.Students.Add(student);
+            context.SaveChanges();
+        }
+
+        public static List<Study> GetStudies()
+        {
+            var result = context.Studies.ToList();
+
+            return result;
+        }
+
+        public static int GenerateId()
+        {
+            return studentsList.Last().IdStudent + 1;
+        }
+
+    }
+}
