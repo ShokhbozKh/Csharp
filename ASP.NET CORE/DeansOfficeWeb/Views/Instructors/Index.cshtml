@@ -1,0 +1,37 @@
+﻿@model Instructor
+
+@{
+    ViewData["Title"] = "Instructors";
+}
+
+<h1>Instructors</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var instructor in (IEnumerable<Instructor>)ViewBag.Instructors)
+        {
+            <tr>
+                <td>@instructor.LastName</td>
+                <td>@instructor.FirstName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@instructor.IdInstructor">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@instructor.IdInstructor">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@instructor.IdInstructor">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
