@@ -1,0 +1,144 @@
+﻿<Window x:Class="DeansOffice.StudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeansOffice"
+        mc:Ignorable="d"
+        Title="StudentView" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="AUTO"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Column="0" Grid.ColumnSpan="4">
+            <MenuItem Header="File">
+                <MenuItem Header="Close"/>
+            </MenuItem>
+            <MenuItem Header="Edit"/>
+            <MenuItem Header="Modules"/>
+        </Menu>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical">
+            <Image x:Name="StudentImage" Width="100" Height="100" Margin="10 10 10 10" Source="http://www.wtc.wat.edu.pl/wp-content/uploads/2019/01/blank-profile-picture-973460.png"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Margin="5" HorizontalAlignment="Left">
+            <TextBox Text="First name, Last name" FontWeight="DemiBold"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Study (Type, status)" FontWeight="DemiBold"
+                     TextAlignment="Justify"
+                     Width="413"  Height="20" 
+                     Margin="3,5,-210,5"/>
+            <TextBox Text="Specialization: Databases" FontWeight="DemiBold" 
+                     TextAlignment="Justify"
+                     Width="413"  Height="20" 
+                     Margin="3,5,-210,5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="1" Margin="5">
+            <TextBox Text="Student number" FontWeight="DemiBold"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="1" Margin="5">
+            <TextBox Text="Year" FontWeight="DemiBold"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Semester" FontWeight="DemiBold"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Balance" FontWeight="DemiBold"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Margin="5">
+            <TextBox Text="Pesel" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="SEX" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Date of birth" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Place of birth" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Citizenship" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Contact number" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+            <TextBox Text="Address" FontWeight="Medium"
+                     TextAlignment="Center"
+                     Width="200"  Height="20" 
+                     Margin="0 5 0 5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" Margin="5">
+            <Label Margin="90 5 0 0" FontSize="11">PESEL</Label>
+            <Label Margin="100 4 0 0" FontSize="11">SEX</Label>
+            <Label Margin="60 5 0 0" FontSize="11">Date of birth</Label>
+            <Label Margin="63 5 0 0" FontSize="11">City of birth</Label>
+            <Label Margin="69 5 0 0" FontSize="11">Citizenship</Label>
+            <Label Margin="50 5 0 0" FontSize="11">Phone number</Label>
+            <Label Margin="82 5 0 0" FontSize="11">Address</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="5">
+            <Label Margin="5">Semester data</Label>
+            <DataGrid x:Name="StudentSemesterDataGrid" Margin="5" CanUserAddRows="False" CanUserResizeRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Semester" Binding="{Binding Semester}" Width="*"/>
+                    <DataGridTextColumn Header="Study" Binding="{Binding Study}" Width="*"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding StudyYear}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Margin="5">Status</Label>
+            <DataGrid x:Name="StudentStatusDataGrid" Margin="10" CanUserAddRows="False" CanUserResizeRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Date from" Binding="{Binding Year}" Width="*"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                    <DataGridTextColumn Header="Study" Binding="{Binding Study}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Orientation="Horizontal" Margin="10 10 10 10">
+            <Label>Semester</Label>
+            <ComboBox>
+                <ComboBox.Items>
+                    <ComboBoxItem IsSelected="True">Semester 2020</ComboBoxItem>
+                    <ComboBoxItem>Semester 2019</ComboBoxItem>
+                    <ComboBoxItem>Semester 2018</ComboBoxItem>
+                </ComboBox.Items>
+            </ComboBox>
+            <Label>Version 1.1.2</Label>
+        </StackPanel>
+    </Grid>
+</Window>
