@@ -1,0 +1,66 @@
+﻿@model Enrollment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 style="position: absolute; right: 16em">Edit</h1>
+<br />
+
+<h4>Enrollment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdEnrollment" />
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label"></label>
+                <input asp-for="Grade" class="form-control" />
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectType" class="control-label"></label>
+                <input asp-for="SubjectType" class="form-control" />
+                <span asp-validation-for="SubjectType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentDate" class="control-label"></label>
+                <input asp-for="EnrollmentDate" class="form-control" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSubject" class="control-label"></label>
+                <select asp-for="IdSubject"
+                        class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Subjects, "IdSubject", "Name"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdStudent"></label>
+                <select asp-for="IdStudent"
+                        class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Students, "IdStudent", "LastName"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor"></label>
+                <select asp-for="IdInstructor"
+                        class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Instructors, "IdInstructor", "LastName"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

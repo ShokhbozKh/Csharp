@@ -1,0 +1,78 @@
+﻿@model Enrollment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Student.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Student.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Student.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Student.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Student.IndexNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Student.IndexNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Student.Study.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Student.Study.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Subject.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Subject.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Grade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Grade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.SubjectType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.SubjectType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Subject.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Subject.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Subject.Hours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Subject.Hours)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(enrollment => enrollment.Instructor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(enrollment => enrollment.Instructor.LastName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdEnrollment">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
