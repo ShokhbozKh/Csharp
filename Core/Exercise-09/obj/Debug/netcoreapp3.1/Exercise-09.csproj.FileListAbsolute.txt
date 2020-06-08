@@ -1,0 +1,11 @@
+C:\Users\khido\Рабочий стол\Core\Exercise-09\obj\Debug\netcoreapp3.1\Exercise-09.AssemblyInfoInputs.cache
+C:\Users\khido\Рабочий стол\Core\Exercise-09\obj\Debug\netcoreapp3.1\Exercise-09.AssemblyInfo.cs
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.exe
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.deps.json
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.runtimeconfig.json
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.runtimeconfig.dev.json
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.dll
+C:\Users\khido\Рабочий стол\Core\Exercise-09\bin\Debug\netcoreapp3.1\Exercise-09.pdb
+C:\Users\khido\Рабочий стол\Core\Exercise-09\obj\Debug\netcoreapp3.1\Exercise-09.csprojAssemblyReference.cache
+C:\Users\khido\Рабочий стол\Core\Exercise-09\obj\Debug\netcoreapp3.1\Exercise-09.dll
+C:\Users\khido\Рабочий стол\Core\Exercise-09\obj\Debug\netcoreapp3.1\Exercise-09.pdb
