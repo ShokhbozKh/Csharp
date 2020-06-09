@@ -1,0 +1,51 @@
+﻿@model BudgetManagement.Models.BudgetViewModels.HistoryViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div>
+    <em>Your History For Period @Model.DisplayDate</em>
+</div>
+
+<div>
+    <form asp-controller="Home" asp-action="History" method="get">
+        <p>
+            Sort By Category
+            <select asp-for="CategoryName" asp-items="Model.Categories">
+                <option value="">All</option>
+            </select>
+
+            Find by Description
+            <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Added Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var history in (IEnumerable<History>)Model.HistoriesList)
+        {
+            <tr>
+                <td>@history.DeletedDate.ToString("yyyy-MM-dd")</td>
+                <td>@history.Category.Name</td>
+                <td>@history.Description</td>
+                <td>@history.TotalSum.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</td>
+                <td>@history.Category.CategoryType</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

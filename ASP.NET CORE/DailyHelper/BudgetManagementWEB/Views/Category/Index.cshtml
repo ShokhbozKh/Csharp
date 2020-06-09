@@ -1,0 +1,34 @@
+﻿@model BudgetManagement.Models.Category
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div>
+    <h2>Avialable Categories for your items</h2>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Category Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in (IEnumerable<Category>)ViewBag.Categories)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.CategoryType</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a class="inc" asp-action="Create" asp-controller="Category">New Category</a>
+</p>
+
+

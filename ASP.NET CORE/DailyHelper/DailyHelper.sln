@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagementWEB", "BudgetManagementWEB\BudgetManagementWEB.csproj", "{97DBB784-8F36-45D9-8F5B-CFE8A4E68884}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetManagementWEB.Tests", "BudgetManagementWEB.Tests\BudgetManagementWEB.Tests.csproj", "{488BD2FF-D978-4916-A121-11C6A8D4FB72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97DBB784-8F36-45D9-8F5B-CFE8A4E68884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DBB784-8F36-45D9-8F5B-CFE8A4E68884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DBB784-8F36-45D9-8F5B-CFE8A4E68884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DBB784-8F36-45D9-8F5B-CFE8A4E68884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488BD2FF-D978-4916-A121-11C6A8D4FB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488BD2FF-D978-4916-A121-11C6A8D4FB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488BD2FF-D978-4916-A121-11C6A8D4FB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488BD2FF-D978-4916-A121-11C6A8D4FB72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8511AA20-4A64-4261-A2DC-7854AE912400}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,82 @@
+﻿@model BudgetManagement.Models.BudgetViewModels.BudgetViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="budget-container">
+    <p id="totalBudg">Total Budget:   @Model.TotalBudget.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</p>
+    <p id="totalInc">Total Income:   @Model.TotalIncome.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</p>
+    <p id="totalExp">Total Expense: -@Model.TotalExpense.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</p>
+</div>
+
+
+<div>
+    <h2>Your Budget For Period @Model.DisplayDate</h2>
+</div>
+
+<div>
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <p>
+            Sort By Category
+            <select asp-for="CategoryName" asp-items="Model.Categories">
+                <option value="">All</option>
+            </select>
+
+            Find by Description
+            <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Added Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var income in (IEnumerable<Income>)Model.IncomesList)
+        {
+            <tr>
+                <td>@income.AddedDate.ToString("yyyy-MM-dd")</td>
+                <td>@income.Category.Name</td>
+                <td>@income.Description</td>
+                <td>@income.TotalSum.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</td>
+                <td>@income.Category.CategoryType</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Income" asp-route-id="@income.IdIncome">Edit</a> |
+                    <a asp-action="Delete" asp-controller="Income" asp-route-id="@income.IdIncome">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tbody>
+        @foreach (var expense in (IEnumerable<Expense>)Model.ExpensesList)
+        {
+            <tr>
+                <td>@expense.AddedDate.ToString("yyyy-MM-dd")</td>
+                <td>@expense.Category.Name</td>
+                <td>@expense.Description</td>
+                <td>@expense.TotalSum.ToString("n", new System.Globalization.CultureInfo("nb-NO"))</td>
+                <td>@expense.Category.CategoryType</td>
+                <td>
+                    <a asp-action="Edit"  asp-controller="Expense" asp-route-id="@expense.IdExpense">Edit</a> |
+                    <a asp-action="Delete" asp-controller="Expense" asp-route-id="@expense.IdExpense">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a class="inc" asp-action="Create" asp-controller="Income">New Income</a>
+    <a class="exp" asp-action="Create" asp-controller="Expense">New Expense</a>
+</p>
+
+
