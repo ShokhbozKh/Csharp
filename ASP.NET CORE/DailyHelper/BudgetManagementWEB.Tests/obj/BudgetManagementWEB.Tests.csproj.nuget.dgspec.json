@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj": {}
+    "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj": {
+    "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj",
         "projectName": "BudgetManagementWEB.Tests",
-        "projectPath": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj",
+        "projectPath": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB.Tests\\BudgetManagementWEB.Tests.csproj",
         "packagesPath": "C:\\Users\\Lenovo T430\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo T430\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\BudgetManagementWEB.csproj": {
-                "projectPath": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\BudgetManagementWEB.csproj"
+              "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\BudgetManagementWEB.csproj": {
+                "projectPath": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\BudgetManagementWEB.csproj"
               }
             }
           }
@@ -89,14 +89,14 @@
         }
       }
     },
-    "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\BudgetManagementWEB.csproj": {
+    "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\BudgetManagementWEB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\BudgetManagementWEB.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\BudgetManagementWEB.csproj",
         "projectName": "BudgetManagementWEB",
-        "projectPath": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\BudgetManagementWEB.csproj",
+        "projectPath": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\BudgetManagementWEB.csproj",
         "packagesPath": "C:\\Users\\Lenovo T430\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo T430\\Desktop\\UCD_Micros\\BudgetManagementWEB\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo T430\\Documents\\GitHub\\Csharp\\ASP.NET CORE\\DailyHelper\\BudgetManagementWEB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo T430\\AppData\\Roaming\\NuGet\\NuGet.Config",

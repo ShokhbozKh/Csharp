@@ -15,13 +15,11 @@ namespace BudgetManagement.Models
         [Required, MaxLength(150)]
         [Display(Name = "Комментарий")]
         public string Description { get; set; }
-
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Сумма")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalSum { get; set; }
-
         public int CategoryId { get; set; }
 
         [Display(Name = "Категория")]
