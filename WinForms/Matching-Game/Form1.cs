@@ -46,5 +46,22 @@ namespace MatchingGame
                 }
             }
         }
+
+        private void Label_Click(object sender, EventArgs e)
+        {
+            Label clickedLabel = sender as Label;
+
+            if(clickedLabel != null)
+            {
+                // If the clicked label is black, the player
+                // clicked an icon that's already been revealed
+                // ignore click
+
+                if(clickedLabel.ForeColor == Color.Black)
+                    return;
+
+                clickedLabel.ForeColor = Color.Black;
+            }
+        }
     }
 }
