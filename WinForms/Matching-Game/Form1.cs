@@ -90,20 +90,25 @@ namespace MatchingGame
                     return;
 
                 // If firstClicked is null, this is the first icon
-                // change its color to black and return
+                // change its color to CadetBlue and return
 
                 if (firstClicked == null)
                 {
                     firstClicked = clickedLabel;
                     firstClicked.ForeColor = Color.CadetBlue;
 
+                    // Enable the timer, so if player takes
+                    // more than 3 second to choose the second
+                    // icon, to hide the first selection
+                    timer3.Enabled = true;
+                    timer3.Start();
                     return;
                 }
 
                 // If the player gets this far, the timer isn't
                 // running and firstClicked isn't null
                 // so this must be the second icon the player clicked
-                // set its color to black
+                // set its color to CadetBlue
                 secondClicked = clickedLabel;
                 secondClicked.ForeColor = Color.CadetBlue;
 
@@ -118,7 +123,7 @@ namespace MatchingGame
 
                 // If the player get this far, the player
                 // clicked two different icons, so start
-                // the timer (which will wait 3/4 of a second
+                // the timer (which will wait 1/2 of a second
                 // and then hide the icons)
                 timer1.Start();
             }
@@ -165,6 +170,17 @@ namespace MatchingGame
         {
             timeTracker += 1;
             timeCounter.Text = $"{timeTracker} seconds";
+        }
+
+        private void Timer3_Tick(object sender, EventArgs e)
+        {
+            // Check if the timer was triggered correctly
+            // and there is a selected icon
+            if (firstClicked != null)
+                firstClicked.ForeColor = Color.CadetBlue;
+
+            // Stop the timer until the next first selection
+            timer3.Stop();
         }
     }
 }
