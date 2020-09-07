@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 namespace MatchingGame
@@ -28,7 +24,7 @@ namespace MatchingGame
         public Form1()
         {
             InitializeComponent();
-
+            
             AssignIconsToSquares();
         }
 
@@ -48,9 +44,10 @@ namespace MatchingGame
             "f", "f", "m", "m", "L", "L"
             };
 
-            // set initial values to the clicked icons
+            // Set initial values to the clicked icons
             firstClicked = null;
             secondClicked = null;
+
 
             // Assign random value from icons
             // to each Label
@@ -132,6 +129,10 @@ namespace MatchingGame
                 {
                     firstClicked = null;
                     secondClicked = null;
+
+                    // Play sound on match
+                    SystemSounds.Exclamation.Play();
+
                     return;
                 }
 
