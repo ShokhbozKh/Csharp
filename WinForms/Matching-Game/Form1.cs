@@ -34,22 +34,6 @@ namespace MatchingGame
 
         private void AssignIconsToSquares()
         {
-            // Assign random value from icons
-            // to each Label
-            foreach (Control control in tableLayoutPanel1.Controls)
-            {
-                // Check if the control is label and not belongs to timer part
-                if (control is Label iconLabel)
-                {
-                    // Get random number between the length
-                    // of the Icons collection
-                    int random = randomizer.Next(icons.Count);
-                    iconLabel.Text = icons[random];
-                    iconLabel.ForeColor = iconLabel.BackColor;
-                    icons.RemoveAt(random);
-                }
-            }
-
             // Reset ui attributes to initial values
             timeTracker = 0;
             timeCounter.Text = "0 seconds";
@@ -67,6 +51,22 @@ namespace MatchingGame
             // set initial values to the clicked icons
             firstClicked = null;
             secondClicked = null;
+
+            // Assign random value from icons
+            // to each Label
+            foreach (Control control in tableLayoutPanel1.Controls)
+            {
+                // Check if the control is label and not belongs to timer part
+                if (control is Label iconLabel)
+                {
+                    // Get random number between the length
+                    // of the Icons collection
+                    int random = randomizer.Next(icons.Count);
+                    iconLabel.Text = icons[random];
+                    iconLabel.ForeColor = iconLabel.BackColor;
+                    icons.RemoveAt(random);
+                }
+            }
         }
 
         private void Label_Click(object sender, EventArgs e)
@@ -122,7 +122,11 @@ namespace MatchingGame
                 secondClicked = clickedLabel;
                 secondClicked.ForeColor = Color.CadetBlue;
 
-                CheckForWin();
+                // If the player won the game
+                // and decided to start a new one
+                // stop the thread
+                if (CheckForWin())
+                    return;
 
                 if (firstClicked.Text == secondClicked.Text)
                 {
@@ -177,7 +181,7 @@ namespace MatchingGame
         }
 
 
-        private void CheckForWin()
+        private bool CheckForWin()
         {
             // go through all of the labels in the TableLayoutPanel,
             // checking each one to see if its icon is matched
@@ -188,7 +192,7 @@ namespace MatchingGame
                 {
                     if (iconLabel.ForeColor == iconLabel.BackColor)
                     {
-                        return;
+                        return false; ;
                     }
                 }
             }
@@ -207,6 +211,7 @@ namespace MatchingGame
             else
                 Close();
 
+            return true;
         }
     }
 }
