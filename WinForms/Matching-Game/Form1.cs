@@ -20,6 +20,12 @@ namespace MatchingGame
             "b", "b", "v", "v", "w", "w", "z", "z"
         };
 
+        // Points to the first Label control
+        Label firstClicked = null;
+
+        // Points to the second label contorl
+        Label secondClicked = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +47,7 @@ namespace MatchingGame
 
                     int random = randomizer.Next(icons.Count);
                     iconLabel.Text = icons[random];
-
+                    iconLabel.ForeColor = Color.Blue;
                     icons.RemoveAt(random);
                 }
             }
@@ -49,19 +55,61 @@ namespace MatchingGame
 
         private void Label_Click(object sender, EventArgs e)
         {
-            Label clickedLabel = sender as Label;
+            // The timer is only on after two non-matching
+            // icons have een shown to the player,
+            // so ignore any clicks if the timer is running
+            if(timer1.Enabled == true)
+                return;
 
-            if(clickedLabel != null)
+            // If secondClicked is not null, the player has
+            // already clicked twice and the game
+            // has not yet reset -- ignore click
+            if (secondClicked != null)
+                return;
+
+            if (sender is Label clickedLabel)
             {
+
                 // If the clicked label is black, the player
                 // clicked an icon that's already been revealed
                 // ignore click
-
-                if(clickedLabel.ForeColor == Color.Black)
+                if (clickedLabel.ForeColor == Color.Black)
                     return;
 
-                clickedLabel.ForeColor = Color.Black;
+                // If firstClicked is null, this is the first icon
+                // change its color to black and return
+
+                if (firstClicked == null)
+                {
+                    firstClicked = clickedLabel;
+                    firstClicked.ForeColor = Color.Black;
+
+                    return;
+                }
+
+                secondClicked = clickedLabel;
+                secondClicked.ForeColor = Color.Black;
+
+                // If the player get this far, the player
+                // clicked two different icons, so start
+                // the timer (which will wait 3/4 of a second
+                // and then hide the icons)
+                timer1.Start();
             }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            // Hide both icons
+            firstClicked.ForeColor = firstClicked.BackColor;
+            secondClicked.ForeColor = secondClicked.BackColor;
+
+            // Reset firstClicked and secondClicked
+            // to let program recognize it's first click again
+            firstClicked = null;
+            secondClicked = null;
         }
     }
 }
