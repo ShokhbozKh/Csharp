@@ -14,24 +14,16 @@ namespace MatchingGame
     {
         readonly Random randomizer = new Random();
 
-        readonly List<string> icons = new List<string>
-        {
-            "!", "!", "N", "N", ",", ",",
-            "b", "b", "v", "v", "w", "w",
-            "j", "j", "z", "z", "@", "@",
-            "e", "e", "x", "x", "$", "$",
-            "f", "f", "m", "m", "L", "L"
-
-        };
+        List<string> icons;
 
         // Points to the first Label control
-        Label firstClicked = null;
+        Label firstClicked;
 
         // Points to the second label contorl
-        Label secondClicked = null;
+        Label secondClicked;
 
         // Track the time of the game
-        int timeTracker = 0;
+        int timeTracker;
 
         public Form1()
         {
@@ -57,6 +49,24 @@ namespace MatchingGame
                     icons.RemoveAt(random);
                 }
             }
+
+            // Reset ui attributes to initial values
+            timeTracker = 0;
+            timeCounter.Text = "0 seconds";
+
+            // Assign values of the icons
+            icons = new List<string>
+            {
+            "!", "!", "N", "N", ",", ",",
+            "b", "b", "v", "v", "w", "w",
+            "j", "j", "z", "z", "@", "@",
+            "e", "e", "x", "x", "$", "$",
+            "f", "f", "m", "m", "L", "L"
+            };
+
+            // set initial values to the clicked icons
+            firstClicked = null;
+            secondClicked = null;
         }
 
         private void Label_Click(object sender, EventArgs e)
@@ -126,6 +136,9 @@ namespace MatchingGame
                 // the timer (which will wait 1/2 of a second
                 // and then hide the icons)
                 timer1.Start();
+
+                // Disable countdown for the firstSelect icon
+                timer3.Stop();
             }
         }
 
@@ -141,29 +154,6 @@ namespace MatchingGame
             // to let program recognize it's first click again
             firstClicked = null;
             secondClicked = null;
-        }
-
-        private void CheckForWin()
-        {
-            // go through all of the labels in the TableLayoutPanel,
-            // checking each one to see if its icon is matched
-
-            foreach (Control control in tableLayoutPanel1.Controls)
-            {
-                if (control is Label iconLabel)
-                {
-                    if (iconLabel.ForeColor == iconLabel.BackColor)
-                    {
-                        return;
-                    }
-                }
-            }
-
-            // If the loop didn't return, it didn't
-            // find any unmatched icons
-            // That means the user won. Show a message and close the form
-            MessageBox.Show("You matched all the icons!", "Conguratilations");
-            Close();
         }
 
         private void Timer2_Tick(object sender, EventArgs e)
@@ -184,6 +174,39 @@ namespace MatchingGame
 
             // Stop the timer until the next first selection
             timer3.Stop();
+        }
+
+
+        private void CheckForWin()
+        {
+            // go through all of the labels in the TableLayoutPanel,
+            // checking each one to see if its icon is matched
+
+            foreach (Control control in tableLayoutPanel1.Controls)
+            {
+                if (control is Label iconLabel)
+                {
+                    if (iconLabel.ForeColor == iconLabel.BackColor)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            timer2.Stop();
+
+            // If the loop didn't return, it didn't
+            // find any unmatched icons
+            // That means the user won. Show a message and close the form
+            MessageBox.Show($"Conguratilations, you've finished the game in {timeTracker} seconds.", "You matched all the icons!");
+
+            // Ask the user if he wants to start a new game
+            // if not, finish the application
+            if (MessageBox.Show("Do you want to start a new game?", "Restart", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                AssignIconsToSquares();
+            else
+                Close();
+
         }
     }
 }
