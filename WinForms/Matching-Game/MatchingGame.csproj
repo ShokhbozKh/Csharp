@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{514B72DD-FDBC-437C-9378-5D5D42BED832}</ProjectGuid>
+    <ProjectGuid>{C4E631D8-59D5-48BA-9129-AA4BBA23386E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MatchingGame</RootNamespace>
     <AssemblyName>MatchingGame</AssemblyName>
@@ -54,9 +54,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
