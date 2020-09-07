@@ -177,7 +177,10 @@ namespace MatchingGame
             // Check if the timer was triggered correctly
             // and there is a selected icon
             if (firstClicked != null)
-                firstClicked.ForeColor = Color.CadetBlue;
+                firstClicked.ForeColor = firstClicked.BackColor;
+
+            // Reset the first clicked icon to null
+            firstClicked = null;
 
             // Stop the timer until the next first selection
             timer3.Stop();
