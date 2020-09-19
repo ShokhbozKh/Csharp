@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A0905C26-3E2A-4A72-A351-E3E1A9B856FE}</ProjectGuid>
+    <ProjectGuid>{6244AA07-CEAF-4533-BFBB-93AD09CCB11D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>IceCream</RootNamespace>
     <AssemblyName>IceCream</AssemblyName>
@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
