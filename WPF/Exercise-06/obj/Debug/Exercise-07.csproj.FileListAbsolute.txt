@@ -1,0 +1,6 @@
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\Exercise-07.csprojAssemblyReference.cache
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\AddStudentDialog.g.cs
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\MainWindow.g.cs
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\App.g.cs
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\Exercise-07_MarkupCompile.cache
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\WPF\Exercise-06\obj\Debug\Exercise-07_MarkupCompile.lref
