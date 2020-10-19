@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 
 namespace Exercise_03
 {
@@ -6,7 +7,9 @@ namespace Exercise_03
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter your first input");
             string firstInput = Console.ReadLine();
+            Console.WriteLine("Enter your first input");
             string secondInput = Console.ReadLine();
 
             for(int i = 0; i < 5; i++)
