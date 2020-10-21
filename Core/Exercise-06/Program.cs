@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Xml.XPath;
 
 namespace Exercise_06
 {
@@ -7,7 +8,8 @@ namespace Exercise_06
     {
         static void Main(string[] args)
         {
-
+            foreach(string position in new string[] { "A1","d5","g6","C8"})
+                Console.WriteLine($"{position} -> {KnightMoves(position)}");
         }
 
         static string KnightMoves(string position)
@@ -32,7 +34,28 @@ namespace Exercise_06
             {
                 for(int j = 0; j < chessDesk[i].Length; j++)
                 {
-
+                    if (chessDesk[i][j].Equals(position.ToLower()))
+                    {
+                        // Check left and right possible moves
+                        if (j - 2 >= 0 && i - 1 >= 0)
+                            result += chessDesk[i - 1][j - 2] + " ";
+                        if (j - 2 >= 0 && i + 1 <= 7)
+                            result += chessDesk[i + 1][j - 2] + " ";
+                        if (j + 2 <= 7 && i - 1 >= 0)
+                            result += chessDesk[i - 1][j + 2] + " ";
+                        if (j + 2 <= 7 && i + 1 <= 7)
+                            result += chessDesk[i + 1][j + 2] + " ";
+                        
+                        // Check top and bottom possible moves
+                        if (i - 2 >= 0 && j - 1 >= 0)
+                            result += chessDesk[i - 2][j - 1] + " ";
+                        if (i - 2 >= 0 && j + 1 <= 7)
+                            result += chessDesk[i - 2][j + 1] + " ";
+                        if (i + 2 <= 7 && j - 1 >= 0)
+                            result += chessDesk[i + 2][j - 1] + " ";
+                        if (i + 2 <= 7 && j + 1 <= 7)
+                            result += chessDesk[i + 2][j + 1] + " ";
+                    }
                 }
             }
 
