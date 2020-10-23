@@ -1,0 +1,8 @@
+﻿John 1980 Mercedes 255 255 102
+Mary 1997
+Alice 1993 Skoda 0 127 153
+Robert 1920 BMW 145 255 102
+Daniel 1994
+Alex 1993 Ferrari 0 127 123
+Jim 2000 Porsche 255 255 210
+Marta 1943 Mercedes 120 157 153
