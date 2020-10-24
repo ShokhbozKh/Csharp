@@ -8,17 +8,19 @@ namespace Exercise_13
     class Candy
     {
         string flavor;
-        double wieght;
+        double weight;
 
         public Candy(string flavor, double weight)
         {
             this.flavor = flavor;
-            this.wieght = weight;
+            this.weight = weight;
         }
+
+        public double GetWeight() => weight;
 
         public void Show()
         {
-            Console.WriteLine($"Flavor: [{flavor}], Weight: [{wieght}]");
+            Console.WriteLine($"Flavor: [{flavor}], Weight: [{weight}]");
         }
     }
 }
