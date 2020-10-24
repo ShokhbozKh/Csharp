@@ -9,10 +9,7 @@ namespace Exercise_13
         Candy candy;
         private double maxLoadWeight;
 
-        public Container(double maxLoadWeight)
-        {
-            this.maxLoadWeight = maxLoadWeight;
-        }
+        public Container(double maxLoadWeight) => this.maxLoadWeight = maxLoadWeight;
 
         public void Load(Candy candy)
         {

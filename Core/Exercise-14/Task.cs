@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
 
 namespace Exercise_14
 {
@@ -36,7 +32,7 @@ namespace Exercise_14
         public void PrintTasksRev()
         {
             if (next is not null)
-                next.PrintTasks();
+                next.PrintTasksRev();
 
             Console.Write($"{descr} ");
         }
