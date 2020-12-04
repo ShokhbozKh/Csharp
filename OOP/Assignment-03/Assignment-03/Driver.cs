@@ -8,6 +8,23 @@ namespace Assignment_03
     [Serializable]
     class Driver : Employee
     {
+        private static int _taxRate = 1;
+        public static int TaxRate 
+        {
+            get => _taxRate;
+            set
+            {
+                if(value < 0 && value >= 100)
+                {
+                    Console.WriteLine("Tax rate must be between 1 and 99 %");
+                    
+                    return;
+                }
+
+                _taxRate = value;
+            }
+        }
+
         public DateTime LicenceValidationDate { get; set; }
 
         /*
@@ -116,7 +133,7 @@ namespace Assignment_03
 
         public void AddRide(Ride ride)
         {
-            if (_rides.Contains(ride))
+            if (_rides.Where(s => s.IdRide == ride.IdRide) != null)
             {
                 Console.WriteLine("The driver already has the given ride.");
 
@@ -128,7 +145,7 @@ namespace Assignment_03
 
         public void RemoveRide(Ride ride)
         {
-            if (_rides.Contains(ride)) Rides.Remove(ride);
+            if (_rides.Where(s => s.IdRide == ride.IdRide) != null) Rides.Remove(ride);
 
             Console.WriteLine("The driver does not have the given ride.");
         }
@@ -172,9 +189,33 @@ namespace Assignment_03
 
         #endregion
 
+        internal override decimal GetIncome()
+        {
+            decimal totalSum = 0;
+
+            foreach(Ride ride in _rides)
+            {
+                totalSum += ride.TotalPrice;
+            }
+
+            totalSum = totalSum - ((totalSum * TaxRate) / 100);
+
+            return totalSum;
+        }
+
         public double GetAverageRate()
         {
             return _reviews.Average(s => s.Rate);
+        }
+
+        public void ShowCars()
+        {
+            if(Cars.Count > 0)
+            {
+                Console.WriteLine("Cars:");
+
+                foreach (Car car in Cars) Console.WriteLine(car.ToString());
+            }
         }
 
         public override string ToString()

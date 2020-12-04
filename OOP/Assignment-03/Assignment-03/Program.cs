@@ -8,7 +8,27 @@ namespace Assignment_03
     {
         static void Main(string[] args)
         {
-            
+            #region Disjoint
+
+            /*
+             * Client -> User <- Employee
+             */
+
+
+            #endregion
+
+            #region Abstract
+
+            /*
+             * Abstract User class
+             */
+
+            #endregion
+
+            #region Polymorphic method call
+
+            #endregion
+
         }
     }
 }

@@ -21,6 +21,19 @@ namespace Assignment_03
 
         #endregion;
 
+        #region Overrides
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Position: {Position}";
+        }
+        #endregion
+
+        #region Methods
+
+        protected abstract decimal GetIncome();
+
+        #endregion
     }
 
     enum Position

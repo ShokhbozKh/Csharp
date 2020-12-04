@@ -3,7 +3,7 @@
 namespace Assignment_03
 {
     [Serializable]
-    class User : ObjectPlus
+    abstract class User : ObjectPlus
     {
         public Guid UserId { get; set; }
         public string Login { get; set; }
