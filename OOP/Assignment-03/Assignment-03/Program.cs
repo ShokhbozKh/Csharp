@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Assignment_03
 {
@@ -118,6 +117,29 @@ namespace Assignment_03
 
             #endregion
 
+            #region Overlapping
+
+            /*
+             * Flattening the hierarchy
+             */
+
+            Partner partner = new Partner(50, "Driving partner uber sp.zoo", 5);
+            partner.AddPartnerType(PartnerType.AgencyPartner);
+            partner.AddPartnerType(PartnerType.IndividualPartner);
+            partner.AddPartnerType(PartnerType.PrivatePartner);
+
+            partner.ShowTypes();
+
+            // Generating error by adding existing type to the partner
+            partner.AddPartnerType(PartnerType.PrivatePartner);
+
+            partner.RemovePartnerType(PartnerType.AgencyPartner);
+            // Generating error by removing non-belonging type to the partner
+            partner.RemovePartnerType(PartnerType.AgencyPartner);
+
+            #endregion
+
+            
         }
     }
 }
