@@ -6,6 +6,22 @@ namespace Assignment_03
     abstract class Employee : User // Disjoint
     {
         public Position Position { get; set; }
+        private static int _taxRate = 1;
+        public static int TaxRate
+        {
+            get => _taxRate;
+            set
+            {
+                if (value < 0 && value >= 100)
+                {
+                    Console.WriteLine("Tax rate must be between 1 and 99 %");
+
+                    return;
+                }
+
+                _taxRate = value;
+            }
+        }
 
         #region Constructors
         public Employee(string login, string password, Position position) : base(login, password)
@@ -31,7 +47,7 @@ namespace Assignment_03
 
         #region Methods
 
-        protected abstract decimal GetIncome();
+        internal abstract decimal GetIncome();
 
         #endregion
     }

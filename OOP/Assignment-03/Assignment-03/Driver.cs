@@ -8,23 +8,6 @@ namespace Assignment_03
     [Serializable]
     class Driver : Employee
     {
-        private static int _taxRate = 1;
-        public static int TaxRate 
-        {
-            get => _taxRate;
-            set
-            {
-                if(value < 0 && value >= 100)
-                {
-                    Console.WriteLine("Tax rate must be between 1 and 99 %");
-                    
-                    return;
-                }
-
-                _taxRate = value;
-            }
-        }
-
         public DateTime LicenceValidationDate { get; set; }
 
         /*
@@ -133,7 +116,7 @@ namespace Assignment_03
 
         public void AddRide(Ride ride)
         {
-            if (_rides.Where(s => s.IdRide == ride.IdRide) != null)
+            if (_rides.Where(s => s.IdRide == ride.IdRide) != null && _rides.Count > 0)
             {
                 Console.WriteLine("The driver already has the given ride.");
 
@@ -198,7 +181,7 @@ namespace Assignment_03
                 totalSum += ride.TotalPrice;
             }
 
-            totalSum = totalSum - ((totalSum * TaxRate) / 100);
+            totalSum -= ((totalSum * TaxRate) / 100);
 
             return totalSum;
         }

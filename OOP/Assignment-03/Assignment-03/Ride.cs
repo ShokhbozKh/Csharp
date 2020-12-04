@@ -42,6 +42,7 @@ namespace Assignment_03
 
         private Ride(string startPoint, string destinationPoint, decimal totalPrice)
         {
+            IdRide = Guid.NewGuid();
             StartPoint = startPoint;
             DestinationPoint = destinationPoint;
             RideDate = DateTime.Now;
@@ -50,6 +51,7 @@ namespace Assignment_03
 
         private Ride(string startPoint, string destinationPoint, decimal totalPrice, int bonus)
         {
+            IdRide = Guid.NewGuid();
             StartPoint = startPoint;
             DestinationPoint = destinationPoint;
             RideDate = DateTime.Now;

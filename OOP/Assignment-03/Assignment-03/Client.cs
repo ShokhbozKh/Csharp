@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Assignment_03
 {
     [Serializable]
-    class Client : User
+    class Client : User // Disjoint
     {
         private List<Ride> _rides = new List<Ride>();
         public List<Ride> Rides 

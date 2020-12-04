@@ -36,22 +36,18 @@ namespace Assignment_03
         {
             var dictForSerialization = _extent.ToDictionary(x => x.Key.FullName, x => x.Value);
 
-            using (Stream stream = File.Open(fileName, FileMode.Create))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, dictForSerialization);
-            }
+            using Stream stream = File.Open(fileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, dictForSerialization);
         }
 
         public static void DeserializeFromFile(string fileName)
         {
-            using (Stream stream = File.Open(fileName, FileMode.Open))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                var deserializedDictionary = (Dictionary<string, ICollection<ObjectPlus>>)formatter.Deserialize(stream);
+            using Stream stream = File.Open(fileName, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            var deserializedDictionary = (Dictionary<string, ICollection<ObjectPlus>>)formatter.Deserialize(stream);
 
-                _extent = deserializedDictionary.ToDictionary(x => Type.GetType(x.Key), x => x.Value);
-            }
+            _extent = deserializedDictionary.ToDictionary(x => Type.GetType(x.Key), x => x.Value);
         }
     }
 }

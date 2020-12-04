@@ -6,24 +6,34 @@ namespace Assignment_03
 {
     class CustomerSupport : Employee
     {
-        public int TaxRate { get; set; }
-
         private decimal _salary;
         public decimal Salary 
         {
             get => _salary;
-            set => _salary = value;
+            set
+            {
+                if(value < 0)
+                {
+                    Console.WriteLine("Salary of the employee cannot be negative!");
+                    
+                    return;
+                }
+
+                _salary = value;
+            }
         }
 
         #region Constructors
-        public CustomerSupport(string login, string password)
+        public CustomerSupport(string login, string password, decimal salary)
             : base(login, password, Position.CustomerSupport)
         {
+            _salary = salary;
         }
 
-        public CustomerSupport(string login, string password, string firstName, string lastName)
+        public CustomerSupport(string login, string password, string firstName, string lastName, decimal salary)
             : base(login, password, firstName, lastName, Position.CustomerSupport)
         {
+            _salary = salary;
         }
 
         #endregion
