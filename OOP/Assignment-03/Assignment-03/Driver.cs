@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Assignment_02
+namespace Assignment_03
 {
     [Serializable]
-    class Driver : User
+    class Driver : Employee
     {
         public DateTime LicenceValidationDate { get; set; }
 
@@ -50,11 +50,12 @@ namespace Assignment_02
         }
 
         #region Constructors
-        public Driver(string login, string password) : base(login, password)
+        public Driver(string login, string password) : base(login, password, Position.Driver)
         {
         }
+
         public Driver(string login, string password,
-            string firstName, string lastName) : base(login, password, firstName, lastName)
+            string firstName, string lastName) : base(login, password, firstName, lastName, Position.Driver)
         {
         }
 

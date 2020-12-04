@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assignment_02
+namespace Assignment_03
 {
     [Serializable]
     class User : ObjectPlus

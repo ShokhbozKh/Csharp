@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assignment_02
+namespace Assignment_03
 {
     [Serializable]
     class Client : User

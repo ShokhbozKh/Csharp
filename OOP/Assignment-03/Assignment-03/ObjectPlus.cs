@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Assignment_02
+namespace Assignment_03
 {
     [Serializable]
     abstract class ObjectPlus
