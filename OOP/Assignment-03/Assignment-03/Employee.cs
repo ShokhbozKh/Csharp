@@ -6,22 +6,8 @@ namespace Assignment_03
     abstract class Employee : User // Disjoint
     {
         public Position Position { get; set; }
-        private static int _taxRate = 1;
-        public static int TaxRate
-        {
-            get => _taxRate;
-            set
-            {
-                if (value < 0 && value >= 100)
-                {
-                    Console.WriteLine("Tax rate must be between 1 and 99 %");
-
-                    return;
-                }
-
-                _taxRate = value;
-            }
-        }
+        public static int TaxRate { get; set; }
+        public WorkMode WorkMode { get; set; }
 
         #region Constructors
         public Employee(string login, string password, Position position) : base(login, password)
@@ -37,18 +23,46 @@ namespace Assignment_03
 
         #endregion;
 
-        #region Overrides
-
-        public override string ToString()
-        {
-            return $"{base.ToString()} Position: {Position}";
-        }
-        #endregion
-
         #region Methods
 
         internal abstract decimal GetIncome();
 
+        public Driver MakeDriver()
+        {
+            if (this is CustomerSupport)
+            {
+                return new Driver(Login, Password, FirstName, LastName);                
+            }
+            else
+            {
+                Console.WriteLine("Cannot be converted to Driver!");
+                
+                return null;
+            }
+        }
+
+        public CustomerSupport MakeCustomerSupport(decimal Salary)
+        {
+            if(this is Driver)
+            {
+                return new CustomerSupport(Login, Password, Salary);
+            }
+            else
+            {
+                Console.WriteLine("Cannot be converted to Customer Support!");
+
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Overrides
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Position: [{Position}]";
+        }
         #endregion
     }
 

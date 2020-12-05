@@ -203,7 +203,7 @@ namespace Assignment_03
 
         public override string ToString()
         {
-            return Login;
+            return base.ToString();
         }
     }
 }

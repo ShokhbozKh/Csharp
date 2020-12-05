@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Assignment_03
 {
@@ -8,18 +6,12 @@ namespace Assignment_03
     {
         public int MinHours { get; set; } // Minimal hours plan to complete monthly
 
-        public PartTime(string login, string password, Position position)
-            : base(login, password, position)
+        public PartTime(int minHourse)
         {
+            MinHours = minHourse;
         }
-
 
         public override decimal CalculateMinimalPlan()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal override decimal GetIncome()
         {
             throw new NotImplementedException();
         }

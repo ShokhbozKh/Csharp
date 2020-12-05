@@ -33,7 +33,7 @@ namespace Assignment_03
 
         public override string ToString()
         {
-            return $"Login: {Login}, Password: {Password}";
+            return $"Login: [{Login}], Password: [{Password}]";
         }
     }
 }

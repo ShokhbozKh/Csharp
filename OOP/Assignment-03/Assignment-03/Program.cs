@@ -111,6 +111,10 @@ namespace Assignment_03
              * Abstract User class
              */
 
+            Console.WriteLine();
+            Console.WriteLine("------- Abstract -----------");
+            Console.WriteLine();
+
             Client client6 = new Client("client4", "password4", "Andrew", "Johnson");
 
             Employee employee2 = new CustomerSupport("CS2", "password2", 3525);
@@ -125,11 +129,14 @@ namespace Assignment_03
 
             #region Polymorphic method call
 
+            Console.WriteLine();
+            Console.WriteLine("------- Polymorphic method call ----------");
+
             // Set tax rate for employees
             Employee.TaxRate = 30;
 
-            Employee user1 = driver1;
-            Employee user2 = customerSupport1;
+            Employee user1 = driver1;   // Driver class object defined above
+            Employee user2 = customerSupport1; // CustomerSupport class object defined above
 
             Console.WriteLine($"Income method result for driver: {user1.GetIncome()}");
             Console.WriteLine($"Income method result for customer support: {user2.GetIncome()}");
@@ -141,6 +148,10 @@ namespace Assignment_03
             /*
              * Flattening the hierarchy
              */
+
+            Console.WriteLine();
+            Console.WriteLine("------- Overlapping ----------");
+            Console.WriteLine();
 
             Partner partner = new Partner(50, "Driving partner uber sp.zoo", 5);
             partner.AddPartnerType(PartnerType.AgencyPartner);
@@ -159,6 +170,10 @@ namespace Assignment_03
             #endregion
 
             #region Multi inheritance
+
+            Console.WriteLine();
+            Console.WriteLine("------- Multi inheritance ----------");
+            Console.WriteLine();
 
             Amphicar amphicar = new Amphicar("waw42 1252", "Toyota", 10, Category.Bussiness, 13.6, 241.23);
 
@@ -180,6 +195,39 @@ namespace Assignment_03
 
             #region Dynamic
 
+            Console.WriteLine();
+            Console.WriteLine("--------- Dynamic inheritance -------- ");
+            Console.WriteLine();
+
+            Employee driver5 = new Driver("driver5", "password5");
+            (driver5 as Driver).AddCar(car4);
+            (driver5 as Driver).AddCar(car2);
+
+            Console.WriteLine($"Driver: {driver5}");
+            (driver5 as Driver).ShowCars();
+
+            Employee customerSupport = new CustomerSupport("CS1", "password1", 3420);
+
+            Console.WriteLine($"Customer support: {customerSupport}");
+            Console.WriteLine((customerSupport as CustomerSupport).GetIncome());
+
+            // Change the specializations
+
+            Console.WriteLine();
+            Console.WriteLine("-------- After converting specializations --------");
+            Console.WriteLine();
+
+            driver5 = driver5.MakeCustomerSupport(3500);
+            customerSupport = customerSupport.MakeDriver();
+            
+            (customerSupport as Driver).AddCar(car1);
+            (customerSupport as Driver).AddCar(car3);
+
+            Console.WriteLine($"Driver: {customerSupport}");
+            (customerSupport as Driver).ShowCars();
+
+            Console.WriteLine($"Customer support: {driver5}");
+            Console.WriteLine((driver5 as CustomerSupport).GetIncome());
             #endregion
         }
     }
