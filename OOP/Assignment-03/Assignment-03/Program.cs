@@ -93,6 +93,15 @@ namespace Assignment_03
              * Client -> User <- Employee
              */
 
+            Client client5 = new Client("client3", "password3", "Andrew", "Johnson");
+
+            Employee employee = new CustomerSupport("cs1", "password1", 3520);
+
+            User userEmp = employee;
+            User userClient = client5;
+
+            Console.WriteLine(userEmp.ToString());
+            Console.WriteLine(userClient.ToString());
 
             #endregion
 
@@ -101,6 +110,16 @@ namespace Assignment_03
             /*
              * Abstract User class
              */
+
+            Client client6 = new Client("client4", "password4", "Andrew", "Johnson");
+
+            Employee employee2 = new CustomerSupport("CS2", "password2", 3525);
+
+            User userEmp2 = employee2;
+            User userClient2 = client6;
+
+            Console.WriteLine(userEmp2.ToString());
+            Console.WriteLine(userClient2.ToString());
 
             #endregion
 
@@ -139,7 +158,29 @@ namespace Assignment_03
 
             #endregion
 
-            
+            #region Multi inheritance
+
+            Amphicar amphicar = new Amphicar("waw42 1252", "Toyota", 10, Category.Bussiness, 13.6, 241.23);
+
+            // Vehicle must have its owner
+            driver1.AddCar(amphicar);
+
+            Console.WriteLine($"Amphicar speed: { amphicar.GetSpeed()}");
+            Console.WriteLine(amphicar.ToString());
+
+            #endregion
+
+            #region Multi aspect
+            /*
+             * Driver  ->  Employee <- CustomerSupport
+             *                 |
+             * Full-time -> WorkMode <- Part-time
+             */
+            #endregion
+
+            #region Dynamic
+
+            #endregion
         }
     }
 }

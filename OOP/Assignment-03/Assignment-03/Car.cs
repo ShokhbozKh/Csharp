@@ -5,10 +5,11 @@ namespace Assignment_03
     [Serializable]
     class Car : ObjectPlus
     {
-        public int IdCar { get; set; }
-        public string CarNumber { get; set; }
-        public string Brand { get; set; }
-        public Category Category { get; set; }
+        public Guid IdCar { get; private set; }
+        public string CarNumber { get; private set; }
+        public string Brand { get; private set; }
+        public Category Category { get; private set; }
+        public decimal Price { get; private set; }  // per km
 
         private Driver _driver;
         public Driver Driver 
@@ -35,16 +36,29 @@ namespace Assignment_03
             }
         }
 
+        #region constructors
         public Car(string carNumber, string brand, Category category)
         {
+            IdCar = Guid.NewGuid();
             CarNumber = carNumber;
             Brand = brand;
             Category = category;
         }
 
+        public Car(string carNumber, string brand, decimal price, Category category)
+        {
+            IdCar = Guid.NewGuid();
+            CarNumber = carNumber;
+            Brand = brand;
+            Category = category;
+            Price = price;
+        }
+
+        #endregion
+
         public override string ToString()
         {
-            return $"Brand: [{Brand}], Car number: [{CarNumber}], Driver: [{Driver.Login}, Category: [{Category}]";
+            return $"Brand: [{Brand}], Car number: [{CarNumber}], Driver: [{Driver.Login}], Category: [{Category}]";
         }
     }
 
