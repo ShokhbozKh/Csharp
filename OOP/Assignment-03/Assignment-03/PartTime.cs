@@ -13,7 +13,7 @@ namespace Assignment_03
 
         public override decimal CalculateMinimalPlan()
         {
-            throw new NotImplementedException();
+            return MinHours;
         }
     }
 }

@@ -116,7 +116,8 @@ namespace Assignment_03
 
         public void AddRide(Ride ride)
         {
-            if (_rides.Where(s => s.IdRide == ride.IdRide) != null && _rides.Count > 0)
+            var r = _rides.Any(s => s.IdRide == ride.IdRide);
+            if (_rides.Any(s => s.IdRide == ride.IdRide) && _rides.Count > 0)
             {
                 Console.WriteLine("The driver already has the given ride.");
 
@@ -195,7 +196,7 @@ namespace Assignment_03
         {
             if(Cars.Count > 0)
             {
-                Console.WriteLine("Cars:");
+                Console.WriteLine($"{Login} Cars:");
 
                 foreach (Car car in Cars) Console.WriteLine(car.ToString());
             }

@@ -62,7 +62,7 @@ namespace Assignment_03
 
             // Generating Customer support employee
             CustomerSupport customerSupport1 = new CustomerSupport("Support1", "password1", 4500);
-            CustomerSupport customerSupport2 = new CustomerSupport("Support2", "password1", 5000);
+            _ = new CustomerSupport("Support2", "password1", 5000);
 
             // Generating Rides
             List<string> streets = new List<string>
@@ -92,6 +92,9 @@ namespace Assignment_03
             /*
              * Client -> User <- Employee
              */
+
+            Console.WriteLine("----- Disjoint ------");
+            Console.WriteLine();
 
             Client client5 = new Client("client3", "password3", "Andrew", "Johnson");
 
@@ -191,6 +194,16 @@ namespace Assignment_03
              *                 |
              * Full-time -> WorkMode <- Part-time
              */
+
+            Console.WriteLine();
+            Console.WriteLine("--------- Multi aspect --------");
+            Console.WriteLine();
+
+            driver1.WorkMode = new PartTime(20);
+            driver1.ShowCars();
+
+            Console.WriteLine($"Driver's plan: {driver1.WorkMode.CalculateMinimalPlan()}");
+
             #endregion
 
             #region Dynamic
