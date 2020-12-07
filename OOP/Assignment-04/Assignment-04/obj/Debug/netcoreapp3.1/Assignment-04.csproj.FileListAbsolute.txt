@@ -1,0 +1,13 @@
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.exe
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.deps.json
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.runtimeconfig.json
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.runtimeconfig.dev.json
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.dll
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\bin\Debug\netcoreapp3.1\Assignment-04.pdb
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.csprojAssemblyReference.cache
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.AssemblyInfoInputs.cache
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.AssemblyInfo.cs
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.csproj.CoreCompileInputs.cache
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.dll
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.pdb
+C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Assignment-04\Assignment-04\obj\Debug\netcoreapp3.1\Assignment-04.genruntimeconfig.cache
