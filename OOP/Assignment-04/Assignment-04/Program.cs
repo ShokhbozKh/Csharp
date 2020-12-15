@@ -46,6 +46,26 @@ namespace Assignment_04
 
             #region Subset
 
+            // Driver works through Partners
+            // Partner contains Drivers
+
+            Driver driver3 = new Driver("driver3", "pass3", "lice3");
+            Driver driver4 = new Driver("driver4", "pass4", "lice4");
+            Driver driver5 = new Driver("driver5", "pass5", "lice5");
+
+            Partner partner = new Partner(50, "Private Uber", 5);
+            Partner partner2 = new Partner(40, "Uber Plus", 7.5);
+
+            driver3.AddPartnerLink(partner);
+            driver4.AddPartnerLink(partner);
+            partner2.AddDriverLink(driver5);
+            driver3.AddPartnerLink(partner2);
+
+            // Trying to add existing partner
+            driver4.AddPartnerLink(partner);
+
+            // Trying to add existing driver
+            partner.AddDriverLink(driver3);
 
             #endregion
         }

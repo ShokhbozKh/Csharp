@@ -11,24 +11,19 @@ namespace Assignment_04
         public Guid IdPartner { get; set; }
         public int EntryPrice { get; set; }
         public string PartnerName { get; set; }
-        public int PartnerInterest { get; set; }
+        public double PartnerInterest { get; set; }
 
         private readonly ICollection<PartnerType> _partnerTypes;
-
         public ICollection<PartnerType> PartnerTypes => _partnerTypes.ToHashSet();
 
-        #region Constructors
-        public Partner(int entryPrice, string partnerName, int partnerInterest)
+        private readonly ICollection<Driver> _drivers;
+        public ICollection<Driver> Drivers 
         {
-            IdPartner = Guid.NewGuid();
-            EntryPrice = entryPrice;
-            PartnerName = partnerName;
-            PartnerInterest = partnerInterest;
-
-            _partnerTypes = new List<PartnerType>();
+            get => _drivers;
         }
 
-        public Partner(int entryPrice, string partnerName, int partnerInterest, ICollection<PartnerType> partnerTypes)
+        #region Constructors
+        public Partner(int entryPrice, string partnerName, double partnerInterest)
         {
             IdPartner = Guid.NewGuid();
             EntryPrice = entryPrice;
@@ -36,6 +31,18 @@ namespace Assignment_04
             PartnerInterest = partnerInterest;
 
             _partnerTypes = new List<PartnerType>();
+            _drivers = new List<Driver>();
+        }
+
+        public Partner(int entryPrice, string partnerName, double partnerInterest, ICollection<PartnerType> partnerTypes)
+        {
+            IdPartner = Guid.NewGuid();
+            EntryPrice = entryPrice;
+            PartnerName = partnerName;
+            PartnerInterest = partnerInterest;
+
+            _partnerTypes = new List<PartnerType>();
+            _drivers = new List<Driver>();
 
             foreach (PartnerType partnerType in partnerTypes)
                 _partnerTypes.Add(partnerType);
@@ -60,6 +67,48 @@ namespace Assignment_04
             if (_partnerTypes.Contains(partnerType)) _partnerTypes.Remove(partnerType);
             else Console.WriteLine("This partner does not contain given type!");
         }
+
+        #region subset
+        public void AddDriverLink(Driver driver)
+        {
+            if(driver is null)
+            {
+                Console.WriteLine("Driver cannot be null!");
+                return;
+            }
+
+            if(_drivers.Where(s => s.UserId == driver.UserId) == null)
+            {
+                Console.WriteLine($"{driver} already cooperates with {PartnerName}");
+                return;
+            }
+
+            _drivers.Add(driver);
+            driver.AddPartnerLink(this);
+        }
+
+        public void RemoveDriverLink(Driver driver)
+        {
+            if(driver is null)
+            {
+                Console.WriteLine("Driver cannot be null!");
+                
+                return;
+            }
+
+            if(_drivers.Where(s => s.UserId == driver.UserId) == null)
+            {
+                Console.WriteLine($"Partner does not contain the driver: {driver.Login}!");
+
+                return;
+            }
+
+            _drivers.Remove(driver);
+            driver.RemovePartnerLink(this);
+        }
+        
+
+        #endregion
 
         public void ShowTypes()
         {

@@ -18,11 +18,14 @@ namespace Assignment_04
             set => _cars = value ?? throw new NullReferenceException("Cars list cannot be null");
         }
         private ICollection<Ride> _rides = new List<Ride>();
-        public ICollection<Ride> Rides 
+        public ICollection<Ride> Rides
         {
             get => _rides;
             set => _rides = value ?? throw new NullReferenceException("Rides cannot be null!");
         }
+
+        private ICollection<Partner> _partners = new List<Partner>();
+        public ICollection<Partner> Partners;
 
         private List<Review> _reviews = new List<Review>();
         public List<Review> Reviews
@@ -121,6 +124,44 @@ namespace Assignment_04
 
                 foreach (Car car in Cars) Console.WriteLine(car.ToString());
             }
+        }
+
+        public void AddPartnerLink(Partner partner)
+        {
+            if(partner is null)
+            {
+                Console.WriteLine("Partner cannot be null!");
+
+                return;
+            }
+
+            if(_partners.Where(s => s.IdPartner == partner.IdPartner) == null)
+            {
+                Console.WriteLine($"The driver already contains {partner.PartnerName} partner");
+            }
+
+            _partners.Add(partner);
+            partner.AddDriverLink(this);
+        }
+
+        public void RemovePartnerLink(Partner partner)
+        {
+            if(partner is null)
+            {
+                Console.WriteLine("Partner cannot be null!");
+
+                return;
+            }
+
+            if(_partners.Where(s => s.IdPartner == partner.IdPartner) == null)
+            {
+                Console.WriteLine($"The driver does not cooperate with {partner.PartnerName}");
+
+                return;
+            }
+
+            _partners.Remove(partner);
+            partner.RemoveDriverLink(this);
         }
 
         #region Class Method
