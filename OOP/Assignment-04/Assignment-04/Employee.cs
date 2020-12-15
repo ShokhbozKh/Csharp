@@ -7,7 +7,6 @@ namespace Assignment_04
     {
         public Position Position { get; set; }
         public static int TaxRate { get; set; }
-        public WorkMode WorkMode { get; set; }
 
         #region Constructors
         public Employee(string login, string password, Position position) : base(login, password)

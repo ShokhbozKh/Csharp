@@ -9,7 +9,38 @@ namespace Assignment_04
         public string CarNumber { get; private set; }
         public string Brand { get; private set; }
         public Category Category { get; private set; }
-        public decimal Price { get; private set; }  // per km
+        private static decimal _maxPrice;
+        public static decimal MAX_PRICE 
+        {
+            get => _maxPrice;
+            set
+            {
+                if(value > 0)
+                {
+                    Console.WriteLine("Max price cannot be negative");
+
+                    return;
+                }
+
+                _maxPrice = value;
+            }
+        }
+        private decimal _price; // per km
+        public decimal Price 
+        {
+            get => _price;
+            set
+            {
+                if(value > 0 && value < MAX_PRICE)
+                {
+                    Console.WriteLine("Price for per km should be non-negative and less than max price!");
+                    
+                    return;
+                }
+
+                _price = value;
+            }
+        }
 
         private Driver _driver;
         public Driver Driver 
@@ -58,7 +89,7 @@ namespace Assignment_04
 
         public override string ToString()
         {
-            return $"Brand: [{Brand}], Car number: [{CarNumber}], Driver: [{Driver.Login}], Category: [{Category}]";
+            return $"Brand: [{Brand}], Car number: [{CarNumber}], Driver: [{Driver?.Login}], Category: [{Category}], Price per km: [{Price}]";
         }
     }
 

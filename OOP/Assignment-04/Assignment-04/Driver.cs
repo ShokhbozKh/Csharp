@@ -8,38 +8,20 @@ namespace Assignment_04
     [Serializable]
     class Driver : Employee
     {
-        public DateTime LicenceValidationDate { get; set; }
+        private static Dictionary<string, Driver> DRIVER_LICENSES { get; set; }
+        public DateTime LicenseValidationDate { get; set; }
 
-        /*
-         * Basic
-         */
         private ICollection<Car> _cars = new List<Car>();
         private ICollection<Car> Cars
         {
             get => _cars.ToImmutableList();
             set => _cars = value ?? throw new NullReferenceException("Cars list cannot be null");
         }
-
-        /*
-         * With an attribute
-         */
         private ICollection<Ride> _rides = new List<Ride>();
         public ICollection<Ride> Rides 
         {
             get => _rides;
             set => _rides = value ?? throw new NullReferenceException("Rides cannot be null!");
-        }
-
-        /*
-         * Qualified
-         */
-
-        private IDictionary<string, City> _citiesQualif = new Dictionary<string, City>();
-
-        public IDictionary<string, City> CitiesQualif
-        {
-            get => _citiesQualif;
-            set => _citiesQualif = value ?? throw new NullReferenceException("Cities qualifier cannot be null!");
         }
 
         private List<Review> _reviews = new List<Review>();
@@ -50,8 +32,19 @@ namespace Assignment_04
         }
 
         #region Constructors
-        public Driver(string login, string password) : base(login, password, Position.Driver)
+        static Driver()
         {
+            DRIVER_LICENSES = new Dictionary<string, Driver>();
+        }
+
+        public Driver(string login, string password, string license) : base(login, password, Position.Driver)
+        {
+            if(DRIVER_LICENSES.ContainsKey(license))
+            {
+                throw new Exception("The given license already exists! The Driver cannot be added.");                
+            }
+
+            DRIVER_LICENSES.Add(license, this);
         }
 
         public Driver(string login, string password,
@@ -60,38 +53,6 @@ namespace Assignment_04
         }
 
         #endregion
-
-        #region Qualified
-
-        public void AddCityQualif(City newCity)
-        {
-            if (newCity is null) return;
-
-            if (_citiesQualif.ContainsKey(newCity.CityName))
-            {
-                Console.WriteLine("Driver already belongs to this city");
-
-                return;
-            }
-
-            _citiesQualif.Add(newCity.CityName, newCity);
-        }
-
-        public City FindCityQualif(string cityName)
-        {
-            if (!_citiesQualif.ContainsKey(cityName))
-            {
-                Console.WriteLine("There is no given city in the system.");
-
-                return null;
-            }
-
-            return _citiesQualif[cityName];
-        }
-
-        #endregion
-
-        #region Composition
 
         public void AddReview(Review review)
         {
@@ -109,10 +70,6 @@ namespace Assignment_04
             else
                 Console.WriteLine($"The driver ${ToString()} does not contain review with id: {review.IdReview}");
         }
-
-        #endregion
-
-        #region With an attribute
 
         public void AddRide(Ride ride)
         {
@@ -134,10 +91,6 @@ namespace Assignment_04
             Console.WriteLine("The driver does not have the given ride.");
         }
 
-        #endregion
-
-        #region Binary
-
         public void AddCar(Car car)
         {
             if (car == null || _cars.Contains(car)) return;
@@ -154,7 +107,21 @@ namespace Assignment_04
             _cars.Remove(car);
             car.Driver = null;
         }
-        #endregion
+
+        public double GetAverageRate()
+        {
+            return _reviews.Average(s => s.Rate);
+        }
+
+        public void ShowCars()
+        {
+            if (Cars.Count > 0)
+            {
+                Console.WriteLine($"{Login} Cars:");
+
+                foreach (Car car in Cars) Console.WriteLine(car.ToString());
+            }
+        }
 
         #region Class Method
         public static void ShowReviews(Driver driver)
@@ -185,21 +152,6 @@ namespace Assignment_04
             totalSum -= ((totalSum * TaxRate) / 100);
 
             return totalSum;
-        }
-
-        public double GetAverageRate()
-        {
-            return _reviews.Average(s => s.Rate);
-        }
-
-        public void ShowCars()
-        {
-            if(Cars.Count > 0)
-            {
-                Console.WriteLine($"{Login} Cars:");
-
-                foreach (Car car in Cars) Console.WriteLine(car.ToString());
-            }
         }
 
         public override string ToString()

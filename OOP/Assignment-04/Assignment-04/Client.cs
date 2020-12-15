@@ -26,8 +26,6 @@ namespace Assignment_04
         }
 
         #endregion
-        
-        #region With an attribute
 
         public void AddRide(Ride ride)
         {
@@ -47,8 +45,6 @@ namespace Assignment_04
              
             Console.WriteLine("The client does not have the given ride.");
         }
-
-        #endregion
 
         public override string ToString()
         {

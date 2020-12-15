@@ -4,6 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Assignment_04</RootNamespace>
+    <StartupObject>Assignment_04.Program</StartupObject>
+    <AnalysisLevel>5.0</AnalysisLevel>
   </PropertyGroup>
 
 </Project>
