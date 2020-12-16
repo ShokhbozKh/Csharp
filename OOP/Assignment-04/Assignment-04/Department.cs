@@ -11,7 +11,7 @@ namespace Assignment_04
         public string Title { get; set; }
         public string Description { get; set; }
 
-        private ICollection<Employee> _employees;
+        private readonly ICollection<Employee> _employees;
         public ICollection<Employee> Employees => _employees.ToImmutableList();
 
         public Department(string title, string description)

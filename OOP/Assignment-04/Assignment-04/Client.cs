@@ -1,12 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Assignment_04
 {
     [Serializable]
     class Client : User // Disjoint
     {
+        /*
+         * custom
+         */
+        private string _email;
+
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (!Regex.IsMatch(value, EmailRegex))
+                {
+                    throw new Exception("Invalid email");
+                }
+
+                _email = value;
+            }
+        }
+
+        private const string EmailRegex =
+            @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
         private List<Ride> _rides = new List<Ride>();
         public List<Ride> Rides 
         {

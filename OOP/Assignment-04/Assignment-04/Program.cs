@@ -1,5 +1,4 @@
-﻿using Assignment_04.XOR;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace Assignment_04
@@ -158,6 +157,48 @@ namespace Assignment_04
 
             #endregion
 
+            #region Custom
+
+            // Custom email regex
+
+            Console.WriteLine();
+            Console.WriteLine("----- Custom -----");
+            Console.WriteLine();
+
+            {
+                Client client = new Client("client1", "pass1");
+               
+                // Generate exception
+                try
+                {
+                    client.Email = RandomString(10);
+                }
+                catch(Exception)
+                    when (client.Email == null)
+                {
+                    Console.WriteLine("Wrong email was provided!");
+                }
+                finally
+                {
+                    Console.WriteLine(client.Email);
+                }
+
+                try
+                {
+                    client.Email = "myemail42@gmail.com";
+                }
+                catch (Exception)
+                    when (client.Email == null)
+                {
+                    Console.WriteLine("Wrong email was provided!");
+                }
+                finally
+                {
+                    Console.WriteLine(client.Email);
+                }
+            }
+
+            #endregion
         }
 
         static string RandomString(int length)
