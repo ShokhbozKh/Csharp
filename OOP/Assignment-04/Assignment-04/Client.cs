@@ -49,12 +49,12 @@ namespace Assignment_04
 
         public void ShowRides()
         {
-            if(_rides.Count() > 0)
+            if(_rides.Count > 0)
             {
                 Console.WriteLine($"Rides for client: {this}");
 
                 Console.WriteLine("-----");
-                foreach(Ride ride in _rides)
+                foreach (Ride ride in _rides)
                 {
                     Console.WriteLine(ride);
                 }
