@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment_04
 {
@@ -44,6 +45,25 @@ namespace Assignment_04
             if (_rides.Contains(ride)) Rides.Remove(ride);
              
             Console.WriteLine("The client does not have the given ride.");
+        }
+
+        public void ShowRides()
+        {
+            if(_rides.Count() > 0)
+            {
+                Console.WriteLine($"Rides for client: {this}");
+
+                Console.WriteLine("-----");
+                foreach(Ride ride in _rides)
+                {
+                    Console.WriteLine(ride);
+                }
+                Console.WriteLine("-----");
+
+                return;
+            }
+
+            Console.WriteLine("The client does not have any ride yet!");
         }
 
         public static double GetAverageBall()

@@ -34,7 +34,7 @@ namespace Assignment_04
         private decimal _totalPrice;
         public decimal TotalPrice
         {
-            get => _totalPrice;
+            get => Math.Round(_totalPrice, 2);
             set => _totalPrice = value + (value / Taxrate) - (Bonus ?? 0);
         }
 
@@ -101,8 +101,8 @@ namespace Assignment_04
 
         public override string ToString()
         {
-            return $"Client: [{Client}],\nDriver: [{Driver}],\nStart point: [{StartPoint}],\nDestination point:[{DestinationPoint}]," +
-                $"\nRide date: [{RideDate}],\nTotal price: [{TotalPrice}]";
+            return $"Date: [{RideDate}], \nClient: [{Client}],\nDriver: [{Driver}],\nStart point: [{StartPoint}],\nDestination point:[{DestinationPoint}]," +
+                $"\nRide date: [{RideDate}],\nTotal price: [{TotalPrice}] \n";
         }
     }
 }

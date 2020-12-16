@@ -104,9 +104,18 @@ namespace Assignment_04
             if (_rides.Any())
             {
                 Console.WriteLine($"Rides for driver: {this}");
+
+                Console.WriteLine("-----");
+
                 foreach(Ride ride in _rides)
                     Console.WriteLine(ride);
+
+                Console.WriteLine("-----");
+
+                return;
             }
+
+            Console.WriteLine("The driver does not have any rides yet!");
         }
 
         public void AddCar(Car car)

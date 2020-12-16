@@ -24,7 +24,7 @@ namespace Assignment_04
         }
         private static decimal TotalPrice
         {
-            get => Price - ((Bonus * Price) / 100); // Substract percent of bonus from price
+            get => Math.Round(Price - ((Bonus * Price) / 100),2); // Substract percent of bonus from price
         }
 
         private static readonly List<Request> _pendingRequests = new List<Request>();
@@ -74,6 +74,7 @@ namespace Assignment_04
             {
                 Console.WriteLine($"Request number: {++counter} - {request}");
             }
+            Console.WriteLine();
         }
 
         public static void AcceptRequest(Driver driver, int requestNumber)

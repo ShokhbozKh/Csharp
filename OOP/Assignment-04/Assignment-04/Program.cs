@@ -111,6 +111,24 @@ namespace Assignment_04
 
             #endregion
 
+            #region Bag
+
+            // Client -> Ride <- Driver
+            Console.WriteLine();
+            Console.WriteLine("----- Bag ------");
+            Console.WriteLine();
+
+            {
+                Client client = new Client("client1", RandomString(5));
+                Driver driver = new Driver("driver1", RandomString(5), RandomString(5));
+
+                Ride.AddRide(client, driver, "Centrum", "Kozykowa", 15, 5);
+
+                client.ShowRides();
+                driver.ShowRides();
+            }
+
+            #endregion
         }
 
         static string RandomString(int length)
