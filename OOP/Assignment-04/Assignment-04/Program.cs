@@ -131,27 +131,33 @@ namespace Assignment_04
             #endregion
 
             #region XOR
-            // Person 1 - * Picture * - 1 Museum
+            // Driver 1 - * Car * - 1 Contractor
+
             Console.WriteLine();
             Console.WriteLine("----- XOR -----");
             Console.WriteLine();
 
 
-            Person person = new Person("John", "Done", new DateTime());
-            Museum museum = new Museum("Museum naradowe", "Iwicka 5", "National Museum", new DateTime());
-            Picture picture = new Picture("Antony Robertson", "Random description", new DateTime())
             {
-                PersonOwner = person
-            };
-            Console.WriteLine(picture.MuseumOwner);
-            Console.WriteLine(picture.PersonOwner);
+                Driver driver1 = new Driver("driver1", RandomString(5), RandomString(5));
+                Contractor contractor = new Contractor("Uber PlusPlus", "Centrum 5", 500);
+                Car car1 = new Car(RandomString(5), "Szkoda fabia", Category.Economy)
+                {
+                    Driver = driver1
+                };
 
-            picture.MuseumOwner = museum;
-            Console.WriteLine(picture.MuseumOwner);
-            Console.WriteLine(picture.PersonOwner);
+                Console.WriteLine(car1.Driver);
+                Console.WriteLine(car1.Contractor);
+
+                car1.Contractor = contractor;
+
+                Console.WriteLine(car1.Driver);
+                Console.WriteLine(car1.Contractor);
+            }
 
 
             #endregion
+
         }
 
         static string RandomString(int length)

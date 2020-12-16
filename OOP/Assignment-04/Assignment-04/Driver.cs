@@ -9,7 +9,6 @@ namespace Assignment_04
     class Driver : Employee
     {
         private static Dictionary<string, Driver> DRIVER_LICENSES { get; set; }
-        public DateTime LicenseValidationDate { get; set; }
 
         private ICollection<Car> _cars = new List<Car>();
         private ICollection<Car> Cars
@@ -25,7 +24,6 @@ namespace Assignment_04
         }
 
         private readonly ICollection<Partner> _partners = new List<Partner>();
-        public ICollection<Partner> Partners;
 
         private List<Review> _reviews = new List<Review>();
         public List<Review> Reviews

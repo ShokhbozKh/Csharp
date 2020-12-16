@@ -52,17 +52,44 @@ namespace Assignment_04
                 {
                     _driver = value;
                     _driver.AddCar(this);
+                    _contractor = null;
                 }
                 else if(_driver != null && value == null)
                 {
+                    _driver = null;
                     _driver.RemoveCar(this);
-                    _driver = value;
                 }
                 else if(_driver != null && value != null && _driver != value)
                 {
                     _driver.RemoveCar(this);
                     _driver = value;
                     _driver.AddCar(this);
+                }
+            }
+        }
+
+        private Contractor _contractor;
+        public Contractor Contractor 
+        {
+            get => _contractor;
+            set
+            {
+                if(_contractor == null && value != null)
+                {
+                    _contractor = value;
+                    _contractor.AddCar(this);
+                    _driver = null;
+                }
+                if(_contractor != null && value == null)
+                {
+                    _contractor = null;
+                    _contractor.RemoveCar(this);
+                }
+                if(_contractor != null && value != null && _contractor != value)
+                {
+                    _contractor.RemoveCar(this);
+                    _contractor = value;
+                    _contractor.AddCar(this);
                 }
             }
         }
