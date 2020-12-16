@@ -24,7 +24,7 @@ namespace Assignment_04
             set => _rides = value ?? throw new NullReferenceException("Rides cannot be null!");
         }
 
-        private ICollection<Partner> _partners = new List<Partner>();
+        private readonly ICollection<Partner> _partners = new List<Partner>();
         public ICollection<Partner> Partners;
 
         private List<Review> _reviews = new List<Review>();
@@ -77,7 +77,7 @@ namespace Assignment_04
         public void AddRide(Ride ride)
         {
             var r = _rides.Any(s => s.IdRide == ride.IdRide);
-            if (_rides.Any(s => s.IdRide == ride.IdRide) && _rides.Count > 0)
+            if (_rides.Any(s => s.IdRide == ride.IdRide))
             {
                 Console.WriteLine("The driver already has the given ride.");
 
@@ -89,9 +89,24 @@ namespace Assignment_04
 
         public void RemoveRide(Ride ride)
         {
-            if (_rides.Where(s => s.IdRide == ride.IdRide) != null) Rides.Remove(ride);
+            if (_rides.Any(s => s.IdRide == ride.IdRide))
+            {
+                Rides.Remove(ride);
+
+                return;
+            }
 
             Console.WriteLine("The driver does not have the given ride.");
+        }
+
+        public void ShowRides()
+        {
+            if (_rides.Any())
+            {
+                Console.WriteLine($"Rides for driver: {this}");
+                foreach(Ride ride in _rides)
+                    Console.WriteLine(ride);
+            }
         }
 
         public void AddCar(Car car)
@@ -135,7 +150,7 @@ namespace Assignment_04
                 return;
             }
 
-            if(_partners.Where(s => s.IdPartner == partner.IdPartner) == null)
+            if (_partners.Any(s => s.IdPartner == partner.IdPartner))
             {
                 Console.WriteLine($"The driver already contains {partner.PartnerName} partner");
             }
@@ -153,7 +168,7 @@ namespace Assignment_04
                 return;
             }
 
-            if(_partners.Where(s => s.IdPartner == partner.IdPartner) == null)
+            if(_partners.Any(s => s.IdPartner == partner.IdPartner))
             {
                 Console.WriteLine($"The driver does not cooperate with {partner.PartnerName}");
 
@@ -162,6 +177,11 @@ namespace Assignment_04
 
             _partners.Remove(partner);
             partner.RemoveDriverLink(this);
+        }
+
+        public void TakeRequest(int requestIndex)
+        {
+            Request.AcceptRequest(this, requestIndex);
         }
 
         #region Class Method
@@ -177,6 +197,11 @@ namespace Assignment_04
             {
                 Console.WriteLine(review.ToString());
             }
+        }
+
+        public static void ShowRequests()
+        {
+            Request.ShowPendingRequests();
         }
 
         #endregion

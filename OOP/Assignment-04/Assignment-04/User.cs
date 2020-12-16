@@ -15,14 +15,14 @@ namespace Assignment_04
 
         public User(string login, string password)
         {
-            UserId = new Guid();
+            UserId = Guid.NewGuid();
             Login = login;
             Password = password;
         }
 
         public User(string login, string password, string firstName, string lastName)
         {
-            UserId = new Guid();
+            UserId = Guid.NewGuid();
             Login = login;
             Password = password;
             FirstName = firstName;

@@ -77,7 +77,7 @@ namespace Assignment_04
                 return;
             }
 
-            if(_drivers.Where(s => s.UserId == driver.UserId) == null)
+            if(_drivers.Any(s => s.UserId == driver.UserId))
             {
                 Console.WriteLine($"{driver} already cooperates with {PartnerName}");
                 return;
@@ -96,7 +96,7 @@ namespace Assignment_04
                 return;
             }
 
-            if(_drivers.Where(s => s.UserId == driver.UserId) == null)
+            if (_drivers.Any(s => s.UserId == driver.UserId))
             {
                 Console.WriteLine($"Partner does not contain the driver: {driver.Login}!");
 

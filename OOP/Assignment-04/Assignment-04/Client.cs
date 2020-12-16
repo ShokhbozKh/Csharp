@@ -46,6 +46,15 @@ namespace Assignment_04
             Console.WriteLine("The client does not have the given ride.");
         }
 
+        public static double GetAverageBall()
+        {
+            // Random avg ball for client between 1 and 5
+            double avgBall = (double)new Random().NextDouble() * (5 - 1) + 1;
+
+            // Change floating point precision to 2
+            return Math.Round(avgBall, 2);
+        }
+
         public override string ToString()
         {
             return base.ToString();
