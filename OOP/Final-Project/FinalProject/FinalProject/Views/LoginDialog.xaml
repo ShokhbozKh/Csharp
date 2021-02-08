@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FinalProject.Views"
         mc:Ignorable="d"
         Title="Login" Height="350" Width="500" WindowStartupLocation="CenterScreen">
     <Grid Background="#F7F7F7">
@@ -19,13 +18,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel  Orientation="Vertical" Background="White" Grid.Row="1" Grid.Column="1">
-            <Label Content="Log into your account" Margin="5" Foreground="#55C57A"/>
-            <Label Content="Email address" Margin="5 5 0 0"/>
-            <TextBox  Width="180" HorizontalAlignment="Left" Margin="5"/>
-            <Label Content="Password" Margin="5 5 0 0"/>
-            <TextBox Width="180" HorizontalAlignment="Left" Margin="5"/>
-            <Button Content="Login" Width="120" HorizontalAlignment="Left" Background="#55C57A" Margin="5 30 0 0"/>
+            <Label Content="Log into your account" 
+                   Margin="5" Foreground="#55C57A"/>
+            <Label Content="Email address" 
+                   Margin="5 5 0 0"/>
+            <TextBox  x:Name="loginBox" 
+                      Width="180" HorizontalAlignment="Left" Margin="5"/>
+            <Label Content="Password" 
+                   Margin="5 5 0 0"/>
+            <PasswordBox x:Name="passwordBox" PasswordChar="*" 
+                         HorizontalAlignment="Left" 
+                         Margin="5" Width="180"/>
+            <Button Content="Login" 
+                    Width="120" HorizontalAlignment="Left" 
+                    Background="#55C57A" Margin="5 30 0 0"/>
         </StackPanel>
-
     </Grid>
 </Window>
