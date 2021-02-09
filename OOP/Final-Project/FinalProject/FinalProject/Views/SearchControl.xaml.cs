@@ -51,11 +51,9 @@ namespace FinalProject.Views
             get { return m_progress; }
             set
             {
-                if(value <= 5 || value > 0)
-                {
+                
                     m_progress = value;
                     OnPropertyChanged("Progress");
-                }
             }
         }
 
@@ -73,12 +71,14 @@ namespace FinalProject.Views
 
         private void IncreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            Progress += 1;
+            if(m_progress + 1 <= 5)
+                Progress += 1;
         }
 
         private void DecreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            Progress -= 1;
+            if(m_progress - 1 >= 0)
+                Progress -= 1;
         }
     }
 }

@@ -19,7 +19,7 @@
                                     Progress="{Binding Progress}"
                                     SnapsToDevicePixels="True"
                                     Margin="40"/>
-            <TextBlock Grid.Row="1" Text="{Binding Progress}"/>
+            <TextBlock Grid.Row="1" Text="{Binding Progress}" FontSize="10"/>
         </StackPanel>
 
         <local:RideDetailsControl Grid.Row="1" HorizontalAlignment="Center" Margin="15"/>
