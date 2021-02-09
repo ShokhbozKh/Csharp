@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Smart rides" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        BorderThickness="0"
+                        Padding="4,2" 
+                        CornerRadius="3" 
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0"
+                    Orientation="Horizontal" Background="#444444">
+            <Image Source="/Images/logo-white.png"
+                   Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Margin="30 0 0 0"/>
+            <Button Content="Search" Margin="350 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button Content="Book ticket"  Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button Content="Cancel ticket"  Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button Content="Log out" Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            
+        </StackPanel>
+
     </Grid>
 </Window>
