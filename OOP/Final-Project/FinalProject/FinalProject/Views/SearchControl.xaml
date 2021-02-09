@@ -9,18 +9,25 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:WizardProgressBar ItemsSource="{Binding Steps}"
+        <StackPanel Grid.Row="0" Margin="15" Width="650" Height="100">
+            <controls:WizardProgressBar ItemsSource="{Binding Steps}"
                                     Foreground="#FF086398"
                                     Progress="{Binding Progress}"
                                     SnapsToDevicePixels="True"
                                     Margin="40"/>
+            <TextBlock Grid.Row="1" Text="{Binding Progress}"/>
+        </StackPanel>
+
+        <local:RideDetailsControl Grid.Row="1" HorizontalAlignment="Center" Margin="15"/>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="Increase" Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
+            <Button Content="Decrease" Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
+        </StackPanel>
         
-        <Button Grid.Row="2" Content="Increase" Click="IncreaseButton_Click"/>
-        <Button Grid.Row="3" Content="Decrease" Click="DecreaseButton_Click"/>
     </Grid>
 </UserControl>

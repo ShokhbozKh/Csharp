@@ -34,11 +34,11 @@ namespace FinalProject.Views
             }
 
             Steps = new ObservableCollection<string>();
-            Steps.Add("WELCOME");
-            Steps.Add("PROFILE");
-            Steps.Add("CREDENTIALS");
-            Steps.Add("GROUPS");
-            Steps.Add("FINISHED");
+            Steps.Add("Select route & Date");
+            Steps.Add("Book Seat");
+            Steps.Add("Passenger details");
+            Steps.Add("Payment");
+            Steps.Add("Print Ticket");
             this.DataContext = this;
 
         }
