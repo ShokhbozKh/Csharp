@@ -24,10 +24,16 @@
 
         <local:RideDetailsControl Grid.Row="1" HorizontalAlignment="Center" Margin="15"/>
 
-        <StackPanel Grid.Row="2">
-            <Button Content="Increase" Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
-            <Button Content="Decrease" Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
-        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="2" Content="Increase" Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
+            <Button Grid.Column="0" Content="Decrease" Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
+        </Grid>
         
     </Grid>
 </UserControl>
