@@ -1,5 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace WizardProgressBarLibrary
 {
@@ -15,8 +26,8 @@ namespace WizardProgressBarLibrary
 
         private static object CoerceProgress(DependencyObject target, object value)
         {
-            WizardProgressBar wizardProgressBar = (WizardProgressBar)target;
-
+            WizardProgressBar wizardProgressBar = (WizardProgressBar) target;
+                
             int progress = (int)value;
             if (progress < 0)
             {
@@ -30,7 +41,7 @@ namespace WizardProgressBarLibrary
             {
                 return 0;
             }
-            return 100 * progress / wizardProgressBar.Items.Count;
+            return 100* progress / wizardProgressBar.Items.Count;
         }
 
         #endregion // Dependency Properties

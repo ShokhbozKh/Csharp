@@ -1,29 +1,26 @@
-﻿<UserControl x:Class="FinalProject.ViewModels.SearchControl"
+﻿<UserControl x:Class="FinalProject.Views.SearchControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FinalProject.ViewModels"
+             xmlns:local="clr-namespace:FinalProject.Views"
+             xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <Border BorderBrush="Black" BorderThickness="1" Background="#DE9459" 
-                    Width="140" Height="60" Margin="15 0 0 0" CornerRadius="5">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Some Text" Foreground="White" FontSize="20"/>
-            </Border>
-        </StackPanel>
+        <controls:WizardProgressBar ItemsSource="{Binding Steps}"
+                                    Foreground="#FF086398"
+                                    Progress="{Binding Progress}"
+                                    SnapsToDevicePixels="True"
+                                    Margin="40"/>
+        
+        <Button Grid.Row="2" Content="Increase" Click="IncreaseButton_Click"/>
+        <Button Grid.Row="3" Content="Decrease" Click="DecreaseButton_Click"/>
     </Grid>
 </UserControl>

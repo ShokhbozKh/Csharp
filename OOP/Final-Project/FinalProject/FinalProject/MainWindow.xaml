@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FinalProject"
+        xmlns:local="clr-namespace:FinalProject.Views"
+        xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
         mc:Ignorable="d"
-        Title="Smart rides" Height="450" Width="800">
+        Title="Smart rides" Height="650" Width="1100" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -62,5 +63,6 @@
             
         </StackPanel>
 
+        <local:SearchControl Grid.Row="1"/>
     </Grid>
 </Window>
