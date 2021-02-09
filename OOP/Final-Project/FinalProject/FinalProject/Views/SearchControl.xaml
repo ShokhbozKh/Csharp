@@ -31,8 +31,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" Content="Increase" Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
-            <Button Grid.Column="0" Content="Decrease" Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
+            <Button Grid.Column="2" Content="Forward" Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
+            <Button Grid.Column="0" Content="Back" Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
         </Grid>
         
     </Grid>

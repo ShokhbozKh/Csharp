@@ -28,17 +28,19 @@ namespace FinalProject.Views
             {
                 InitializeComponent();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("Cannot initialize search control");
             }
 
-            Steps = new ObservableCollection<string>();
-            Steps.Add("Select route & Date");
-            Steps.Add("Book Seat");
-            Steps.Add("Passenger details");
-            Steps.Add("Payment");
-            Steps.Add("Print Ticket");
+            Steps = new ObservableCollection<string>
+            {
+                "Select route & Date",
+                "Book Seat",
+                "Passenger details",
+                "Payment",
+                "Print Ticket"
+            };
             this.DataContext = this;
 
         }
@@ -49,8 +51,11 @@ namespace FinalProject.Views
             get { return m_progress; }
             set
             {
-                m_progress = value;
-                OnPropertyChanged("Progress");
+                if(value <= 5 || value > 0)
+                {
+                    m_progress = value;
+                    OnPropertyChanged("Progress");
+                }
             }
         }
 
@@ -63,10 +68,7 @@ namespace FinalProject.Views
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void IncreaseButton_Click(object sender, RoutedEventArgs e)
