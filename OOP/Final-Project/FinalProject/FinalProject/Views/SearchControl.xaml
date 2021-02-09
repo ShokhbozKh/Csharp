@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="15" Width="650" Height="100">
+        <StackPanel Grid.Row="0" Margin="5" Width="650" Height="80">
             <controls:WizardProgressBar ItemsSource="{Binding Steps}"
                                     Foreground="#FF086398"
                                     Progress="{Binding Progress}"

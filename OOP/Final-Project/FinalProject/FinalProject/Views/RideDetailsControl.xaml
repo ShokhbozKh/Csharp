@@ -27,12 +27,21 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="From" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                <ComboBox Name="fromCombobox" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                <ComboBox Name="fromCombobox" Margin="5" ItemsSource="{Binding fromLocationList}"
+                          Grid.Row="1" Grid.Column="0"
+                          Width="100"/>
                 <Label Content="To" Grid.Row="0" Grid.Column="1" Margin="5"/>
-                <ComboBox Name="toCombobox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                <Button x:Name="searchButton" Grid.Row="1" Grid.Column="2" Margin="5" Width="50" Content="Search"/>
-                <DatePicker Grid.Row="2" Grid.Column="0" Margin="5"/>
-                <ComboBox Name="busTypeCombobox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                <ComboBox Name="toCombobox" Margin="5" ItemsSource="{Binding toLocationList}"
+                          Grid.Row="1" Grid.Column="1"
+                          Width="100"/>
+                <Button x:Name="searchButton" Margin="5" Content="Search"
+                        Grid.Row="1" Grid.Column="2" 
+                        Width="80"/>
+                <DatePicker x:Name="rideDatePicker" Margin="5"
+                    Grid.Row="2" Grid.Column="0"/>
+                <ComboBox Name="busTypeCombobox" Margin="5" ItemsSource="{Binding busTypesList}"
+                          Grid.Row="2" Grid.Column="1"
+                          Width="100"/>
             </Grid>
         </StackPanel>
     </Grid>
