@@ -70,7 +70,13 @@ namespace FinalProject.Views
             if (m_progress + 1 <= 5)
                 Progress += 1;
 
-            _middleFrame.Navigate(new SeatingArea());
+            if(Progress == 1)
+            {
+                _middleFrame.Navigate(new SeatingArea());
+            }else if(Progress == 2)
+            {
+                _middleFrame.Navigate(new CustomerDetailsControl());
+            }
         }
 
         private void DecreaseButton_Click(object sender, RoutedEventArgs e)
