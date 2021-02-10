@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WizardProgressBarLibrary;
 
 namespace FinalProject.Views
 {
     /// <summary>
-    /// Interaction logic for SearchControl.xaml
+    /// Interaction logic for CustomerDetailsControl.xaml
     /// </summary>
-    public partial class SearchControl : UserControl
+    public partial class CustomerDetailsControl : UserControl
     {
-        public SearchControl()
+        public CustomerDetailsControl()
         {
             InitializeComponent();
         }
-
-
-        private void DisplayingsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
     }
 }

@@ -4,48 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FinalProject.Views"
-             xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
+             d:DataContext="{d:DesignInstance Type=local:ReservationControl}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="5" Width="650" Height="80">
-            <controls:WizardProgressBar ItemsSource="{Binding Steps}"
-                                    Foreground="#FF086398"
-                                    Progress="{Binding Progress}"
-                                    SnapsToDevicePixels="True"
-                                    Margin="40"/>
-            <TextBlock Grid.Row="1" Text="{Binding Progress}" FontSize="5"/>
-        </StackPanel>
 
-        <local:RideDetailsControl Grid.Row="1" HorizontalAlignment="Center" Margin="5"/>
+        <local:RideDetailsControl Grid.Row="0" HorizontalAlignment="Center" Margin="5"/>
 
-        <DataGrid x:Name="displayingsGrid" Grid.Row="2" 
+        <DataGrid x:Name="displayingsGrid" Grid.Row="1"
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
                   HorizontalGridLinesBrush="CadetBlue" VerticalGridLinesBrush="CadetBlue"
-                  SelectionChanged="displayingsGrid_SelectionChanged">
-            
+                  SelectionChanged="DisplayingsGrid_SelectionChanged">
+
         </DataGrid>
-
-        <Grid Grid.Row="3" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="2" Content="Forward" 
-                    Width="50" Height="20"
-                    Click="IncreaseButton_Click" HorizontalAlignment="Right"/>
-            <Button Grid.Column="0" Content="Back" 
-                    Width="50" Height="20"
-                    Click="DecreaseButton_Click" HorizontalAlignment="Left"/>
-        </Grid>
-        
     </Grid>
 </UserControl>

@@ -8,9 +8,9 @@ namespace FinalProject.Views
     /// </summary>
     public partial class RideDetailsControl : UserControl
     {
-        List<string> fromLocationList = new List<string>();
-        List<string> toLocationList = new List<string>();
-        List<string> busTypesList = new List<string>();
+        readonly List<string> fromLocationList = new List<string>();
+        readonly List<string> toLocationList = new List<string>();
+        readonly List<string> busTypesList = new List<string>();
         public RideDetailsControl()
         {
             InitializeComponent();
