@@ -40,12 +40,16 @@ namespace FinalProject.Views
         {
             this.bitcoinTextbox.Visibility = Visibility.Visible;
             this.bitcoinTextbox.Margin = new Thickness(0, 5, 0, 30);
+
+            this.cardPanel.Visibility = Visibility.Hidden;
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
             this.bitcoinTextbox.Visibility = Visibility.Hidden;
             this.bitcoinTextbox.Margin = new Thickness(0);
+
+            this.cardPanel.Visibility = Visibility.Visible;
         }
     }
 }

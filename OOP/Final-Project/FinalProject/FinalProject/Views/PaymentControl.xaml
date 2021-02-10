@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,9 +38,10 @@
                             <fa:ImageAwesome Height="18" Width="18" Margin="40 0 0 0"
                                          Icon="Bitcoin" Foreground="Green" Grid.Row="0"/>
                         </WrapPanel>
-                    <WrapPanel>
-                        <TextBox Width="100" Margin="0 5 0 30" x:Name="bitcoinTextbox"/>
-                    </WrapPanel>
+                        <WrapPanel Margin="0 10 0 0">
+                            <TextBlock Text="Cash" Foreground="DarkCyan"/>
+                            <TextBox Width="140" Margin="15 0 0 30" x:Name="bitcoinTextbox"/>
+                        </WrapPanel>
                     </WrapPanel>
                 </RadioButton>
 
@@ -48,22 +49,27 @@
                 <RadioButton.RenderTransform>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </RadioButton.RenderTransform>
-                <WrapPanel>
-                    <TextBlock Text="Cash"/>
-                    <fa:ImageAwesome Height="18" Width="18" Margin="50 0 0 0"
+                <WrapPanel Orientation="Vertical">
+                    <WrapPanel>
+                        <TextBlock Text="Card"/>
+                        <fa:ImageAwesome Height="18" Width="18" Margin="50 0 0 0"
                                      Icon="CreditCard" Foreground="Green"/>
+                    </WrapPanel>
+                    <WrapPanel x:Name="cardPanel" Visibility="Hidden" Orientation="Vertical" Margin="0 10 0 0">
+                        <WrapPanel>
+                            <TextBlock Text="Card number" Margin="0 5 5 0" Foreground="DarkCyan"/>
+                            <TextBox x:Name="cardNumberTextbox" Width="120" Margin="5 5 0 0"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Expiry" Margin="0 5 5 0" Foreground="DarkCyan"/>
+                            <TextBox x:Name="cardExpiryTextbox" Width="50" Margin="43 5 0 0"/>
+                            <TextBlock Text="CVC" Margin="18 5 0 0" Foreground="DarkCyan"/>
+                            <TextBox x:Name="cardCvcTextbox" Width="25" Margin="5 5 0 0"/>
+                        </WrapPanel>
+                    </WrapPanel>
                 </WrapPanel>
             </RadioButton>
         </StackPanel>
 
-        <Button Grid.Row="2" Margin="5" 
-                Content="Finish and pay" FontSize="15" Foreground="White" FontFamily="Angsana New"
-                Width="150" Height="50" Background="Green" Click="Button_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
     </Grid>
 </UserControl>
