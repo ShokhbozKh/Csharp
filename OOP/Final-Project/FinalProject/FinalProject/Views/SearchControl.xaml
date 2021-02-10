@@ -25,7 +25,10 @@
 
         <local:RideDetailsControl Grid.Row="1" HorizontalAlignment="Center" Margin="5"/>
 
-        <DataGrid Grid.Row="2" x:Name="displayingsGrid">
+        <DataGrid x:Name="displayingsGrid" Grid.Row="2" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  HorizontalGridLinesBrush="CadetBlue" VerticalGridLinesBrush="CadetBlue"
+                  SelectionChanged="displayingsGrid_SelectionChanged">
             
         </DataGrid>
 
