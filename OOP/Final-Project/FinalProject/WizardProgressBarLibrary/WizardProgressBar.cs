@@ -22,7 +22,7 @@ namespace WizardProgressBarLibrary
             DependencyProperty.Register("Progress",
                                         typeof(int),
                                         typeof(WizardProgressBar),
-                                        new FrameworkPropertyMetadata(0, null, CoerceProgress));
+                                        new FrameworkPropertyMetadata(1, null, CoerceProgress));
 
         private static object CoerceProgress(DependencyObject target, object value)
         {

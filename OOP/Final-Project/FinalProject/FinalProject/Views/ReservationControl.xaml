@@ -22,7 +22,7 @@
             <TextBlock Grid.Row="1" Text="{Binding Progress}" FontSize="5"/>
         </StackPanel>
 
-        <DockPanel Grid.Row="1">
+        <DockPanel Grid.Row="1" Margin="15">
             <Frame x:Name="_middleFrame" HorizontalAlignment="Center" Margin="5"/>
         </DockPanel>
 

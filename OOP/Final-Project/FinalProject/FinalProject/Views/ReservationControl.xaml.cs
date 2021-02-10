@@ -41,13 +41,12 @@ namespace FinalProject.Views
             this.DataContext = this;
         }
 
-        private int m_progress;
+        private int m_progress = 1;
         public int Progress
         {
             get { return m_progress; }
             set
             {
-
                 m_progress = value;
                 OnPropertyChanged("Progress");
             }
