@@ -16,27 +16,33 @@
         <Label Content="Payment 450 zlt" FontSize="20" FontFamily="Courier New"
                HorizontalAlignment="Center"/>
         <StackPanel Grid.Row="1" Margin="10">
-            <RadioButton  IsChecked="True" Margin="5">
+            <RadioButton  IsChecked="True" Margin="10">
+                <RadioButton.RenderTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2"/>
+                </RadioButton.RenderTransform>
                 <WrapPanel>
-                    <Label Content="Cash"/>
-                    <fa:ImageAwesome Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="150 0 0 0"
-                                     Height="48" Width="48" 
-                                     Icon="Money" Foreground="Green"/>
+                    <TextBlock Text="Cash"/>
+                    <fa:ImageAwesome Height="18" Width="18" Margin="50 0 0 0"
+                                         Icon="Money" Foreground="Green"/>
                 </WrapPanel>
             </RadioButton>
-            <RadioButton Margin="5">
+            <RadioButton Margin="10">
+                <RadioButton.RenderTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2"/>
+                </RadioButton.RenderTransform>
                 <WrapPanel>
-                    <Label Content="Bitcoin"/>
-                    <fa:ImageAwesome Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="140 0 0 0"
-                                     Height="48" Width="48" 
+                    <TextBlock Text="Bitcoin"/>
+                    <fa:ImageAwesome Height="18" Width="18" Margin="40 0 0 0"
                                      Icon="Bitcoin" Foreground="Green"/>
                 </WrapPanel>
             </RadioButton>
-            <RadioButton Margin="5">
+            <RadioButton Margin="10">
+                <RadioButton.RenderTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2"/>
+                </RadioButton.RenderTransform>
                 <WrapPanel>
-                    <Label Content="Cash"/>
-                    <fa:ImageAwesome Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="150 0 0 0"
-                                     Height="48" Width="48" 
+                    <TextBlock Text="Cash"/>
+                    <fa:ImageAwesome Height="18" Width="18" Margin="50 0 0 0"
                                      Icon="CreditCard" Foreground="Green"/>
                 </WrapPanel>
             </RadioButton>

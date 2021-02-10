@@ -71,10 +71,16 @@ namespace FinalProject.Views
 
             if(Progress == 1)
             {
-                _middleFrame.Navigate(new SeatingArea());
+                _middleFrame.Navigate(new RideDetailsControl());
             }else if(Progress == 2)
             {
+                _middleFrame.Navigate(new SeatingArea());
+            }else if(Progress == 3)
+            {
                 _middleFrame.Navigate(new CustomerDetailsControl());
+            }else if(Progress == 4)
+            {
+                _middleFrame.Navigate(new PaymetControl());
             }
         }
 

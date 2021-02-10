@@ -13,16 +13,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="5" Width="650" Height="80">
+        <StackPanel Grid.Row="0" Margin="2" Width="650" Height="80">
             <controls:WizardProgressBar ItemsSource="{Binding Steps}"
                                     Foreground="#FF086398"
                                     Progress="{Binding Progress}"
                                     SnapsToDevicePixels="True"
-                                    Margin="40"/>
-            <TextBlock Grid.Row="1" Text="{Binding Progress}" FontSize="5"/>
+                                    Margin="20"/>
         </StackPanel>
 
-        <DockPanel Grid.Row="1" Margin="15">
+        <DockPanel Grid.Row="1" Margin="20">
             <Frame x:Name="_middleFrame" HorizontalAlignment="Center" Margin="5"/>
         </DockPanel>
 
