@@ -16,7 +16,8 @@
         <Label Content="Payment 450 zlt" FontSize="20" FontFamily="Courier New"
                HorizontalAlignment="Center"/>
         <StackPanel Grid.Row="1" Margin="10">
-            <RadioButton  IsChecked="True" Margin="10">
+
+            <RadioButton Checked="RadioButton_Checked" IsChecked="True" Margin="15">
                 <RadioButton.RenderTransform>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </RadioButton.RenderTransform>
@@ -26,17 +27,24 @@
                                          Icon="Money" Foreground="Green"/>
                 </WrapPanel>
             </RadioButton>
-            <RadioButton Margin="10">
-                <RadioButton.RenderTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2"/>
-                </RadioButton.RenderTransform>
-                <WrapPanel>
-                    <TextBlock Text="Bitcoin"/>
-                    <fa:ImageAwesome Height="18" Width="18" Margin="40 0 0 0"
-                                     Icon="Bitcoin" Foreground="Green"/>
-                </WrapPanel>
-            </RadioButton>
-            <RadioButton Margin="10">
+
+            <RadioButton Margin="15" Checked="RadioButton_Checked_1">
+                    <RadioButton.RenderTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                    </RadioButton.RenderTransform>
+                    <WrapPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <TextBlock Text="Bitcoin" Grid.Row="0"/>
+                            <fa:ImageAwesome Height="18" Width="18" Margin="40 0 0 0"
+                                         Icon="Bitcoin" Foreground="Green" Grid.Row="0"/>
+                        </WrapPanel>
+                    <WrapPanel>
+                        <TextBox Width="100" Margin="0 5 0 30" x:Name="bitcoinTextbox"/>
+                    </WrapPanel>
+                    </WrapPanel>
+                </RadioButton>
+
+            <RadioButton Margin="15" Checked="RadioButton_Checked_2">
                 <RadioButton.RenderTransform>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </RadioButton.RenderTransform>

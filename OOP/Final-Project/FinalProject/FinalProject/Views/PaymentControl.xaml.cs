@@ -20,6 +20,7 @@ namespace FinalProject.Views
     /// </summary>
     public partial class PaymetControl : UserControl
     {
+        public bool Bitcoin { get; set; } = false;
         public PaymetControl()
         {
             InitializeComponent();
@@ -28,6 +29,23 @@ namespace FinalProject.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            this.bitcoinTextbox.Visibility = Visibility.Visible;
+            this.bitcoinTextbox.Margin = new Thickness(0, 5, 0, 30);
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            this.bitcoinTextbox.Visibility = Visibility.Hidden;
+            this.bitcoinTextbox.Margin = new Thickness(0);
         }
     }
 }

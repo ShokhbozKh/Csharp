@@ -40,5 +40,17 @@ namespace FinalProject.Views
                 IsLoading = !IsLoading;
             }
         }
+
+        /*private void rbtnSymbol_Checked(object sender, RoutedEventArgs e)
+        {
+            expS.IsExpanded = true;
+            expP.IsExpanded = false;
+        }
+
+        private void rbtnPicture_Checked(object sender, RoutedEventArgs e)
+        {
+            expS.IsExpanded = false;
+            expP.IsExpanded = true;
+        }*/
     }
 }
