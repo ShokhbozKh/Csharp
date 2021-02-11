@@ -95,13 +95,22 @@
     <Compile Include="Migrations\202102111938009_AddedBusModel.designer.cs">
       <DependentUpon>202102111938009_AddedBusModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111947168_Added discountreason bus bustypes models.cs" />
+    <Compile Include="Migrations\202102111947168_Added discountreason bus bustypes models.designer.cs">
+      <DependentUpon>202102111947168_Added discountreason bus bustypes models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\BusType.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\DiscountReason.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Ride.cs" />
+    <Compile Include="Models\RideStops.cs" />
+    <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Views\CustomerDetailsControl.xaml.cs">
@@ -215,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111938009_AddedBusModel.resx">
       <DependentUpon>202102111938009_AddedBusModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111947168_Added discountreason bus bustypes models.resx">
+      <DependentUpon>202102111947168_Added discountreason bus bustypes models.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

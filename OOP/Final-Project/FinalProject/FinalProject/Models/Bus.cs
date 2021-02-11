@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
@@ -16,8 +11,10 @@ namespace FinalProject.Models
         public bool HasWifi { get; set; }
         public bool HasAirCondition { get; set; }
         public  virtual int BusTypeId { get; set; }
+        public int DriverId { get; set; }
 
         [EnumDataType(typeof(BusType))]
         public BusType BusType { get; set; }
+        public Driver Driver { get; set; }
     }
 }
