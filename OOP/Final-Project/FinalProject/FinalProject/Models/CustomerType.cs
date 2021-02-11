@@ -8,7 +8,7 @@ namespace FinalProject.Models
 {
     public enum CustomerTypes
     {
-        Loyal = 0
-        Student = 1,
+        Loyal = 0,
+        Student = 1
     }
 }

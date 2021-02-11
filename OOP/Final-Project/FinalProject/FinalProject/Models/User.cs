@@ -1,6 +1,6 @@
 ﻿namespace FinalProject.Models
 {
-    abstract class User
+    public abstract class User
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

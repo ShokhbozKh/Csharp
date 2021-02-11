@@ -24,5 +24,10 @@ namespace FinalProject.Views
         {
             InitializeComponent();
         }
+
+        void RegisterCustomer_Click(Object o, EventArgs e)
+        {
+
+        }
     }
 }

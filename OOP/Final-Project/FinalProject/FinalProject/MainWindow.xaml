@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FinalProject.Views"
         xmlns:controls="clr-namespace:WizardProgressBarLibrary;assembly=WizardProgressBarLibrary"
         mc:Ignorable="d"
-        Title="Smart rides" Height="650" Width="1100" WindowStartupLocation="CenterScreen">
+        Title="Smart rides" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
