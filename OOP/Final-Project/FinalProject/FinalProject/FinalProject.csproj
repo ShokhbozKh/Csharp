@@ -115,8 +115,15 @@
     <Compile Include="Migrations\202102112120089_Added booking model mapping.designer.cs">
       <DependentUpon>202102112120089_Added booking model mapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102112233587_Added model annotations.cs" />
+    <Compile Include="Migrations\202102112233587_Added model annotations.designer.cs">
+      <DependentUpon>202102112233587_Added model annotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102112242472_Remove booking middle table.cs" />
+    <Compile Include="Migrations\202102112242472_Remove booking middle table.designer.cs">
+      <DependentUpon>202102112242472_Remove booking middle table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\BusSeat.cs" />
     <Compile Include="Models\BusType.cs" />
@@ -262,6 +269,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102112120089_Added booking model mapping.resx">
       <DependentUpon>202102112120089_Added booking model mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102112233587_Added model annotations.resx">
+      <DependentUpon>202102112233587_Added model annotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102112242472_Remove booking middle table.resx">
+      <DependentUpon>202102112242472_Remove booking middle table.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

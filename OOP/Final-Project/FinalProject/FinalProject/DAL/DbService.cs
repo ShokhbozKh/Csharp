@@ -35,12 +35,12 @@ namespace FinalProject.DAL
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<TicketClassAttribute> TicketClassAttributes { get; set; }
         public virtual DbSet<Displaying> Displayings { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Properties<decimal>().Configure(config => config.HasPrecision(18, 2));
         }
     }
 

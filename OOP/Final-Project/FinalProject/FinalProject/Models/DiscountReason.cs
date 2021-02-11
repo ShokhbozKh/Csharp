@@ -6,6 +6,8 @@ namespace FinalProject.Models
     {
         [Key]
         public int IdDiscountReason { get; set; }
+        [Required]
+        [MaxLength(150)]
         public string DiscountName { get; set; }
 
     }

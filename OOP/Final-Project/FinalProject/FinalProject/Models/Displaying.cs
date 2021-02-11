@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
@@ -8,8 +7,10 @@ namespace FinalProject.Models
     {
         [Key]
         public int IdDisplaying { get; set; }
+        [Required]
         public decimal StandardPrice { get; set; }
-        public int AvialableSeats { get; set; }
+        public int? AvialableSeats { get; set; }
+        [Required]
         public bool IsDeparted { get; set; }
 
         public int RideId { get; set; }

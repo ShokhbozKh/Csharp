@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
@@ -11,7 +7,9 @@ namespace FinalProject.Models
     {
         [Key]
         public int IdTicketClassAttribute { get; set; }
+        [Range(1, 1500)]
+        [DataType(DataType.Currency)]
         public decimal StandardPrice { get; set; }
-        public double DiscountRate { get; set; }
+        public double? DiscountRate { get; set; }
     }
 }

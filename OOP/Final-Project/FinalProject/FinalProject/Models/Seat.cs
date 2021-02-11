@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
@@ -12,8 +6,11 @@ namespace FinalProject.Models
     {
         [Key]
         public int IdSeat { get; set; }
+        [Required]
         public int Column { get; set; }
+        [Required]
         public int Row { get; set; }
+        [Required]
         public bool IsAtWindow { get; set; }
     }
 }
