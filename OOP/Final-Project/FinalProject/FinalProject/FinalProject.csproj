@@ -91,6 +91,10 @@
     <Compile Include="Migrations\202102111924419_AddedEmployeeTable.designer.cs">
       <DependentUpon>202102111924419_AddedEmployeeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111938009_AddedBusModel.cs" />
+    <Compile Include="Migrations\202102111938009_AddedBusModel.designer.cs">
+      <DependentUpon>202102111938009_AddedBusModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\BusType.cs" />
@@ -208,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111924419_AddedEmployeeTable.resx">
       <DependentUpon>202102111924419_AddedEmployeeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111938009_AddedBusModel.resx">
+      <DependentUpon>202102111938009_AddedBusModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
