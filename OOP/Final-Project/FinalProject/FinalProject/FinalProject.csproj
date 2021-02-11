@@ -79,9 +79,25 @@
     <Compile Include="Migrations\202102111711381_InitialMigration.designer.cs">
       <DependentUpon>202102111711381_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111752058_CustomerTable.cs" />
+    <Compile Include="Migrations\202102111752058_CustomerTable.designer.cs">
+      <DependentUpon>202102111752058_CustomerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102111821086_AddedDriverTable.cs" />
+    <Compile Include="Migrations\202102111821086_AddedDriverTable.designer.cs">
+      <DependentUpon>202102111821086_AddedDriverTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102111924419_AddedEmployeeTable.cs" />
+    <Compile Include="Migrations\202102111924419_AddedEmployeeTable.designer.cs">
+      <DependentUpon>202102111924419_AddedEmployeeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Bus.cs" />
+    <Compile Include="Models\BusType.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Views\CustomerDetailsControl.xaml.cs">
@@ -183,6 +199,15 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202102111711381_InitialMigration.resx">
       <DependentUpon>202102111711381_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111752058_CustomerTable.resx">
+      <DependentUpon>202102111752058_CustomerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111821086_AddedDriverTable.resx">
+      <DependentUpon>202102111821086_AddedDriverTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111924419_AddedEmployeeTable.resx">
+      <DependentUpon>202102111924419_AddedEmployeeTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

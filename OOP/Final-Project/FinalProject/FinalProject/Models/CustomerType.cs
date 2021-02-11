@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
-    public enum CustomerTypes
+    public enum CustomerType
     {
         Loyal = 0,
         Student = 1

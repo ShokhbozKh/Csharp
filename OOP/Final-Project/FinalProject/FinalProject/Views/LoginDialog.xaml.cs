@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinalProject.DAL;
+using FinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,19 @@ namespace FinalProject.Views
         public LoginDialog()
         {
             InitializeComponent();
+
+            LoadData();
+        }
+
+        void LoadData()
+        {
+            var context = new DbService();
+            context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            var drivers = context.Drivers.ToList();
+            var customers = context.Customers.ToList();
+            var users = context.Users.ToList();
+
+            int g = 0;
         }
     }
 }

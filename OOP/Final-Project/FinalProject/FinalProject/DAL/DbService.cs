@@ -22,8 +22,16 @@ namespace FinalProject.DAL
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }        
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Driver> Drivers { get; set; }
+        public virtual DbSet<Bus> Buses { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        }
     }
 
     //public class MyEntity
