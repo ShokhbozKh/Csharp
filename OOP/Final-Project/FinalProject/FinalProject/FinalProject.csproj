@@ -83,6 +83,9 @@
     <Compile Include="Views\SeatingArea.xaml.cs">
       <DependentUpon>SeatingArea.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TicketControl.xaml.cs">
+      <DependentUpon>TicketControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SeatingArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TicketControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FinalProject.Views
 {
@@ -67,28 +56,37 @@ namespace FinalProject.Views
         private void IncreaseButton_Click(object sender, RoutedEventArgs e)
         {
             if (m_progress + 1 <= 5)
+            {
                 Progress += 1;
 
-            if(Progress == 1)
-            {
-                _middleFrame.Navigate(new RideDetailsControl());
-            }else if(Progress == 2)
-            {
-                _middleFrame.Navigate(new SeatingArea());
-            }else if(Progress == 3)
-            {
-                _middleFrame.Navigate(new CustomerDetailsControl());
-            }else if(Progress == 4)
-            {
-                _middleFrame.Navigate(new PaymetControl());
+                switch (Progress)
+                {
+                    case 1:
+                        _middleFrame.Navigate(new RideDetailsControl());
+                        break;
+                    case 2:
+                        _middleFrame.Navigate(new SeatingArea());
+                        break;
+                    case 3:
+                        _middleFrame.Navigate(new CustomerDetailsControl());
+                        break;
+                    case 4:
+                        _middleFrame.Navigate(new PaymetControl());
+                        break;
+                    case 5:
+                        _middleFrame.Navigate(new TicketControl());
+                        break;
+                }
             }
         }
 
         private void DecreaseButton_Click(object sender, RoutedEventArgs e)
         {
             if (m_progress - 1 >= 0)
+            {
                 Progress -= 1;
-            _middleFrame.GoBack();
+                _middleFrame.GoBack();
+            }
         }
 
     }

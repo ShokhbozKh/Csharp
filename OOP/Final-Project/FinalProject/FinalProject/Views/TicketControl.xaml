@@ -7,6 +7,136 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="C:\Users\khido\OneDrive\Документы\GitHub\Csharp\OOP\Final-Project\FinalProject\FinalProject\Images\logo-white.png" 
+                   Width="40" Height="40" Margin="10"/>
+            <Label Content="Smart rides" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="300 0 0 0"/>
+            <StackPanel Margin="140 0 0 0">
+                <Label Content="Travel related questions" Foreground="White"/>
+                <Label Content="Phone number: +48 135 234 324" Foreground="White"/>
+                <Label Content="Email Address: smartrides@gmail.com" Foreground="White"/>
+                <Label Content="Address: ul.Warszawska 21A" Foreground="White"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10"
+                    Background="LightYellow">
+            <Label Content="From" FontSize="15" VerticalAlignment="Center"/>
+            <Label Content="Warsaw" FontSize="15" Foreground="Red" VerticalAlignment="Center"/>
+            <Label Content="To" FontSize="15" VerticalAlignment="Center"/>
+            <Label Content="Gdansk" FontSize="15" Foreground="Red" VerticalAlignment="Center"/>
+
+            <Label Content="Monday, January, 08.2020" FontSize="15" VerticalAlignment="Center" Margin="120 0 0 0"/>
+
+            <Label Content="Student ticket" FontSize="15" VerticalAlignment="Center" Margin="150 0 0 0" Foreground="ForestGreen"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Passenger full name" Foreground="DeepSkyBlue" FontSize="15" Grid.Row="0"/>
+                <Label Content="John Done" Foreground="White" FontSize="15" Grid.Row="1"/>
+            </Grid>
+
+            <Grid Margin="70 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Ticket ID" Foreground="DeepSkyBlue" FontSize="15" Grid.Row="0"/>
+                <Label Content="TD2321FRS412" Foreground="White" FontSize="15" Grid.Row="1"/>
+            </Grid>
+
+            <Grid Margin="100 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Seat number(s)" Foreground="DeepSkyBlue" FontSize="15" Grid.Row="0"/>
+                <Label Content="R2, R10, R3" Foreground="MediumVioletRed" FontSize="15" Grid.Row="1"/>
+            </Grid>
+
+            <Grid Margin="100 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Total price" Foreground="DeepSkyBlue" FontSize="15" Grid.Row="0"/>
+                <Label Content="1200 zlt" Foreground="LightGreen" FontSize="15" Grid.Row="1"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Label Content="Bus type" FontSize="15" Foreground="DeepSkyBlue"/>
+                    <Label Content="Starnard" FontSize="15" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Label Content="Bus number" FontSize="15" Foreground="DeepSkyBlue"/>
+                    <Label Content="A123 B32" FontSize="15" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="110 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Label Content="Departure time" FontSize="15" Foreground="DeepSkyBlue"/>
+                    <Label Content="08: 00" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Label Content="Arrival time" FontSize="15" Foreground="DeepSkyBlue" HorizontalAlignment="Center"/>
+                    <Label Content="19:00" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="80 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Label Content="Start point" FontSize="15" Foreground="DeepSkyBlue" HorizontalAlignment="Center"/>
+                    <Label Content="Pieron 8" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Label Content="Destination pointe" FontSize="15" Foreground="DeepSkyBlue"/>
+                    <Label Content="Pieron 10" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="30 0 0 0">
+                <StackPanel Grid.Row="0">
+                    <Label Content="Start point" FontSize="15" Foreground="DeepSkyBlue" HorizontalAlignment="Center"/>
+                    <Label Content="Warszawa centralna 10:15" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                    <Label Content="Nowy Dwor Mazowiecki 12:30" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                    <Label Content="Gdanski pieron 16:20" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
