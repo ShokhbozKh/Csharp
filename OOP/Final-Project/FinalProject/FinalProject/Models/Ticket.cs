@@ -16,7 +16,6 @@ namespace FinalProject.Models
         public string BookedByFullname { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        public bool IsAvialable { get; set; }
 
 
         public TicketClassAttribute TicketClassAttribute { get; set; }

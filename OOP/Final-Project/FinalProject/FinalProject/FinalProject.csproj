@@ -107,7 +107,16 @@
     <Compile Include="Migrations\202102112021197_Added ticket mapping.designer.cs">
       <DependentUpon>202102112021197_Added ticket mapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102112115224_Added Displaying, introduced bus seat as middle model.cs" />
+    <Compile Include="Migrations\202102112115224_Added Displaying, introduced bus seat as middle model.designer.cs">
+      <DependentUpon>202102112115224_Added Displaying, introduced bus seat as middle model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102112120089_Added booking model mapping.cs" />
+    <Compile Include="Migrations\202102112120089_Added booking model mapping.designer.cs">
+      <DependentUpon>202102112120089_Added booking model mapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\BusSeat.cs" />
     <Compile Include="Models\BusType.cs" />
@@ -247,6 +256,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102112021197_Added ticket mapping.resx">
       <DependentUpon>202102112021197_Added ticket mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102112115224_Added Displaying, introduced bus seat as middle model.resx">
+      <DependentUpon>202102112115224_Added Displaying, introduced bus seat as middle model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102112120089_Added booking model mapping.resx">
+      <DependentUpon>202102112120089_Added booking model mapping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
