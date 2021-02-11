@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
@@ -14,6 +8,6 @@ namespace FinalProject.Models
         public int IdRide { get; set; }
         public Location StartPoint { get; set; }
         public Location DestinationPoint { get; set; }
-        public double TotalHours { get; set; }        
+        public double TotalHours { get; set; }
     }
 }

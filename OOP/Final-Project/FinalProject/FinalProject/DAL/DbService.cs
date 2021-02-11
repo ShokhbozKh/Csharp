@@ -27,10 +27,14 @@ namespace FinalProject.DAL
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Bus> Buses { get; set; }
         public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<BusSeat> BusSeats { get; set; }
         public virtual DbSet<DiscountReason> DiscountReasons { get; set; }
         public virtual DbSet<Ride> Rides { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<RideStop> RideStops { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<TicketClassAttribute> TicketClassAttributes { get; set; }
+        public virtual DbSet<Displaying> Displayings { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
