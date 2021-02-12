@@ -20,14 +20,12 @@ namespace FinalProject.DAL
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
-
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }        
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Bus> Buses { get; set; }
         public virtual DbSet<Seat> Seats { get; set; }
-        public virtual DbSet<BusSeat> BusSeats { get; set; }
         public virtual DbSet<DiscountReason> DiscountReasons { get; set; }
         public virtual DbSet<Ride> Rides { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
@@ -35,12 +33,15 @@ namespace FinalProject.DAL
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<TicketClassAttribute> TicketClassAttributes { get; set; }
         public virtual DbSet<Displaying> Displayings { get; set; }
+        public virtual DbSet<AvialableSeats> AvialableSets { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties<decimal>().Configure(config => config.HasPrecision(18, 2));
+            Database.SetInitializer<DbService>(null);
+            base.OnModelCreating(modelBuilder);
         }
     }
 

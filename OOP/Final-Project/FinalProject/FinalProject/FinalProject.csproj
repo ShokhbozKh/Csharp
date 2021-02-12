@@ -72,6 +72,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAL\DbService.cs" />
+    <Compile Include="DAL\Enumerable.cs" />
+    <Compile Include="DAL\IDbLayer.cs" />
     <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Helpers\SeatingArea.cs" />
@@ -123,7 +125,20 @@
     <Compile Include="Migrations\202102112242472_Remove booking middle table.designer.cs">
       <DependentUpon>202102112242472_Remove booking middle table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102121111308_Added Middle model for ride and seats.cs" />
+    <Compile Include="Migrations\202102121111308_Added Middle model for ride and seats.designer.cs">
+      <DependentUpon>202102121111308_Added Middle model for ride and seats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102121431271_Change association between ticket and displaying to 1-1.cs" />
+    <Compile Include="Migrations\202102121431271_Change association between ticket and displaying to 1-1.designer.cs">
+      <DependentUpon>202102121431271_Change association between ticket and displaying to 1-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102121438288_Revert last association.cs" />
+    <Compile Include="Migrations\202102121438288_Revert last association.designer.cs">
+      <DependentUpon>202102121438288_Revert last association.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AvialableSeats.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\BusSeat.cs" />
     <Compile Include="Models\BusType.cs" />
@@ -157,6 +172,9 @@
     </Compile>
     <Compile Include="Views\PaymentControl.xaml.cs">
       <DependentUpon>PaymentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RefundTicketControl.xaml.cs">
+      <DependentUpon>RefundTicketControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterCustomerControl.xaml.cs">
       <DependentUpon>RegisterCustomerControl.xaml</DependentUpon>
@@ -205,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PaymentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RefundTicketControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,6 +304,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102112242472_Remove booking middle table.resx">
       <DependentUpon>202102112242472_Remove booking middle table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121111308_Added Middle model for ride and seats.resx">
+      <DependentUpon>202102121111308_Added Middle model for ride and seats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121431271_Change association between ticket and displaying to 1-1.resx">
+      <DependentUpon>202102121431271_Change association between ticket and displaying to 1-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121438288_Revert last association.resx">
+      <DependentUpon>202102121438288_Revert last association.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

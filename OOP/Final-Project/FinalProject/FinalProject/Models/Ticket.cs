@@ -25,6 +25,7 @@ namespace FinalProject.Models
         public int SeatId { get; set; }
         public int DiscountReasonId { get; set; }
         public int CustomerId { get; set; }
+        public int DisplayingId { get; set; }
 
         [ForeignKey("TicketClassAttributeId")]
         public TicketClassAttribute TicketClassAttribute { get; set; }
@@ -36,6 +37,8 @@ namespace FinalProject.Models
         public DiscountReason DiscountReason { get; set; }
         [ForeignKey("CustomerId")]
         public User Customer { get; set; }
+        [ForeignKey("DisplayingId")]
+        public Displaying Displaying { get; set; }
 
         [EnumDataType(typeof(TicketStatus))]
         public TicketStatus TicketStatus { get; set; }

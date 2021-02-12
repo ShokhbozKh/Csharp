@@ -5,6 +5,8 @@ namespace FinalProject.Models
 {
     public class Customer : User
     {
+        [Required]
+        public string PassportId { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime BirthDate { get; set; }
         public double? Discount { get; set; }
