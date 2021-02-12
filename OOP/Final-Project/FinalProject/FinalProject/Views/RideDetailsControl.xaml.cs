@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FinalProject.Views
@@ -38,6 +40,12 @@ namespace FinalProject.Views
             busTypesList.Add("Econom");
             busTypesList.Add("Business");
             busTypesList.Add("Express");
+        }
+
+        private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MessageBox.Show("Clicked");
+            SearchControl.SearchDetailsChanged("Warsaw", "Gdansk", DateTime.Now);
         }
     }
 }

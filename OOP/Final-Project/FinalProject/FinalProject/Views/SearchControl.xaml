@@ -15,11 +15,18 @@
 
         <local:RideDetailsControl Grid.Row="0" HorizontalAlignment="Center" Margin="5"/>
 
-        <DataGrid x:Name="displayingsGrid" Grid.Row="1"
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
-                  HorizontalGridLinesBrush="CadetBlue" VerticalGridLinesBrush="CadetBlue"
-                  SelectionChanged="DisplayingsGrid_SelectionChanged">
-
-        </DataGrid>
+        <ListView Name="searchListView" Grid.Row="1" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}" />
+                    <GridViewColumn Header="Dep. Time" Width="100" DisplayMemberBinding="{Binding DepatureTime}" />
+                    <GridViewColumn Header="Start point" Width="100" DisplayMemberBinding="{Binding Ride.StartPoint.LocationName}" />
+                    <GridViewColumn Header="Destination point" Width="100" DisplayMemberBinding="{Binding Ride.DestinationPoint.LocationName}" />
+                    <GridViewColumn Header="Arr. Time" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
+                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
+                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

@@ -22,14 +22,14 @@ namespace FinalProject.Views
         void LoadData()
         {
             var context = new DbService();
-            var users = context.Users.ToList();
+           /* var users = context.Users.ToList();
             List<Customer> customers = context.Customers.ToList();
             List<Employee> employees = context.Employees.ToList();
             var emp = employees[0];
-            /*context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            *//*context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             var drivers = context.Drivers.ToList();
             var customers = context.Customers.ToList();
-            var users = context.Users.ToList();*/
+            var users = context.Users.ToList();*//*
 
             Customer customer = new Customer()
             {
@@ -60,7 +60,7 @@ namespace FinalProject.Views
             context.Employees.Add(employee);
             context.SaveChanges();
 
-            Console.WriteLine(customers[0]);
+            Console.WriteLine(customers[0]);*/
 
             int g = 0;
         }

@@ -70,7 +70,7 @@
 
         <local:ReservationControl Grid.Row="1"/>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Background="#444444">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>

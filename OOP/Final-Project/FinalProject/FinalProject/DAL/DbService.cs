@@ -1,7 +1,5 @@
-using System;
 using System.Data.Entity;
 using FinalProject.Models;
-using System.Linq;
 
 namespace FinalProject.DAL
 {
