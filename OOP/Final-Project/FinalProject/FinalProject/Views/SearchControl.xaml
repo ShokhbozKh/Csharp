@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FinalProject.Views"
              d:DataContext="{d:DesignInstance Type=local:ReservationControl}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,12 +19,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}" />
-                    <GridViewColumn Header="Dep. Time" Width="100" DisplayMemberBinding="{Binding DepatureTime}" />
-                    <GridViewColumn Header="Start point" Width="100" DisplayMemberBinding="{Binding Ride.StartPoint.LocationName}" />
-                    <GridViewColumn Header="Destination point" Width="100" DisplayMemberBinding="{Binding Ride.DestinationPoint.LocationName}" />
+                    <GridViewColumn Header="Dep. Time" Width="100" DisplayMemberBinding="{Binding DepartureTime}" />
                     <GridViewColumn Header="Arr. Time" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
-                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
-                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
+                    <GridViewColumn Header="Start point" Width="100" DisplayMemberBinding="{Binding Ride.StartStation}" />
+                    <GridViewColumn Header="Destination point" Width="100" DisplayMemberBinding="{Binding Ride.DestinationStation}" />
+                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding AvialableSeats}" />
+                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding StandardPrice}" />
+                    <GridViewColumn Header="Hours" Width="80" DisplayMemberBinding="{Binding Ride.TotalHours}" />
                 </GridView>
             </ListView.View>
         </ListView>

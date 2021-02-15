@@ -8,5 +8,10 @@ namespace FinalProject.Models
         public int IdLocation { get; set; }
         [Required]
         public string LocationName { get; set; }
+
+        public override string ToString()
+        {
+            return LocationName;
+        }
     }
 }

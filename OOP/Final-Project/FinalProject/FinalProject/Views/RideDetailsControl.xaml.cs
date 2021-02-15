@@ -1,5 +1,8 @@
-﻿using System;
+﻿using FinalProject.DAL;
+using FinalProject.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,9 +13,9 @@ namespace FinalProject.Views
     /// </summary>
     public partial class RideDetailsControl : UserControl
     {
-        readonly List<string> fromLocationList = new List<string>();
-        readonly List<string> toLocationList = new List<string>();
-        readonly List<string> busTypesList = new List<string>();
+        List<Location> fromLocationList = new List<Location>();
+        List<Location> toLocationList = new List<Location>();
+        List<string> busTypesList = new List<string>();
         public RideDetailsControl()
         {
             InitializeComponent();
@@ -26,7 +29,15 @@ namespace FinalProject.Views
 
         void LoadData()
         {
-            fromLocationList.Add("Warsaw");
+            var context = new DbService();
+
+            fromLocationList = context.Locations.ToList();
+            toLocationList = context.Locations.ToList();
+            busTypesList.Add(BusType.Business.ToString());
+            busTypesList.Add(BusType.Express.ToString());
+            busTypesList.Add(BusType.Regular.ToString());
+
+            /*fromLocationList.Add("Warsaw");
             fromLocationList.Add("Gdansk");
             fromLocationList.Add("Krakow");
             fromLocationList.Add("Wroclaw");
@@ -34,18 +45,27 @@ namespace FinalProject.Views
             toLocationList.Add("Warsaw");
             toLocationList.Add("Gdansk");
             toLocationList.Add("Krakow");
-            toLocationList.Add("Wroclaw");
+            toLocationList.Add("Wroclaw");*/
 
-            busTypesList.Add("Standard");
+
+
+            /*busTypesList.Add("Standard");
             busTypesList.Add("Econom");
             busTypesList.Add("Business");
-            busTypesList.Add("Express");
+            busTypesList.Add("Express");*/
+
+            
         }
 
-        private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Clicked");
-            SearchControl.SearchDetailsChanged("Warsaw", "Gdansk", DateTime.Now);
+            SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), DateTime.Now);
         }
+    }
+
+    public class ComboData
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
     }
 }
