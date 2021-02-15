@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
-    class Schedule
+    public class Schedule
     {
-        public int IdSchedule { get; set; }
-        public DateTime MyProperty { get; set; }
-
+        [Key]
+        public int IdRideSchedule { get; set; }
+        [DataType(DataType.Time)]
+        [Display(Name = "Departure time")]
+        [DisplayFormat(DataFormatString = "{0:t}")]
+        public DateTime DepartureTime { get; set; }
+        [DataType(DataType.Time)]
+        [Display(Name = "Arrival time")]
+        [DisplayFormat(DataFormatString = "{0:t}")]
+        public DateTime ArrivalTime { get; set; }
     }
 }

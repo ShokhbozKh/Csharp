@@ -13,9 +13,6 @@ namespace FinalProject.Models
         public int BusId { get; set; }
         [Required]
         public bool IsAvialable { get; set; }
-
-        [ForeignKey("RideId")]
-        public Ride Ride { get; set; }
         [ForeignKey("SeatId")]
         public Seat Seat { get; set; }
         [ForeignKey("BusId")]

@@ -157,6 +157,10 @@
     <Compile Include="Migrations\202102151500436_Remove station name from Ride.designer.cs">
       <DependentUpon>202102151500436_Remove station name from Ride.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102151537409_Add models for scheduling rides.cs" />
+    <Compile Include="Migrations\202102151537409_Add models for scheduling rides.designer.cs">
+      <DependentUpon>202102151537409_Add models for scheduling rides.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AvialableSeats.cs" />
     <Compile Include="Models\Bus.cs" />
@@ -170,6 +174,8 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Ride.cs" />
+    <Compile Include="Models\RideDate.cs" />
+    <Compile Include="Models\RideSchedule.cs" />
     <Compile Include="Models\RideStops.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Seat.cs" />
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102151500436_Remove station name from Ride.resx">
       <DependentUpon>202102151500436_Remove station name from Ride.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102151537409_Add models for scheduling rides.resx">
+      <DependentUpon>202102151537409_Add models for scheduling rides.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
