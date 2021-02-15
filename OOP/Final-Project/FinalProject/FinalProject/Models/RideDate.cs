@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
@@ -13,5 +14,8 @@ namespace FinalProject.Models
         public DateTime Date { get; set; }
 
         public int RideId { get; set; }
+
+        [ForeignKey("RideId")]
+        public Ride Ride { get; set; }
     }
 }
