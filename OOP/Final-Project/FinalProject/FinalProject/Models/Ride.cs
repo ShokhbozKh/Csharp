@@ -10,12 +10,6 @@ namespace FinalProject.Models
         public double TotalHours { get; set; }
         public int StartPointId { get; set; }
         public int DestinationPointId { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string StartStation { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string DestinationStation { get; set; }
 
         [ForeignKey("StartPointId")]
         public Location StartPoint { get; set; }
