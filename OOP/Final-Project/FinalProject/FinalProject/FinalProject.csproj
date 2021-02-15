@@ -145,6 +145,14 @@
     <Compile Include="Migrations\202102121748470_Add ArrivalTime to Displaying.designer.cs">
       <DependentUpon>202102121748470_Add ArrivalTime to Displaying.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102151437546_Remove unnecessary relations.cs" />
+    <Compile Include="Migrations\202102151437546_Remove unnecessary relations.designer.cs">
+      <DependentUpon>202102151437546_Remove unnecessary relations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102151458512_Add station name to location.cs" />
+    <Compile Include="Migrations\202102151458512_Add station name to location.designer.cs">
+      <DependentUpon>202102151458512_Add station name to location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AvialableSeats.cs" />
     <Compile Include="Models\Bus.cs" />
@@ -328,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102121748470_Add ArrivalTime to Displaying.resx">
       <DependentUpon>202102121748470_Add ArrivalTime to Displaying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102151437546_Remove unnecessary relations.resx">
+      <DependentUpon>202102151437546_Remove unnecessary relations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102151458512_Add station name to location.resx">
+      <DependentUpon>202102151458512_Add station name to location.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
