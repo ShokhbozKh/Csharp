@@ -127,11 +127,20 @@ SELECT * FROM RideStops;
 INSERT INTO Drivers VALUES ('John', 'Done', GETDATE(), 4000);
 INSERT INTO Drivers VALUES ('Jan', 'Kowalski', GETDATE(), 5000);
 INSERT INTO Drivers VALUES ('Robert', 'Robertson', GETDATE(), 3000);
+INSERT INTO Drivers VALUES ('Alex', 'Richard', GETDATE(), 3000);
+
+-- test
+SELECT * FROM Drivers;
 
 /* Buses */
 INSERT INTO Buses VALUES ('Super bus', 20, 1, 1, 2, 2, 1);
 INSERT INTO Buses VALUES ('Hundai express', 20, 1, 1, 1, 1, 2);
 INSERT INTO Buses VALUES ('Mercedez bus go', 20, 1, 1, 0, 0, 3);
+INSERT INTO Buses VALUES ('Flix bus', 20, 0, 1, 2, 2, 4);
+INSERT INTO Buses VALUES ('Floride red line', 20, 1, 1, 0, 0, 1002);
+
+-- test
+SELECT * FROM Buses;
 
 /* Seats */
 
@@ -156,7 +165,10 @@ INSERT INTO Seats VALUES (4, 3, 1);
 INSERT INTO Seats VALUES (4, 4, 1);
 INSERT INTO Seats VALUES (4, 5, 1);
 
-/* Bus seats */
+-- test
+SELECT * FROM Seats;
+
+/* Avialable seats */
 
 INSERT INTO AvialableSeats VALUES (1, 1, 1);
 INSERT INTO BusSeats VALUES (1, 2, 1);
@@ -221,6 +233,8 @@ INSERT INTO BusSeats VALUES (3, 18, 1);
 INSERT INTO BusSeats VALUES (3, 19, 1);
 INSERT INTO BusSeats VALUES (3, 20, 1);
 
+--test
+
 /* Avialable Seats */
 INSERT INTO AvialableSeats VALUES (1, 1, 1, 2);
 INSERT INTO AvialableSeats VALUES (1, 2, 1, 2);
@@ -263,6 +277,10 @@ INSERT INTO AvialableSeats VALUES (5, 17, 1, 1);
 INSERT INTO AvialableSeats VALUES (5, 18, 1, 1);
 INSERT INTO AvialableSeats VALUES (5, 19, 1, 1);
 INSERT INTO AvialableSeats VALUES (5, 20, 1, 1);
+
+--test
+SELECT * FROM AvialableSeats;
+
 
 /* Discount Reason */
 INSERT INTO DiscountReasons VALUES ('Student');
