@@ -7,39 +7,121 @@ INSERT INTO Locations VALUES ('Krakow');
 INSERT INTO Locations VALUES ('Wroclaw');
 INSERT INTO Locations VALUES ('Gdynia');
 INSERT INTO Locations VALUES ('Lodz');
+INSERT INTO Locations VALUES ('Warsaw', 'Wschodnia');
+INSERT INTO Locations VALUES ('Warsaw', 'Mlociny');
+INSERT INTO Locations VALUES ('Gdansk', 'Gdansk Wrzeszcz');
+INSERT INTO Locations VALUES ('Gdansk', 'Gdansk Zaspa');
+INSERT INTO Locations VALUES ('Krakow', 'Krakow Biezanow Drozdzownia');
+INSERT INTO Locations VALUES ('Gdynia', 'Gdynia Chylonia');
+INSERT INTO Locations VALUES ('Gdynia', 'Gdynia Grabówek');
 
 SELECT * FROM Locations;
 
-/* Rides */
-INSERT INTO Rides VALUES (8, 2, 1, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 3, 1, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 4, 1, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 5, 1, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 1, 2, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 3, 2, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 4, 2, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 5, 2, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 1, 3, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 2, 3, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 4, 3, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 5, 3, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 1, 4, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 2, 4, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 3, 4, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 5, 4, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 1, 5, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 2, 5, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 3, 5, 'Warszawa Centralna', 'Gdansk stacja');
-INSERT INTO Rides VALUES (8, 4, 5, 'Warszawa Centralna', 'Gdansk stacja');
+UPDATE Locations SET StationName = 'Warszawa Centralna' WHERE IdLocation = 1;
+UPDATE Locations SET StationName = 'Gdanks Glowny' WHERE IdLocation = 2;
+UPDATE Locations SET StationName = 'Krakow Glowny' WHERE IdLocation = 3;
+UPDATE Locations SET StationName = 'Wroclaw Glowny' WHERE IdLocation = 4;
+UPDATE Locations SET StationName = 'Gdynia Glowna' WHERE IdLocation = 5;
+UPDATE Locations SET StationName = 'Lodz Fabryczna' WHERE IdLocation = 6;
 
+/* Rides */
+INSERT INTO Rides VALUES (8, 2, 1)
+INSERT INTO Rides VALUES (4, 3, 1)
+INSERT INTO Rides VALUES (5.5, 4, 1)
+INSERT INTO Rides VALUES (6.5, 5, 1)
+INSERT INTO Rides VALUES (12, 6, 1)
+
+INSERT INTO Rides VALUES (5, 1, 2)
+INSERT INTO Rides VALUES (8, 3, 2)
+INSERT INTO Rides VALUES (4, 4, 2)
+INSERT INTO Rides VALUES (2, 5, 2)
+INSERT INTO Rides VALUES (4, 6, 2)
+
+INSERT INTO Rides VALUES (7.5, 1, 3)
+INSERT INTO Rides VALUES (6, 2, 3)
+INSERT INTO Rides VALUES (3, 4, 3)
+INSERT INTO Rides VALUES (2, 5, 3)
+INSERT INTO Rides VALUES (4, 6, 3)
+
+INSERT INTO Rides VALUES (8, 1, 4)
+INSERT INTO Rides VALUES (6.5, 2, 4)
+INSERT INTO Rides VALUES (7.5, 3, 4)
+INSERT INTO Rides VALUES (6, 5, 4)
+INSERT INTO Rides VALUES (4, 6, 4)
+
+INSERT INTO Rides VALUES (6, 1, 5)
+INSERT INTO Rides VALUES (5, 2, 5)
+INSERT INTO Rides VALUES (2, 3, 5)
+INSERT INTO Rides VALUES (3, 4, 5)
+INSERT INTO Rides VALUES (9, 6, 5)
+
+INSERT INTO Rides VALUES (1, 6)
+INSERT INTO Rides VALUES (2, 6)
+INSERT INTO Rides VALUES (3, 6)
+INSERT INTO Rides VALUES (4, 6)
+INSERT INTO Rides VALUES (5, 6)
+
+-- test
 SELECT * FROM Rides;
 
 /* Ride stops */
-INSERT INTO RideStops VALUES (1, 3);
-INSERT INTO RideStops VALUES (1, 4);
-INSERT INTO RideStops VALUES (1, 5);
-INSERT INTO RideStops VALUES (4, 1);
-INSERT INTO RideStops VALUES (3, 2);
+INSERT INTO RideStops VALUES (1002, 21)
+INSERT INTO RideStops VALUES (1003, 21)
+INSERT INTO RideStops VALUES (1003, 22)
+INSERT INTO RideStops VALUES (1005, 22)
+INSERT INTO RideStops VALUES (1006, 23)
+INSERT INTO RideStops VALUES (1007, 23)
+INSERT INTO RideStops VALUES (1008, 24)
+INSERT INTO RideStops VALUES (1002, 24)
+INSERT INTO RideStops VALUES (1004, 25)
+INSERT INTO RideStops VALUES (1005, 25)
+
+INSERT INTO RideStops VALUES (1006, 26)
+INSERT INTO RideStops VALUES (1004, 26)
+INSERT INTO RideStops VALUES (1003, 27)
+INSERT INTO RideStops VALUES (1002, 27)
+INSERT INTO RideStops VALUES (1003, 28)
+INSERT INTO RideStops VALUES (1002, 28)
+INSERT INTO RideStops VALUES (1006, 29)
+INSERT INTO RideStops VALUES (1002, 29)
+INSERT INTO RideStops VALUES (1007, 30)
+INSERT INTO RideStops VALUES (1005, 30)
+
+INSERT INTO RideStops VALUES (1002, 31)
+INSERT INTO RideStops VALUES (1007, 31)
+INSERT INTO RideStops VALUES (1008, 32)
+INSERT INTO RideStops VALUES (1002, 32)
+INSERT INTO RideStops VALUES (1004, 33)
+INSERT INTO RideStops VALUES (1002, 33)
+INSERT INTO RideStops VALUES (1003, 34)
+INSERT INTO RideStops VALUES (1004, 34)
+INSERT INTO RideStops VALUES (1002, 35)
+INSERT INTO RideStops VALUES (1005, 35)
+
+INSERT INTO RideStops VALUES (1005, 36)
+INSERT INTO RideStops VALUES (1006, 36)
+INSERT INTO RideStops VALUES (1007, 37)
+INSERT INTO RideStops VALUES (1004, 37)
+INSERT INTO RideStops VALUES (1003, 38)
+INSERT INTO RideStops VALUES (1002, 38)
+INSERT INTO RideStops VALUES (1005, 39)
+INSERT INTO RideStops VALUES (1006, 39)
+INSERT INTO RideStops VALUES (1008, 40)
+INSERT INTO RideStops VALUES (1007, 40)
+
+INSERT INTO RideStops VALUES (1008, 41)
+INSERT INTO RideStops VALUES (1002, 41)
+INSERT INTO RideStops VALUES (1005, 42)
+INSERT INTO RideStops VALUES (1003, 42)
+INSERT INTO RideStops VALUES (1004, 43)
+INSERT INTO RideStops VALUES (1005, 43)
+INSERT INTO RideStops VALUES (1002, 44)
+INSERT INTO RideStops VALUES (1006, 44)
+INSERT INTO RideStops VALUES (1007, 45)
+INSERT INTO RideStops VALUES (1008, 45)
+
+-- test
+SELECT * FROM RideStops;
 
 /* Drivers */
 INSERT INTO Drivers VALUES ('John', 'Done', GETDATE(), 4000);
