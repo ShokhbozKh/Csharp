@@ -13,7 +13,7 @@ namespace FinalProject.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202102161442316_Add rideschedule association to avialableseats"; }
+            get { return "202102161447429_Add rideschedule association to avialableseats"; }
         }
         
         string IMigrationMetadata.Source

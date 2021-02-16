@@ -6,7 +6,7 @@ namespace FinalProject.Models
     public class AvialableSeats
     {
         [Key]
-        public int AvialableSeatsId { get; set; }
+        public int IdAvialableSeat { get; set; }
 
         public int SeatId { get; set; }
         public int BusId { get; set; }

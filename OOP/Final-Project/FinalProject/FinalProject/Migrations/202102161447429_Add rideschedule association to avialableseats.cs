@@ -10,12 +10,10 @@
             DropForeignKey("dbo.RideSchedules", "AvialableSeatsId", "dbo.AvialableSeats");
             DropIndex("dbo.RideSchedules", new[] { "AvialableSeatsId" });
             DropPrimaryKey("dbo.AvialableSeats");
-            AddColumn("dbo.AvialableSeats", "AvialableSeatsId", c => c.Int(nullable: false, identity: true));
             AddColumn("dbo.AvialableSeats", "RideScheduleId", c => c.Int(nullable: false));
-            AddPrimaryKey("dbo.AvialableSeats", "AvialableSeatsId");
+            AddPrimaryKey("dbo.AvialableSeats", "IdAvialableSeat");
             CreateIndex("dbo.AvialableSeats", "RideScheduleId");
             AddForeignKey("dbo.AvialableSeats", "RideScheduleId", "dbo.RideSchedules", "IdRideSchedule", cascadeDelete: true);
-            DropColumn("dbo.AvialableSeats", "BusSeatId");
             DropColumn("dbo.RideSchedules", "AvialableSeatsId");
         }
         
@@ -27,7 +25,7 @@
             DropIndex("dbo.AvialableSeats", new[] { "RideScheduleId" });
             DropPrimaryKey("dbo.AvialableSeats");
             DropColumn("dbo.AvialableSeats", "RideScheduleId");
-            DropColumn("dbo.AvialableSeats", "AvialableSeatsId");
+            DropColumn("dbo.AvialableSeats", "IdAvialableSeat");
             AddPrimaryKey("dbo.AvialableSeats", "BusSeatId");
             CreateIndex("dbo.RideSchedules", "AvialableSeatsId");
             AddForeignKey("dbo.RideSchedules", "AvialableSeatsId", "dbo.AvialableSeats", "BusSeatId", cascadeDelete: true);
