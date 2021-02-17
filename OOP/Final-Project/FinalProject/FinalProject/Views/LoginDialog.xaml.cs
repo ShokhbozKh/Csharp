@@ -24,14 +24,14 @@ namespace FinalProject.Views
         void LoadData()
         {
             var context = new DbService();
-            var rs = context.RideSchedules.Include("Schedule").ToList();
+            /*var rs = context.RideSchedules.Include("Schedule").ToList();
             var avs = context.AvialableSets.Include("Bus.Driver").Select(s => new
             {
                 rideSchedule = s.RideSchedule,
                 bus = s.Bus
             }).Distinct().ToList();
 
-            foreach(var av in avs)
+            foreach (var av in avs)
             {
                 context.Displayings.Add(new Displaying
                 {
@@ -43,9 +43,9 @@ namespace FinalProject.Views
                     IsDeparted = false,
                     StandardPrice = new Random().Next(20, 50)
                 });
-            }
+            }*/
 
-            int g = 0;
+             int  g = 0;
 
             context.SaveChanges();
         }

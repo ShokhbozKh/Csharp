@@ -26,14 +26,15 @@ namespace FinalProject.Views
 
         public static void SearchDetailsChanged(string startPoint, string destinationPoint, DateTime selectedDate)
         {
-            /*var result = context.Displayings.Where(s => s.Ride.StartPoint.LocationName == startPoint && s.Ride.DestinationPoint.LocationName == destinationPoint)
-                .Include(s => s.Bus)
-                .Include(s => s.Ride)
-                .Include(s => s.Ride.StartPoint).ToList();
+            selectedDate = new DateTime(2020, 01, 01);
+            var result = context.Displayings
+                .Where(s => s.RideSchedule.RideDate.Date == selectedDate
+                        && s.RideSchedule.RideDate.Ride.DestinationPoint.LocationName == destinationPoint
+                        && s.RideSchedule.RideDate.Ride.StartPoint.LocationName == startPoint).ToList();
 
             displayings.Clear();
 
-            foreach (var displaying in result) displayings.Add(displaying);*/
+            foreach (var r in result) displayings.Add(r);
 
             int g = 0;
         }
