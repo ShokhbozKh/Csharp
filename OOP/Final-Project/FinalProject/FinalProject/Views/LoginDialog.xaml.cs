@@ -4,6 +4,8 @@ using FinalProject.Models;
 using System.Linq;
 using System.Windows;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading;
 
 namespace FinalProject.Views
 {
@@ -22,60 +24,30 @@ namespace FinalProject.Views
         void LoadData()
         {
             var context = new DbService();
-            /* var users = context.Users.ToList();
-             List<Customer> customers = context.Customers.ToList();
-             List<Employee> employees = context.Employees.ToList();
-             var emp = employees[0];
-             *//*context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-             var drivers = context.Drivers.ToList();
-             var customers = context.Customers.ToList();
-             var users = context.Users.ToList();*//*
-
-             Customer customer = new Customer()
-             {
-                 FirstName = "John",
-                 LastName = "Done",
-                 BirthDate = DateTime.Now,
-                 CustomerType = CustomerType.Loyal,
-                 Discount = null,
-                 Email = "john@gmail.com",
-                 Login = "Login1",
-                 Password = "Password1",
-                 PhoneNumber = "250 521 322"
-             };
-
-             Employee employee = new Employee()
-             {
-                 FirstName = "Alex",
-                 LastName = "Gustafson",
-                 Login = "Alex",
-                 Password = "Password12",
-                 HireDate = DateTime.Now,
-                 Discount = 5,
-                 Email = "alex@mail.com",
-             };
-
-             context.Customers.Add(customer);
-             context.SaveChanges();
-             context.Employees.Add(employee);
-             context.SaveChanges();
-
-             Console.WriteLine(customers[0]);*/
-
-            var rideDates = context.RideDates.ToList();
-            var schedules = context.Schedules.ToList();
-
-            foreach(RideDate rideDate in rideDates)
+            var rs = context.RideSchedules.Include("Schedule").ToList();
+            var avs = context.AvialableSets.Include("Bus.Driver").Select(s => new
             {
-                foreach(Schedule schedule in schedules)
+                rideSchedule = s.RideSchedule,
+                bus = s.Bus
+            }).Distinct().ToList();
+
+            foreach(var av in avs)
+            {
+                context.Displayings.Add(new Displaying
                 {
-                    context.RideSchedules.Add(new RideSchedule { ScheduleId = schedule.IdRideSchedule, RideDateId = rideDate.IdRideData });
-                }
+                    RideScheduleId = av.rideSchedule.IdRideSchedule,
+                    BusId = av.bus.IdBus,
+                    DepartureTime = av.rideSchedule.Schedule.DepartureTime,
+                    ArrivalTime = av.rideSchedule.Schedule.ArrivalTime,
+                    AvialableSeats = 20,
+                    IsDeparted = false,
+                    StandardPrice = new Random().Next(20, 50)
+                });
             }
 
-            context.SaveChanges();
-
             int g = 0;
+
+            context.SaveChanges();
         }
     }
 }

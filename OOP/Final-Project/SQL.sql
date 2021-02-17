@@ -182,7 +182,8 @@ SELECT * FROM Schedules;
 
 /* Ride dates */
 
-INSERT INTO RideDates VALUES (convert(date, '01-02-2020'), 21);
+DBCC CHECKIDENT ('RideDates', RESEED, 0);
+INSERT INTO RideDates VALUES (convert(date, '01-JAN-2020'), 21);
 INSERT INTO RideDates VALUES (convert(date, '01-02-2020'), 22);
 INSERT INTO RideDates VALUES (convert(date, '01-02-2020'), 23);
 INSERT INTO RideDates VALUES (convert(date, '01-02-2020'), 24);
@@ -261,53 +262,14 @@ INSERT INTO RideDates VALUES (convert(date, '07-02-2020'), 45);
 --test
 SELECT * FROM RideDates;
 
+SELECT rs.* FROM RideSchedules rs
+INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
+WHERE rd.Date = convert(date, '07-02-2020');
 
 /* Avialable Seats */
-INSERT INTO AvialableSeats VALUES (1, 1, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 2, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 3, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 4, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 5, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 6, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 7, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 8, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 9, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 10, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 11, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 12, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 13, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 14, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 15, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 16, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 17, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 18, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 19, 1, 2);
-INSERT INTO AvialableSeats VALUES (1, 20, 1, 2);
-
-INSERT INTO AvialableSeats VALUES (5, 1, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 2, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 3, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 4, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 5, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 6, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 7, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 8, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 9, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 10, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 11, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 12, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 13, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 14, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 15, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 16, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 17, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 18, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 19, 1, 1);
-INSERT INTO AvialableSeats VALUES (5, 20, 1, 1);
 
 --test
 SELECT * FROM AvialableSeats;
-
 
 /* Discount Reason */
 INSERT INTO DiscountReasons VALUES ('Student');
@@ -337,12 +299,33 @@ SELECT * FROM Drivers;
 SELECT * FROM Locations;
 SELECT * FROM Rides;
 SELECT * FROM RideStops;
+SELECT * FROM RideDates;
+SELECT * FROM Schedules;
+SELECT * FROM RideSchedules;
 SELECT * FROM TicketClassAttributes;
 SELECT * FROM Tickets;
 SELECT * FROM Users;
 
-SELECT * FROM Displayings d
-INNER JOIN Rides r ON d.RideId = r.IdRide
+delete from Displayings;
+DBCC CHECKIDENT ('Displayings', RESEED, 0);
+SELECT l1.LocationName AS 'From', l2.LocationName AS 'To', s.DepartureTime as Departure, s.ArrivalTime as Arrival, ds.StandardPrice AS 'Price'
+FROM AvialableSeats avs
+INNER JOIN Buses b ON avs.BusId = b.IdBus
+INNER JOIN Drivers d ON b.DriverId = b.DriverId
+INNER JOIN RideSchedules rs ON avs.RideScheduleId = rs.IdRideSchedule
+INNER JOIN Displayings ds ON rs.IdRideSchedule = ds.RideScheduleId
+INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
+INNER JOIN Rides r ON rd.RideId = r.IdRide
+INNER JOIN Locations l1 ON r.StartPointId = l1.IdLocation
+INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
+INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
+WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';
+
+SELECT l1.LocationName, l2.LocationName, FORMAT(rd.Date, 'dd-MM-yy'), s.DepartureTime, s.ArrivalTime, r.IdRide, rd.IdRideData
+FROM RideSchedules rs
+INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
+INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
+INNER JOIN Rides r ON rd.RideId = r.IdRide
 INNER JOIN Locations l1 ON r.StartPointId = l1.IdLocation
 INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
 WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';

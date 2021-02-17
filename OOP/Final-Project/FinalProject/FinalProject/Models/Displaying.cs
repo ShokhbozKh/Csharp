@@ -20,11 +20,11 @@ namespace FinalProject.Models
         [DataType(DataType.Date)]
         public DateTime ArrivalTime { get; set; }
 
-        public int RideId { get; set; }
+        public int RideScheduleId { get; set; }
         public int BusId { get; set; }
 
-        [ForeignKey("RideId")]
-        public Ride Ride { get; set; }
+        [ForeignKey("RideScheduleId")]
+        public RideSchedule RideSchedule { get; set; }
         [ForeignKey("BusId")]
         public Bus Bus { get; set; }
     }
