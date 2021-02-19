@@ -308,6 +308,7 @@ SELECT * FROM Users;
 
 delete from Displayings;
 DBCC CHECKIDENT ('Displayings', RESEED, 0);
+
 SELECT l1.LocationName AS 'From', l2.LocationName AS 'To', s.DepartureTime as Departure, s.ArrivalTime as Arrival, ds.StandardPrice AS 'Price'
 FROM AvialableSeats avs
 INNER JOIN Buses b ON avs.BusId = b.IdBus
@@ -321,7 +322,7 @@ INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
 INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
 WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';
 
-SELECT l1.LocationName, l2.LocationName, FORMAT(rd.Date, 'dd-MM-yy'), s.DepartureTime, s.ArrivalTime, r.IdRide, rd.IdRideData
+SELECT l1.LocationName, l2.LocationName, FORMAT(rd.Date, 'dd-MM-yy') AS 'Date', s.DepartureTime, s.ArrivalTime, r.IdRide, rd.IdRideData
 FROM RideSchedules rs
 INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
 INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
@@ -329,3 +330,7 @@ INNER JOIN Rides r ON rd.RideId = r.IdRide
 INNER JOIN Locations l1 ON r.StartPointId = l1.IdLocation
 INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
 WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';
+
+SELECT *
+FROM Displayings d
+INNER JOIN RideSchedules rs ON d.RideScheduleId = d.RideScheduleId
