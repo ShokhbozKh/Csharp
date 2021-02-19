@@ -287,8 +287,6 @@ INSERT INTO TicketClassAttributes VALUES (500, 20);
 INSERT INTO TicketClassAttributes VALUES (700, 5);
 
 /* Displaying */
-INSERT INTO Displayings VALUES (100, 20, 0, 1, 2, GETDATE());
-INSERT INTO Displayings VALUES (100, 20, 0, 5, 1, GETDATE() + 1);
 
 -- test --
 SELECT * FROM AvialableSeats;
@@ -306,8 +304,87 @@ SELECT * FROM TicketClassAttributes;
 SELECT * FROM Tickets;
 SELECT * FROM Users;
 
+INSERT INTO Displayings VALUES (50, 20, 0, 3);
+INSERT INTO Displayings VALUES (50, 20, 0, 4);
+INSERT INTO Displayings VALUES (50, 20, 0, 5);
+INSERT INTO Displayings VALUES (50, 20, 0, 6);
+INSERT INTO Displayings VALUES (50, 20, 0, 7);
+INSERT INTO Displayings VALUES (50, 20, 0, 8);
+INSERT INTO Displayings VALUES (50, 20, 0, 9);
+INSERT INTO Displayings VALUES (50, 20, 0, 10);
+INSERT INTO Displayings VALUES (50, 20, 0, 11);
+INSERT INTO Displayings VALUES (50, 20, 0, 12);
+INSERT INTO Displayings VALUES (50, 20, 0, 13);
+INSERT INTO Displayings VALUES (50, 20, 0, 14);
+INSERT INTO Displayings VALUES (50, 20, 0, 15);
+INSERT INTO Displayings VALUES (50, 20, 0, 16);
+INSERT INTO Displayings VALUES (50, 20, 0, 17);
+INSERT INTO Displayings VALUES (50, 20, 0, 18);
+INSERT INTO Displayings VALUES (50, 20, 0, 19);
+INSERT INTO Displayings VALUES (50, 20, 0, 20);
+INSERT INTO Displayings VALUES (50, 20, 0, 21);
+INSERT INTO Displayings VALUES (50, 20, 0, 22);
+INSERT INTO Displayings VALUES (50, 20, 0, 23);
+INSERT INTO Displayings VALUES (50, 20, 0, 24);
+INSERT INTO Displayings VALUES (50, 20, 0, 25);
+INSERT INTO Displayings VALUES (50, 20, 0, 26);
+INSERT INTO Displayings VALUES (50, 20, 0, 27);
+INSERT INTO Displayings VALUES (50, 20, 0, 28);
+INSERT INTO Displayings VALUES (50, 20, 0, 29);
+INSERT INTO Displayings VALUES (50, 20, 0, 30);
+INSERT INTO Displayings VALUES (50, 20, 0, 31);
+INSERT INTO Displayings VALUES (50, 20, 0, 32);
+INSERT INTO Displayings VALUES (50, 20, 0, 33);
+INSERT INTO Displayings VALUES (50, 20, 0, 34);
+INSERT INTO Displayings VALUES (50, 20, 0, 35);
+INSERT INTO Displayings VALUES (50, 20, 0, 36);
+INSERT INTO Displayings VALUES (50, 20, 0, 37);
+INSERT INTO Displayings VALUES (50, 20, 0, 38);
+INSERT INTO Displayings VALUES (50, 20, 0, 39);
+INSERT INTO Displayings VALUES (50, 20, 0, 40);
+INSERT INTO Displayings VALUES (50, 20, 0, 41);
+INSERT INTO Displayings VALUES (50, 20, 0, 42);
+INSERT INTO Displayings VALUES (50, 20, 0, 43);
+INSERT INTO Displayings VALUES (50, 20, 0, 44);
+INSERT INTO Displayings VALUES (50, 20, 0, 45);
+INSERT INTO Displayings VALUES (50, 20, 0, 46);
+INSERT INTO Displayings VALUES (50, 20, 0, 47);
+INSERT INTO Displayings VALUES (50, 20, 0, 48);
+INSERT INTO Displayings VALUES (50, 20, 0, 49);
+INSERT INTO Displayings VALUES (50, 20, 0, 50);
+INSERT INTO Displayings VALUES (50, 20, 0, 51);
+INSERT INTO Displayings VALUES (50, 20, 0, 52);
+INSERT INTO Displayings VALUES (50, 20, 0, 53);
+INSERT INTO Displayings VALUES (50, 20, 0, 54);
+INSERT INTO Displayings VALUES (50, 20, 0, 55);
+INSERT INTO Displayings VALUES (50, 20, 0, 56);
+INSERT INTO Displayings VALUES (50, 20, 0, 57);
+INSERT INTO Displayings VALUES (50, 20, 0, 58);
+INSERT INTO Displayings VALUES (50, 20, 0, 59);
+INSERT INTO Displayings VALUES (50, 20, 0, 60);
+INSERT INTO Displayings VALUES (50, 20, 0, 61);
+INSERT INTO Displayings VALUES (50, 20, 0, 62);
+INSERT INTO Displayings VALUES (50, 20, 0, 63);
+INSERT INTO Displayings VALUES (50, 20, 0, 64);
+INSERT INTO Displayings VALUES (50, 20, 0, 65);
+INSERT INTO Displayings VALUES (50, 20, 0, 66);
+INSERT INTO Displayings VALUES (50, 20, 0, 67);
+INSERT INTO Displayings VALUES (50, 20, 0, 68);
+INSERT INTO Displayings VALUES (50, 20, 0, 69);
+INSERT INTO Displayings VALUES (50, 20, 0, 70);
+INSERT INTO Displayings VALUES (50, 20, 0, 71);
+INSERT INTO Displayings VALUES (50, 20, 0, 72);
+INSERT INTO Displayings VALUES (50, 20, 0, 73);
+INSERT INTO Displayings VALUES (50, 20, 0, 74);
+INSERT INTO Displayings VALUES (50, 20, 0, 75);
+INSERT INTO Displayings VALUES (50, 20, 0, 76);
+
 delete from Displayings;
-DBCC CHECKIDENT ('Displayings', RESEED, 0);
+
+ Set Identity_Insert Displayings OFF;
+
+DBCC CHECKIDENT ('Displayings', RESEED, 3);
+
 
 SELECT l1.LocationName AS 'From', l2.LocationName AS 'To', s.DepartureTime as Departure, s.ArrivalTime as Arrival, ds.StandardPrice AS 'Price'
 FROM AvialableSeats avs
