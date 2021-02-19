@@ -25,6 +25,21 @@ namespace FinalProject.Views
         {
             var context = new DbService();
 
+            var rideSchedules = context.RideSchedules.ToList();
+
+            foreach(var rs in rideSchedules)
+            {
+                context.Displayings.Add(new Displaying
+                {
+                    IdDisplaying = rs.IdRideSchedule,
+                    StandardPrice = new Random().Next(20, 150),
+                    AvialableSeats = 20,
+                    IsDeparted = false
+                });
+            }
+
+            int g = 0;
+
             context.SaveChanges();
         }
     }
