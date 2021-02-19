@@ -24,28 +24,6 @@ namespace FinalProject.Views
         void LoadData()
         {
             var context = new DbService();
-            /*var rs = context.RideSchedules.Include("Schedule").ToList();
-            var avs = context.AvialableSets.Include("Bus.Driver").Select(s => new
-            {
-                rideSchedule = s.RideSchedule,
-                bus = s.Bus
-            }).Distinct().ToList();
-
-            foreach (var av in avs)
-            {
-                context.Displayings.Add(new Displaying
-                {
-                    RideScheduleId = av.rideSchedule.IdRideSchedule,
-                    BusId = av.bus.IdBus,
-                    DepartureTime = av.rideSchedule.Schedule.DepartureTime,
-                    ArrivalTime = av.rideSchedule.Schedule.ArrivalTime,
-                    AvialableSeats = 20,
-                    IsDeparted = false,
-                    StandardPrice = new Random().Next(20, 50)
-                });
-            }*/
-
-             int  g = 0;
 
             context.SaveChanges();
         }

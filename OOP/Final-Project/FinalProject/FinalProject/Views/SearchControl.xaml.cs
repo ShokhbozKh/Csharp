@@ -39,6 +39,5 @@ namespace FinalProject.Views
             int g = 0;
         }
 
-
     }
 }

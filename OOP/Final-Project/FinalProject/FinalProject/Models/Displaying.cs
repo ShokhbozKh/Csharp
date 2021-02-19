@@ -7,7 +7,6 @@ namespace FinalProject.Models
     public class Displaying
     {
         [Key]
-        [ForeignKey("RideSchedule")]
         public int IdDisplaying { get; set; }
         [Required]
         public decimal StandardPrice { get; set; }
@@ -20,16 +19,10 @@ namespace FinalProject.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime ArrivalTime { get; set; }
-        [Required]
-        public string BusName { get; set; }
-
 
         //public int RideScheduleId { get; set; }
-        //public int BusId { get; set; }
-
-        //[ForeignKey("RideScheduleId")]
+        
+        [ForeignKey("IdDisplaying")]
         public RideSchedule RideSchedule { get; set; }
-        /*[ForeignKey("BusId")]
-        public Bus Bus { get; set; }*/
     }
 }

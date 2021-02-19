@@ -177,9 +177,17 @@
     <Compile Include="Migrations\202102171329244_Add bus constraint to displaying.designer.cs">
       <DependentUpon>202102171329244_Add bus constraint to displaying.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102171618487_Change association between displaying and schedule.cs" />
-    <Compile Include="Migrations\202102171618487_Change association between displaying and schedule.designer.cs">
-      <DependentUpon>202102171618487_Change association between displaying and schedule.cs</DependentUpon>
+    <Compile Include="Migrations\202102192230559_RemoveDisplayingTicketAssoc.cs" />
+    <Compile Include="Migrations\202102192230559_RemoveDisplayingTicketAssoc.designer.cs">
+      <DependentUpon>202102192230559_RemoveDisplayingTicketAssoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102192238360_AddAssocBetweenDisplayingRideSchedule.cs" />
+    <Compile Include="Migrations\202102192238360_AddAssocBetweenDisplayingRideSchedule.designer.cs">
+      <DependentUpon>202102192238360_AddAssocBetweenDisplayingRideSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102192248270_AddTicketDisplayingOneToOne.cs" />
+    <Compile Include="Migrations\202102192248270_AddTicketDisplayingOneToOne.designer.cs">
+      <DependentUpon>202102192248270_AddTicketDisplayingOneToOne.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AvialableSeats.cs" />
@@ -391,8 +399,14 @@
     <EmbeddedResource Include="Migrations\202102171329244_Add bus constraint to displaying.resx">
       <DependentUpon>202102171329244_Add bus constraint to displaying.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102171618487_Change association between displaying and schedule.resx">
-      <DependentUpon>202102171618487_Change association between displaying and schedule.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102192230559_RemoveDisplayingTicketAssoc.resx">
+      <DependentUpon>202102192230559_RemoveDisplayingTicketAssoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102192238360_AddAssocBetweenDisplayingRideSchedule.resx">
+      <DependentUpon>202102192238360_AddAssocBetweenDisplayingRideSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102192248270_AddTicketDisplayingOneToOne.resx">
+      <DependentUpon>202102192248270_AddTicketDisplayingOneToOne.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

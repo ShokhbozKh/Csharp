@@ -7,13 +7,13 @@ namespace FinalProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Changeassociationbetweendisplayingandschedule : IMigrationMetadata
+    public sealed partial class AddTicketDisplayingOneToOne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Changeassociationbetweendisplayingandschedule));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTicketDisplayingOneToOne));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102171618487_Change association between displaying and schedule"; }
+            get { return "202102192248270_AddTicketDisplayingOneToOne"; }
         }
         
         string IMigrationMetadata.Source
