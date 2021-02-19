@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
@@ -26,8 +25,8 @@ namespace FinalProject.Models
         public DiscountReason DiscountReason { get; set; }
         [ForeignKey("CustomerId")]
         public User Customer { get; set; }
-        [ForeignKey("DisplayingId")]
-        public Displaying Displaying { get; set; }
+        /*[ForeignKey("DisplayingId")]
+        public Displaying Displaying { get; set; }*/
 
         [EnumDataType(typeof(TicketStatus))]
         public TicketStatus TicketStatus { get; set; }
