@@ -59,7 +59,9 @@ namespace FinalProject.Views
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), DateTime.Now);
+            DateTime date = (DateTime)rideDatePicker.SelectedDate;
+
+            SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), date);
         }
     }
 

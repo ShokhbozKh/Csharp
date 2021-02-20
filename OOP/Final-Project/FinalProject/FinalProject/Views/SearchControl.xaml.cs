@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Controls;
 using FinalProject.DAL;
 using FinalProject.Models;
@@ -24,9 +26,10 @@ namespace FinalProject.Views
 
         public static void SearchDetailsChanged(string startPoint, string destinationPoint, DateTime selectedDate)
         {
-            selectedDate = new DateTime(2020, 01, 01);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            var date = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day);
             var result = context.Displayings
-                .Where(s => s.RideSchedule.RideDate.Date == selectedDate
+                .Where(s => s.RideSchedule.RideDate.Date == date
                         && s.RideSchedule.RideDate.Ride.DestinationPoint.LocationName == destinationPoint
                         && s.RideSchedule.RideDate.Ride.StartPoint.LocationName == startPoint).ToList();
 
