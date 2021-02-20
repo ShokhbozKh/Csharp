@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="150" d:DesignWidth="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -13,44 +13,20 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Full name" Grid.Column="0" Grid.Row="0" Margin="0 0 15 0"
+        <Label Content="Passport Id" Grid.Column="0" Grid.Row="0" Margin="0 0 15 0"
                FontSize="15" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="fullNameTextBox" Grid.Column="1" Grid.Row="0" Margin="15" 
-                 Width="250" FontSize="15" TextAlignment="Justify"/>
-
-        <Label Content="Passport" Grid.Column="0" Grid.Row="1" Margin="0 0 15 0"
-               FontSize="15" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="passportTextBox" Grid.Column="1" Grid.Row="1" Margin="15"
-                 Width="250" FontSize="15" TextAlignment="Justify"/>
-
-        <Label Content="Email" Grid.Column="0" Grid.Row="2" Margin="0 0 15 0"
-               FontSize="15" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="emailTextBox" Grid.Column="1" Grid.Row="2" Margin="15"
-                 Width="250" FontSize="15" TextAlignment="Justify"/>
-
-        <Label Content="Customer type" Grid.Column="0" Grid.Row="3" Margin="0 0 15 0"
-               FontSize="15" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox x:Name="customerTypeCombobox" Grid.Column="1" Grid.Row="3" Margin="15"
-                  Width="250" FontSize="15"/>
-
-        <Label Content="Promocode" Grid.Column="0" Grid.Row="4" Margin="0 0 15 0"
-               FontSize="15" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="promocodeTextBox" Grid.Column="1" Grid.Row="4" Margin="15"
-                 Width="250" FontSize="15"/>
+        <TextBox x:Name="passportIdTextBox" Grid.Column="1" Grid.Row="0" Margin="15" 
+                 Width="250" Height="35" FontSize="15" TextAlignment="Justify" TextChanged="PassportIdTextBox_TextChanged"/>
 
         <Button x:Name="registerCustomer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="0 0 15 0"
                 HorizontalAlignment="Right" Content="Register customer" FontSize="15" Foreground="White"
-                Background="Green" Height="40" Width="150" Click="RegisterCustomer_Click"/>
+                Background="Green" Height="50" Width="180" Click="RegisterCustomer_Click"/>
 
         <fa:ImageAwesome x:Name="spinner" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                         Icon="Refresh" Spin="True"
+                         Icon="Refresh" Spin="False" Visibility="Hidden"
                          Height="48" Width="48" />
     </Grid>
 </UserControl>

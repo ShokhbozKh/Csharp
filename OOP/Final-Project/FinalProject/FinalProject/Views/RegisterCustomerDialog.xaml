@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="Register Customer" Height="550" Width="450" ResizeMode="NoResize" 
+        Title="Register Customer" Height="650" Width="450" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" BorderThickness="0">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -71,11 +71,11 @@
                  Width="250" FontSize="15"/>
 
         <Button x:Name="registerCustomer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Margin="0 0 15 0"
-                HorizontalAlignment="Right" Content="Register customer" FontSize="15" Foreground="White"
+                HorizontalAlignment="Right" Content="Register" FontSize="15" Foreground="White"
                 Background="Green" Height="40" Width="150" Click="RegisterCustomer_Click"/>
 
         <fa:ImageAwesome x:Name="spinner" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                         Icon="Refresh" Spin="True"
+                         Icon="Refresh" Spin="False" Visibility="Hidden"
                          Height="48" Width="48" />
     </Grid>
 </Window>

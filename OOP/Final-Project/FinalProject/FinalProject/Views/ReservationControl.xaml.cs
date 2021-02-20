@@ -102,7 +102,7 @@ namespace FinalProject.Views
 
                         if(SelectedSeats.Count > 0)
                         {
-                            _middleFrame.Navigate(new CustomerDetailsControl());
+                            _middleFrame.Navigate(new CustomerDetailsControl(ref nextButton));
                             break;
                         }
                         else

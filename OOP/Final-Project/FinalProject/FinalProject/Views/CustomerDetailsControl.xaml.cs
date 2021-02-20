@@ -1,5 +1,7 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.DAL;
+using FinalProject.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,49 +12,42 @@ namespace FinalProject.Views
     /// </summary>
     public partial class CustomerDetailsControl : UserControl
     {
-        private List<CustomerType> CustomerTypes { get; set; }
-        private bool IsLoading { get; set; } = false;
-        public CustomerDetailsControl()
+        private DbService Context { get; set; }
+        private readonly Button nextButton;
+        private List<Customer> UsersList { get; set; } = new List<Customer>();
+        public static Customer Customer { get; set; }
+
+        public CustomerDetailsControl(ref Button nextButton)
         {
+            nextButton.IsEnabled = false;
+            Context = new DbService();
+            this.nextButton = nextButton;
+
             InitializeComponent();
             LoadData();
         }
 
         private void LoadData()
         {
-            CustomerTypes = new List<CustomerType>
-            {
-                CustomerType.Loyal,
-                CustomerType.Student
-            };
-
-            customerTypeCombobox.ItemsSource = CustomerTypes;
+            UsersList = Context.Customers.ToList();
         }
 
         private void RegisterCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (IsLoading)
+            var dialog = new RegisterCustomerDialog();
+
+            if(dialog.ShowDialog() == true)
             {
-                this.spinner.Visibility = Visibility.Visible;
-                IsLoading = !IsLoading;
-            }
-            else
-            {
-                this.spinner.Visibility = Visibility.Collapsed;
-                IsLoading = !IsLoading;
+                Customer = dialog.Customer;
             }
         }
 
-        /*private void rbtnSymbol_Checked(object sender, RoutedEventArgs e)
+        private void PassportIdTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            expS.IsExpanded = true;
-            expP.IsExpanded = false;
-        }
+            Customer = UsersList.Where(s => s.PassportId == passportIdTextBox.Text).FirstOrDefault();            
 
-        private void rbtnPicture_Checked(object sender, RoutedEventArgs e)
-        {
-            expS.IsExpanded = false;
-            expP.IsExpanded = true;
-        }*/
+            if (Customer != null) nextButton.IsEnabled = true;
+            else nextButton.IsEnabled = false;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
@@ -6,6 +7,10 @@ namespace FinalProject.Models
     [Table("Users")]
     public abstract class User
     {
+        public User()
+        {
+            PromoCode = Guid.NewGuid();
+        }
         [Key]
         public int UserId { get; set; }
         [Required]
@@ -24,6 +29,8 @@ namespace FinalProject.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [NotMapped]
+        public Guid PromoCode { get; set; }
 
         public abstract void BookTicket();
     }
