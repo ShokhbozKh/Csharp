@@ -15,17 +15,22 @@
 
         <local:RideDetailsControl Grid.Row="0" HorizontalAlignment="Center" Margin="5"/>
 
-        <ListView Name="searchListView" Grid.Row="1" Margin="10">
+        <ListView Name="searchListView" Grid.Row="1" Margin="10" SelectionChanged="SearchListView_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}" />
-                    <GridViewColumn Header="Dep. Time" Width="100" DisplayMemberBinding="{Binding DepartureTime}" />
-                    <GridViewColumn Header="Arr. Time" Width="100" DisplayMemberBinding="{Binding ArrivalTime}" />
-                    <GridViewColumn Header="Start point" Width="100" DisplayMemberBinding="{Binding Ride.StartStation}" />
-                    <GridViewColumn Header="Destination point" Width="100" DisplayMemberBinding="{Binding Ride.DestinationStation}" />
-                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding AvialableSeats}" />
-                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding StandardPrice}" />
-                    <GridViewColumn Header="Hours" Width="80" DisplayMemberBinding="{Binding Ride.TotalHours}" />
+                    <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}"/>
+                    <GridViewColumn Header="Dep. Time" Width="80" DisplayMemberBinding="{Binding Departure}" />
+                    <GridViewColumn Header="Arr. Time" Width="80" DisplayMemberBinding="{Binding Arrival}" />
+                    <GridViewColumn Header="Start point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.StartPoint.StationName}" />
+                    <GridViewColumn Header="Destination point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.DestinationPoint.StationName}" />
+                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding Displaying.AvialableSeats}" />
+                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding Displaying.StandardPrice}" />
+                    <GridViewColumn Header="Hours" Width="80" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.TotalHours}" />
                 </GridView>
             </ListView.View>
         </ListView>
