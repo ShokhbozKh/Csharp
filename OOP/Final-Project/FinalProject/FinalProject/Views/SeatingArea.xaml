@@ -13,7 +13,7 @@
             <TextBlock HorizontalAlignment="Center" Text="SEATING CHART" FontSize="24" Margin="0,10"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Right" Text="SELECTED SEATS: " FontSize="20" Margin="0 0 20 0" Foreground="DarkSalmon"/>
-                <TextBlock x:Name="SeatsNumber" HorizontalAlignment="Right" FontSize="20" Margin="0 0 0 0" Foreground="DarkSalmon"/>
+                <TextBlock x:Name="SeatsNumber" HorizontalAlignment="Right" FontSize="20" Margin="0 0 0 20" Foreground="DarkSalmon"/>
             </StackPanel>
             <ItemsControl  ItemsSource="{Binding Seats}">
                 <ItemsControl.ItemTemplate>

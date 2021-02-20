@@ -1,5 +1,6 @@
 ﻿using FinalProject.DAL;
 using FinalProject.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace FinalProject.Views
     public partial class SeatingArea : UserControl
     {
         public ObservableCollection<SeatModel> Seats { get; set; }
-        public int SelectedSeatsCount { get; set; }
+        public int SelectedSeatsCount { get; set; } = 0;
         public int RideScheduleId { get; set; }
         private readonly DbService context;
+        public static List<int> SelectedSeats { get; set; } = new List<int>();
+
         public SeatingArea(int rideScheduleId)
         {
             RideScheduleId = rideScheduleId;
@@ -52,16 +55,23 @@ namespace FinalProject.Views
             Button btn = sender as Button;
             SeatModel seat = btn.DataContext as SeatModel;
 
-            SeatsNumber.Text = SelectedSeatsCount.ToString();
-
             if (seat.IsAvialable)
             {
+                if (seat.Background == "Yellow")
+                {
+                    SelectedSeatsCount--;
+                    SelectedSeats.Remove(seat.IdSeat);
+                }
+                else
+                {
+                    SelectedSeatsCount++;
+                    SelectedSeats.Add(seat.IdSeat);
+                }
                 seat.Background = "Yellow";
-                if (seat.Background == "Yellow") SelectedSeatsCount--;
-                else SelectedSeatsCount++;
             }
 
-            
+            SeatsNumber.Text = SelectedSeatsCount.ToString();
+
             int g = 0;
         }
     }

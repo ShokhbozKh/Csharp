@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -12,6 +13,8 @@ namespace FinalProject.Views
     /// </summary>
     public partial class ReservationControl : UserControl, INotifyPropertyChanged
     {
+        private Customer CustomerDetails { get; set; }
+        private List<int> SelectedSeats { get; set; }
         private Displaying _selectedDisplaying;
         public Displaying SelectedDisplaying 
         {
@@ -95,12 +98,24 @@ namespace FinalProject.Views
                         }
                         break;
                     case 3:
-                        _middleFrame.Navigate(new CustomerDetailsControl());
-                        break;
+                        SelectedSeats = SeatingArea.SelectedSeats;
+
+                        if(SelectedSeats.Count > 0)
+                        {
+                            _middleFrame.Navigate(new CustomerDetailsControl());
+                            break;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please, choose seat(s)");
+                            break;  
+                        }
+                        
                     case 4:
                         _middleFrame.Navigate(new PaymetControl());
                         break;
                     case 5:
+                        int g = 0;
                         _middleFrame.Navigate(new TicketControl());
                         break;
                 }
