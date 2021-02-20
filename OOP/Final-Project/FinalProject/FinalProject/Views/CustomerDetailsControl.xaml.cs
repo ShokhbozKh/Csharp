@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using FinalProject.Models;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FinalProject.Views
@@ -8,10 +10,23 @@ namespace FinalProject.Views
     /// </summary>
     public partial class CustomerDetailsControl : UserControl
     {
+        private List<CustomerType> CustomerTypes { get; set; }
         private bool IsLoading { get; set; } = false;
         public CustomerDetailsControl()
         {
             InitializeComponent();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            CustomerTypes = new List<CustomerType>
+            {
+                CustomerType.Loyal,
+                CustomerType.Student
+            };
+
+            customerTypeCombobox.ItemsSource = CustomerTypes;
         }
 
         private void RegisterCustomer_Click(object sender, RoutedEventArgs e)
