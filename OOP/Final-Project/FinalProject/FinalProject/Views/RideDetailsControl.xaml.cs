@@ -13,14 +13,13 @@ namespace FinalProject.Views
     /// </summary>
     public partial class RideDetailsControl : UserControl
     {
-        List<Location> fromLocationList = new List<Location>();
-        List<Location> toLocationList = new List<Location>();
+        List<string> fromLocationList = new List<string>();
+        List<string> toLocationList = new List<string>();
         List<string> busTypesList = new List<string>();
         public RideDetailsControl()
         {
             InitializeComponent();
             LoadData();
-
 
             fromCombobox.ItemsSource = fromLocationList;
             toCombobox.ItemsSource = toLocationList;
@@ -31,8 +30,8 @@ namespace FinalProject.Views
         {
             var context = new DbService();
 
-            fromLocationList = context.Locations.ToList();
-            toLocationList = context.Locations.ToList();
+            fromLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
+            toLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
             busTypesList.Add(BusType.Business.ToString());
             busTypesList.Add(BusType.Express.ToString());
             busTypesList.Add(BusType.Regular.ToString());

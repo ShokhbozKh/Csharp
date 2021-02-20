@@ -26,10 +26,12 @@ namespace FinalProject.Views
 
         public static void SearchDetailsChanged(string startPoint, string destinationPoint, DateTime selectedDate)
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            var date = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day);
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             var result = context.Displayings
-                .Where(s => s.RideSchedule.RideDate.Date == date
+                .Where(s => s.RideSchedule.RideDate.Date.Year == selectedDate.Year-1 
+                        && s.RideSchedule.RideDate.Date.Month == selectedDate.Month 
+                        && s.RideSchedule.RideDate.Date.Day == selectedDate.Day
                         && s.RideSchedule.RideDate.Ride.DestinationPoint.LocationName == destinationPoint
                         && s.RideSchedule.RideDate.Ride.StartPoint.LocationName == startPoint).ToList();
 
