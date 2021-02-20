@@ -16,6 +16,7 @@ namespace FinalProject.Views
         List<string> fromLocationList = new List<string>();
         List<string> toLocationList = new List<string>();
         readonly List<string> busTypesList = new List<string>();
+        public static Button NextButton { get; set; }
         public RideDetailsControl()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace FinalProject.Views
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            NextButton.IsEnabled = false;
             var date = rideDatePicker.SelectedDate;
             BusType busType;
 
@@ -63,8 +65,6 @@ namespace FinalProject.Views
                     break;
             }
 
-            //int g = 0;
-
             if(date == null)
             {
                 MessageBox.Show("Please, choose a date");
@@ -72,6 +72,11 @@ namespace FinalProject.Views
             }
 
             SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), (DateTime)date, busType);
+        }
+
+        public static void SetButton(ref Button nextButton)
+        {
+            NextButton = nextButton;
         }
     }
 

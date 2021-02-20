@@ -57,7 +57,7 @@ namespace FinalProject.Views
         {
             InitializeComponent();
 
-            _middleFrame.Navigate(new SearchControl());
+            _middleFrame.Navigate(new SearchControl(ref nextButton));
 
             _middleFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
 
@@ -112,10 +112,12 @@ namespace FinalProject.Views
                         }
                         
                     case 4:
+                        CustomerDetails = CustomerDetailsControl.Customer;
+
                         _middleFrame.Navigate(new PaymetControl());
                         break;
                     case 5:
-                        int g = 0;
+                        //int g = 0;
                         _middleFrame.Navigate(new TicketControl());
                         break;
                 }
@@ -124,10 +126,13 @@ namespace FinalProject.Views
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (m_progress - 1 >= 0)
+            int g = 0;
+            if (m_progress - 1 >= 1)
             {
                 Progress -= 1;
                 _middleFrame.GoBack();
+
+                if (Progress == 1) backButton.IsEnabled = false;
             }
         }
 

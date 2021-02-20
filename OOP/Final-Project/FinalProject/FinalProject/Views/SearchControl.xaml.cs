@@ -14,13 +14,18 @@ namespace FinalProject.Views
     {
         private static DbService context;
         private static readonly ObservableCollection<DisplayingsBus> displayings = new ObservableCollection<DisplayingsBus>();
-        public static Displaying SelectedRide { get; set; }
 
-        public SearchControl()
+        public static Displaying SelectedRide { get; set; }
+        public Button NextButton { get; set; }        
+
+        public SearchControl(ref Button nextButton)
         {
-            InitializeComponent();            
+            InitializeComponent();
             context = new DbService();
 
+            NextButton = nextButton;
+            NextButton.IsEnabled = false;
+            RideDetailsControl.SetButton(ref nextButton);
             searchListView.ItemsSource = displayings;
         }
 
@@ -65,6 +70,8 @@ namespace FinalProject.Views
         private void SearchListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedRide = ((sender as ListView).SelectedItem as DisplayingsBus)?.Displaying;
+
+            if(SelectedRide != null) NextButton.IsEnabled = true;
         }
     }
 }

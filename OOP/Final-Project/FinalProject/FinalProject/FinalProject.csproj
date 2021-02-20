@@ -209,6 +209,7 @@
     <Compile Include="Models\Ride.cs" />
     <Compile Include="Models\RideDate.cs" />
     <Compile Include="Models\RideSchedule.cs" />
+    <Compile Include="Models\RideSearchDetails.cs" />
     <Compile Include="Models\RideStops.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Seat.cs" />

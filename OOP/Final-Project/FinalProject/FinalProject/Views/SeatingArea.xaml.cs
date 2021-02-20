@@ -72,7 +72,7 @@ namespace FinalProject.Views
 
             SeatsNumber.Text = SelectedSeatsCount.ToString();
 
-            int g = 0;
+            //int g = 0;
         }
     }
 }
