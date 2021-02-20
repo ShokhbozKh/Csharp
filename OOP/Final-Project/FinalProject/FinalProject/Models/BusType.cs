@@ -4,6 +4,7 @@
     {
         Regular = 0,
         Express = 1,
-        Business = 2
+        Business = 2,
+        All = 3
     }
 }

@@ -15,7 +15,7 @@ namespace FinalProject.Views
     {
         List<string> fromLocationList = new List<string>();
         List<string> toLocationList = new List<string>();
-        List<string> busTypesList = new List<string>();
+        readonly List<string> busTypesList = new List<string>();
         public RideDetailsControl()
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace FinalProject.Views
             fromCombobox.ItemsSource = fromLocationList;
             toCombobox.ItemsSource = toLocationList;
             busTypeCombobox.ItemsSource = busTypesList;
+            busTypeCombobox.SelectedIndex = 3;
         }
 
         void LoadData()
@@ -32,35 +33,45 @@ namespace FinalProject.Views
 
             fromLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
             toLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
+            busTypesList.Add(BusType.All.ToString());
             busTypesList.Add(BusType.Business.ToString());
             busTypesList.Add(BusType.Express.ToString());
             busTypesList.Add(BusType.Regular.ToString());
-
-            /*fromLocationList.Add("Warsaw");
-            fromLocationList.Add("Gdansk");
-            fromLocationList.Add("Krakow");
-            fromLocationList.Add("Wroclaw");
-
-            toLocationList.Add("Warsaw");
-            toLocationList.Add("Gdansk");
-            toLocationList.Add("Krakow");
-            toLocationList.Add("Wroclaw");*/
-
-
-
-            /*busTypesList.Add("Standard");
-            busTypesList.Add("Econom");
-            busTypesList.Add("Business");
-            busTypesList.Add("Express");*/
-
-            
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date = (DateTime)rideDatePicker.SelectedDate;
+            var date = rideDatePicker.SelectedDate;
+            BusType busType;
 
-            SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), date);
+            switch (busTypeCombobox.SelectedItem.ToString())
+            {
+                case "All":
+                    busType = BusType.All;
+                    break;
+                case "Business":
+                    busType = BusType.Business;
+                    break;
+                case "Express":
+                    busType = BusType.Express;
+                    break;
+                case "Regular":
+                    busType = BusType.Regular;
+                    break;
+                default:
+                    busType = BusType.All;
+                    break;
+            }
+
+            //int g = 0;
+
+            if(date == null)
+            {
+                MessageBox.Show("Please, choose a date");
+                return;
+            }
+
+            SearchControl.SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), (DateTime)date, busType);
         }
     }
 
