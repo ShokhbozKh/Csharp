@@ -91,7 +91,7 @@ namespace FinalProject.Views
                         else
                         {
                             backButton.IsEnabled = true;
-                            _middleFrame.Navigate(new SeatingArea());
+                            _middleFrame.Navigate(new SeatingArea(SelectedDisplaying.RideSchedule.IdRideSchedule));
                         }
                         break;
                     case 3:

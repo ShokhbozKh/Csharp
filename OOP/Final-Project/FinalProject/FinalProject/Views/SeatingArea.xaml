@@ -11,22 +11,19 @@
     <Grid>
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" Text="SEATING CHART" FontSize="24" Margin="0,10"/>
-            <ItemsControl ItemsSource="{Binding Seats}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" Text="SELECTED SEATS: " FontSize="20" Margin="0 0 20 0" Foreground="DarkSalmon"/>
+                <TextBlock x:Name="SeatsNumber" HorizontalAlignment="Right" FontSize="20" Margin="0 0 0 0" Foreground="DarkSalmon"/>
+            </StackPanel>
+            <ItemsControl  ItemsSource="{Binding Seats}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Rectangle x:Name="Seat" Width="25" Height="25" Stroke="Black" Fill="Green" Margin="1,2"/>
-                            <TextBlock Text="{Binding}" TextAlignment="Center" VerticalAlignment="Center" 
-                           Foreground="White" FontWeight="Bold"/>
+                        <Grid Name="LayoutRoot">
+                            <Button Name="Seat"  Content="{Binding IdSeat}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30"  Margin="1,2" 
+                                    Click="Seat_Click" Background="{Binding Background}"/>
                         </Grid>
                         <DataTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Seat" Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect Color="Red" ShadowDepth="0"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
+
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

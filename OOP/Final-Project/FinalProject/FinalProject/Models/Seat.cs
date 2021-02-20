@@ -12,5 +12,7 @@ namespace FinalProject.Models
         public int Row { get; set; }
         [Required]
         public bool IsAtWindow { get; set; }
+        
+       
     }
 }
