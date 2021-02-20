@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Windows.Controls;
 using FinalProject.DAL;
 using FinalProject.Models;
@@ -17,10 +14,11 @@ namespace FinalProject.Views
     {
         private static DbService context;
         private static readonly ObservableCollection<DisplayingsBus> displayings = new ObservableCollection<DisplayingsBus>();
-        private static DisplayingsBus selectedRide;
+        public static Displaying SelectedRide { get; set; }
+
         public SearchControl()
         {
-            InitializeComponent();
+            InitializeComponent();            
             context = new DbService();
 
             searchListView.ItemsSource = displayings;
@@ -61,12 +59,12 @@ namespace FinalProject.Views
             foreach (var d in displayingsBus) displayings.Add(d);
 
             // reset selected ride
-            selectedRide = null;
+            SelectedRide = null;
         }
 
         private void SearchListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedRide = searchListView.SelectedItem as DisplayingsBus;
+            SelectedRide = ((sender as ListView).SelectedItem as DisplayingsBus)?.Displaying;
         }
     }
 }

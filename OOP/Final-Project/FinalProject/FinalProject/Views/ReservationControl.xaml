@@ -32,20 +32,21 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" Content="Forward" Margin="10"
+            <Button x:Name="nextButton" Grid.Column="2" Content="Next" Margin="10"
                     Width="100" Height="40"
                     Background="CornflowerBlue"
-                    Click="IncreaseButton_Click" HorizontalAlignment="Right">
+                    Click="NextButton_Click" HorizontalAlignment="Right">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Grid.Column="0" Content="Back" Margin="10"
+            <Button x:Name="backButton" Grid.Column="0" Content="Back" Margin="10"
                     Width="100" Height="40"
                     Background="CornflowerBlue"
-                    Click="DecreaseButton_Click" HorizontalAlignment="Left">
+                    Click="BackButton_Click" HorizontalAlignment="Left"
+                    IsEnabled="False">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

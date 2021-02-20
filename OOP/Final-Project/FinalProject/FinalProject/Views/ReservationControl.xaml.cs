@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using FinalProject.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,23 +12,19 @@ namespace FinalProject.Views
     /// </summary>
     public partial class ReservationControl : UserControl, INotifyPropertyChanged
     {
-        public ReservationControl()
+        private Displaying _selectedDisplaying;
+        public Displaying SelectedDisplaying 
         {
-            InitializeComponent();
-
-            _middleFrame.Navigate(new SearchControl());
-            
-            _middleFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-
-            Steps = new ObservableCollection<string>
+            get => _selectedDisplaying;
+            set
             {
-                "Select route & Date",
-                "Book Seat",
-                "Passenger details",
-                "Payment",
-                "Print Ticket"
-            };
-            this.DataContext = this;
+                if (_selectedDisplaying != value)
+                {
+                    nextButton.IsEnabled = true;
+                    _selectedDisplaying = value;
+                    OnPropertyChanged("Displaying");
+                }
+            }
         }
 
         private int m_progress = 1;
@@ -53,7 +50,26 @@ namespace FinalProject.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void IncreaseButton_Click(object sender, RoutedEventArgs e)
+        public ReservationControl()
+        {
+            InitializeComponent();
+
+            _middleFrame.Navigate(new SearchControl());
+
+            _middleFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+
+            Steps = new ObservableCollection<string>
+            {
+                "Select route & Date",
+                "Book Seat",
+                "Passenger details",
+                "Payment",
+                "Print Ticket"
+            };
+            this.DataContext = this;
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             if (m_progress + 1 <= 5)
             {
@@ -65,7 +81,18 @@ namespace FinalProject.Views
                         _middleFrame.Navigate(new RideDetailsControl());
                         break;
                     case 2:
-                        _middleFrame.Navigate(new SeatingArea());
+                        SelectedDisplaying = SearchControl.SelectedRide;
+                        if(SelectedDisplaying == null)
+                        {
+                            MessageBox.Show("Please choose a ride");
+                            Progress -= 1;
+                            break;
+                        }
+                        else
+                        {
+                            backButton.IsEnabled = true;
+                            _middleFrame.Navigate(new SeatingArea());
+                        }
                         break;
                     case 3:
                         _middleFrame.Navigate(new CustomerDetailsControl());
@@ -80,7 +107,7 @@ namespace FinalProject.Views
             }
         }
 
-        private void DecreaseButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (m_progress - 1 >= 0)
             {
@@ -89,5 +116,9 @@ namespace FinalProject.Views
             }
         }
 
+        public void DisplayingSelected(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedDisplaying = ((sender as ListView).SelectedItem as DisplayingsBus)?.Displaying;
+        }
     }
 }
