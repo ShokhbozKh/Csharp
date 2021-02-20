@@ -25,9 +25,11 @@ namespace FinalProject.Views
         {
             var context = new DbService();
 
-            var displayings = context.Displayings.ToList();
+            var displayings = context.Displayings.Include("RideSchedule").ToList();
 
             int g = 0;
+
+            context.SaveChanges();
         }
     }
 }

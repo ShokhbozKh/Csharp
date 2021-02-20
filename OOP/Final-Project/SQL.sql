@@ -378,13 +378,21 @@ INSERT INTO Displayings VALUES (50, 20, 0, 73);
 INSERT INTO Displayings VALUES (50, 20, 0, 74);
 INSERT INTO Displayings VALUES (50, 20, 0, 75);
 INSERT INTO Displayings VALUES (50, 20, 0, 76);
+INSERT INTO Displayings VALUES (50, 20, 0, 77);
+INSERT INTO Displayings VALUES (50, 20, 0, 78);
+
+select * from RideSchedules;
+select * from Displayings;
+
+INSERT INTO Displayings (IdDisplaying, StandardPrice, AvialableSeats, IsDeparted) 
+SELECT IdRideSchedule, (SELECT RAND()*(10-5)+5), 20, 0
+FROM RideSchedules;
 
 delete from Displayings;
 
- Set Identity_Insert Displayings OFF;
+Set Identity_Insert Displayings ON;
 
-DBCC CHECKIDENT ('Displayings', RESEED, 3);
-
+DBCC CHECKIDENT ('Displayings', RESEED, 0);
 
 SELECT l1.LocationName AS 'From', l2.LocationName AS 'To', s.DepartureTime as Departure, s.ArrivalTime as Arrival, ds.StandardPrice AS 'Price'
 FROM AvialableSeats avs

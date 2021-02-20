@@ -13,8 +13,6 @@ namespace FinalProject.Models
         [Required]
         public bool IsDeparted { get; set; }
 
-        public int RideScheduleId { get; set; }
-
         [ForeignKey("IdDisplaying")]
         public RideSchedule RideSchedule { get; set; }
     }
