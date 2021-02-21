@@ -48,16 +48,16 @@
             <Image Source="/Images/logo-white.png"
                    Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Margin="30 0 0 0"/>
-            <Button Content="Home" Margin="380 0 0 0" 
-                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button x:Name="homeButton" Content="Home" Margin="380 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="HomeButton_Click"/>
             <Button Content="Search trip" Margin="15 0 0 0" 
                     Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
-            <Button Content="Cancel ticket"  Margin="15 0 0 0" 
-                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
-            <Button Content="Register customer"  Margin="15 0 0 0" 
-                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
-            <Button Content="Customers details"  Margin="15 0 0 0" 
-                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button x:Name="cancelTicket" Content="Cancel ticket"  Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="CancelTicket_Click"/>
+            <Button x:Name="registerCustomer" Content="Register customer"  Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="RegisterCustomer_Click"/>
+            <Button x:Name="customerDetails" Content="Customers details"  Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="CustomerDetails_Click"/>
             <Border CornerRadius="8,8,8,8" Width="40" Height="40" Margin="120 0 0 0">
                 <Border.Background>
                     <ImageBrush Stretch="Fill" ImageSource="Images/default.jpg"/>
@@ -68,7 +68,9 @@
             
         </StackPanel>
 
-        <local:ReservationControl Grid.Row="1"/>
+        <DockPanel Grid.Row="1" Margin="20">
+            <Frame x:Name="_middleFrame" HorizontalAlignment="Center" Margin="5" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
 
         <Grid Grid.Row="2" Background="#444444">
             <Grid.ColumnDefinitions>

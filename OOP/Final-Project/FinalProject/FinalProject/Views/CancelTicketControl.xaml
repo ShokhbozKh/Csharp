@@ -27,12 +27,12 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Operator (Bus type)" Width="120" DisplayMemberBinding="{Binding Bus.BusName}"/>
-                    <GridViewColumn Header="Customer details" Width="140" DisplayMemberBinding="{Binding Customer.FullName}"/>
-                    <GridViewColumn Header="Dep. Time" Width="80" DisplayMemberBinding="{Binding Displaying.RideSchedule.Schedule.Departure}" />
-                    <GridViewColumn Header="Start point" Width="130" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.StartPoint.StationName}" />
-                    <GridViewColumn Header="Destination point" Width="130" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.DestinationPoint.StationName}" />
+                    <GridViewColumn Header="Customer details" Width="140" DisplayMemberBinding="{Binding Ticket.Customer.FullName}"/>
+                    <GridViewColumn Header="Dep. Time" Width="80" DisplayMemberBinding="{Binding Ticket.Displaying.RideSchedule.Schedule.ArrivalTime}" />
+                    <GridViewColumn Header="Start point" Width="130" DisplayMemberBinding="{Binding Ticket.Displaying.RideSchedule.RideDate.Ride.StartPoint.StationName}" />
+                    <GridViewColumn Header="Destination point" Width="130" DisplayMemberBinding="{Binding Ticket.Displaying.RideSchedule.RideDate.Ride.DestinationPoint.StationName}" />
                     <GridViewColumn Header="Seats" Width="100" DisplayMemberBinding="{Binding ReservedSeats}" />
-                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding Ticket.Price}" />
                 </GridView>
             </ListView.View>
         </ListView>

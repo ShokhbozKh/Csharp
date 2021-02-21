@@ -1,17 +1,10 @@
-﻿using System;
+﻿using FinalProject.DAL;
+using FinalProject.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FinalProject.Views
 {
@@ -25,9 +18,61 @@ namespace FinalProject.Views
             InitializeComponent();
         }
 
-        private void ticketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void TicketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var selectedTicket = ticketsListView.SelectedItem;
 
+            
         }
+
+        private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var context = new DbService();
+            /*var ticket = context.Tickets.Where(s => s.TicketNumber == "c287b748-9eb5-41f8-b007-9cf248ee09fd").Include("Displaying.RideSchedule").FirstOrDefault();
+            var seats = context.TicketSeats.Where(s => s.TicketId == ticket.IdTicket).ToList();
+            var bus = context.AvialableSeats.Where(s => s.RideScheduleId == ticket.Displaying.RideSchedule.IdRideSchedule).Select(s => new { Bus = s.Bus }).Distinct().FirstOrDefault();*/
+
+            var tickets = context.Tickets.Where(s => s.CustomerId == 14)
+                .Include("Displaying.RideSchedule.RideDate.Ride.StartPoint")
+                .Include("Displaying.RideSchedule.RideDate.Ride.DestinationPoint")
+                .Include("Displaying.RideSchedule.Schedule")
+                .Include("Customer")
+                .ToList();
+
+            List<TicketDisplay> result = new List<TicketDisplay>();
+            
+            foreach (Ticket ticket in tickets)
+            {
+                var seats = context.TicketSeats.Where(s => s.TicketId == ticket.IdTicket).Select(s => s.Seat).ToList();
+                var bus = context.AvialableSeats.Where(s => s.RideScheduleId == ticket.Displaying.RideSchedule.IdRideSchedule).Select(s => s.Bus).Distinct().FirstOrDefault();
+
+                result.Add(new TicketDisplay
+                {
+                    Ticket = ticket,
+                    Bus = bus,
+                    Seats = seats
+                });
+            }
+
+            ticketsListView.ItemsSource = result;
+
+            int g = 0;
+        }
+    }
+
+    class TicketDisplay
+    {
+        public Ticket Ticket { get; set; }
+        public List<Seat> Seats { get; set; }
+        private string _reservedSeats;
+        public string ReservedSeats 
+        { 
+            get
+            {
+                foreach (Seat seat in Seats) _reservedSeats += $"R {seat.IdSeat} ";
+                return _reservedSeats;
+            }
+        }
+        public Bus Bus { get; set; }
     }
 }

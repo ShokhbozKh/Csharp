@@ -24,7 +24,33 @@ namespace FinalProject
         public MainWindow()
         {
             InitializeComponent();
-            new LoginDialog().Show();
+            //new LoginDialog().Show();
+            _middleFrame.Navigate(new ReservationControl());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelTicket_Click(object sender, RoutedEventArgs e)
+        {
+            _middleFrame.Navigate(new CancelTicketControl());
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegisterCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CustomerDetails_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
