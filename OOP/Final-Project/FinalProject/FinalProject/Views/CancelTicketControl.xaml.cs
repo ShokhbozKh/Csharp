@@ -24,5 +24,10 @@ namespace FinalProject.Views
         {
             InitializeComponent();
         }
+
+        private void ticketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

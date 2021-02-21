@@ -31,6 +31,11 @@ namespace FinalProject.Models
 
         [NotMapped]
         public Guid PromoCode { get; set; }
+        [NotMapped]
+        public string FullName 
+        {
+            get => $"{FirstName} {LastName}";
+        }
 
         public abstract void BookTicket();
     }
