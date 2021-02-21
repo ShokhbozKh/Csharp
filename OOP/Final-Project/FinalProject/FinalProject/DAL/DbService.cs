@@ -34,6 +34,7 @@ namespace FinalProject.DAL
         public virtual DbSet<RideSchedule> RideSchedules { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<TicketClassAttribute> TicketClassAttributes { get; set; }
+        public virtual DbSet<TicketSeats> TicketSeats { get; set; }
         public virtual DbSet<Displaying> Displayings { get; set; }
         public virtual DbSet<AvialableSeats> AvialableSeats { get; set; }
 

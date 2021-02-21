@@ -65,6 +65,15 @@ namespace FinalProject.Models
             };
 
             context.Tickets.Add(ticket);
+            
+            foreach(int seat in seatIds)
+            {
+                context.TicketSeats.Add(new TicketSeats
+                {
+                    Ticket = ticket,
+                    SeatId = seat
+                });
+            }
 
             context.SaveChanges();
 
