@@ -278,31 +278,17 @@ INSERT INTO DiscountReasons VALUES ('Promocode');
 INSERT INTO DiscountReasons VALUES ('Loyal');
 
 -- Customer --
-INSERT INTO Users VALUES (1, 'John', 'Done', 'Login', 'Password', 'john@gmail.com', GETDATE(), null, 1, 1, null, null, 'Customer');
+INSERT INTO Users VALUES (1, 'Alex', 'Steveson', 'Login2', 'Password2', 'alex@gmail.com', GETDATE(), null, 1, 1, null, null, 'Customer', 'Passport2');
 -- Employee --
 INSERT INTO Users VALUES ('Robert', 'Anderson', 'Login1', 'Password1', 'robert@gmail.com', null, null, null, null, null, GETDATE(), 10, 'Employee');
+
+select * from Users;
 
 /* Ticket class attribute */
 INSERT INTO TicketClassAttributes VALUES (500, 20);
 INSERT INTO TicketClassAttributes VALUES (700, 5);
 
 /* Displaying */
-
--- test --
-SELECT * FROM AvialableSeats;
-SELECT * FROM Buses;
-SELECT * FROM DiscountReasons;
-SELECT * FROM Displayings;
-SELECT * FROM Drivers;
-SELECT * FROM Locations;
-SELECT * FROM Rides;
-SELECT * FROM RideStops;
-SELECT * FROM RideDates;
-SELECT * FROM Schedules;
-SELECT * FROM RideSchedules;
-SELECT * FROM TicketClassAttributes;
-SELECT * FROM Tickets;
-SELECT * FROM Users;
 
 INSERT INTO Displayings VALUES (50, 20, 0, 3);
 INSERT INTO Displayings VALUES (50, 20, 0, 4);
@@ -381,41 +367,34 @@ INSERT INTO Displayings VALUES (50, 20, 0, 76);
 INSERT INTO Displayings VALUES (50, 20, 0, 77);
 INSERT INTO Displayings VALUES (50, 20, 0, 78);
 
-select * from RideSchedules;
-select * from Displayings;
+update AvialableSeats set IsAvialable = 1 where IsAvialable = 0;
 
-INSERT INTO Displayings (IdDisplaying, StandardPrice, AvialableSeats, IsDeparted) 
-SELECT IdRideSchedule, (SELECT RAND()*(10-5)+5), 20, 0
-FROM RideSchedules;
+-- test --
+SELECT * FROM AvialableSeats;
+SELECT * FROM Buses;
+SELECT * FROM DiscountReasons;
+SELECT * FROM Displayings;
+SELECT * FROM Drivers;
+SELECT * FROM Locations;
+SELECT * FROM Rides;
+SELECT * FROM RideStops;
+SELECT * FROM RideDates;
+SELECT * FROM Schedules;
+SELECT * FROM RideSchedules;
+SELECT * FROM TicketClassAttributes;
+SELECT * FROM Tickets;
+SELECT * FROM Users;
 
-delete from Displayings;
+/* clear changes in main tables */
+DELETE FROM Tickets;
+DELETE FROM TicketSeats;
+UPDATE AvialableSeats SET IsAvialable = 1 WHERE IsAvialable = 0;
 
-Set Identity_Insert Displayings ON;
-
-DBCC CHECKIDENT ('Displayings', RESEED, 0);
-
-SELECT l1.LocationName AS 'From', l2.LocationName AS 'To', s.DepartureTime as Departure, s.ArrivalTime as Arrival, ds.StandardPrice AS 'Price'
-FROM AvialableSeats avs
-INNER JOIN Buses b ON avs.BusId = b.IdBus
-INNER JOIN Drivers d ON b.DriverId = b.DriverId
-INNER JOIN RideSchedules rs ON avs.RideScheduleId = rs.IdRideSchedule
-INNER JOIN Displayings ds ON rs.IdRideSchedule = ds.RideScheduleId
-INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
-INNER JOIN Rides r ON rd.RideId = r.IdRide
-INNER JOIN Locations l1 ON r.StartPointId = l1.IdLocation
-INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
-INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
-WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';
-
-SELECT l1.LocationName, l2.LocationName, FORMAT(rd.Date, 'dd-MM-yy') AS 'Date', s.DepartureTime, s.ArrivalTime, r.IdRide, rd.IdRideData
-FROM RideSchedules rs
-INNER JOIN RideDates rd ON rs.RideDateId = rd.IdRideData
-INNER JOIN Schedules s ON rs.ScheduleId = s.IdRideSchedule
-INNER JOIN Rides r ON rd.RideId = r.IdRide
-INNER JOIN Locations l1 ON r.StartPointId = l1.IdLocation
-INNER JOIN Locations l2 ON r.DestinationPointId = l2.IdLocation
-WHERE l1.LocationName = 'Warsaw' AND l2.LocationName = 'Gdansk';
-
-SELECT *
-FROM Displayings d
-INNER JOIN RideSchedules rs ON d.RideScheduleId = d.RideScheduleId
+/* queries */
+select l.LocationName, l.StationName
+from Rides r
+inner join RideStops rs on r.IdRide = rs.RideId
+inner join Locations l on rs.LocationId = l.IdLocation
+inner join Locations l1 on r.StartPointId = l1.IdLocation
+inner join Locations l2 on r.DestinationPointId = l2.IdLocation
+where l1.IdLocation = 1 and l2.IdLocation = 2;
