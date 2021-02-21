@@ -52,5 +52,10 @@ namespace FinalProject
         {
 
         }
+
+        private void SearchTrip_Click(object sender, RoutedEventArgs e)
+        {
+            _middleFrame.Navigate(new ReservationControl());
+        }
     }
 }

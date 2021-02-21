@@ -50,8 +50,8 @@
                    Margin="30 0 0 0"/>
             <Button x:Name="homeButton" Content="Home" Margin="380 0 0 0" 
                     Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="HomeButton_Click"/>
-            <Button Content="Search trip" Margin="15 0 0 0" 
-                    Style="{StaticResource MyButtonStyle}" Cursor="Hand"/>
+            <Button x:Name="searchTrip" Content="Search trip" Margin="15 0 0 0" 
+                    Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="SearchTrip_Click"/>
             <Button x:Name="cancelTicket" Content="Cancel ticket"  Margin="15 0 0 0" 
                     Style="{StaticResource MyButtonStyle}" Cursor="Hand" Click="CancelTicket_Click"/>
             <Button x:Name="registerCustomer" Content="Register customer"  Margin="15 0 0 0" 

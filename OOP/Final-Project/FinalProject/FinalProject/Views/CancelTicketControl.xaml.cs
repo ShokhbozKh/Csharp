@@ -20,9 +20,17 @@ namespace FinalProject.Views
 
         private void TicketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedTicket = ticketsListView.SelectedItem;
+            var selectedTicket = ticketsListView.SelectedItem as TicketDisplay;
 
-            
+            var s = selectedTicket.Seats;
+
+            int g = 0;
+
+            if(selectedTicket != null)
+            {
+                var dialog = new TicketDetailsDialog(selectedTicket);
+                dialog.Show();
+            }
         }
 
         private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -60,7 +68,7 @@ namespace FinalProject.Views
         }
     }
 
-    class TicketDisplay
+    public class TicketDisplay
     {
         public Ticket Ticket { get; set; }
         public List<Seat> Seats { get; set; }
