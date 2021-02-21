@@ -13,7 +13,7 @@ namespace FinalProject.Views
     public partial class SearchControl : UserControl
     {
         private static DbService context;
-        private static readonly ObservableCollection<DisplayingsBus> displayings = new ObservableCollection<DisplayingsBus>();
+        public static readonly ObservableCollection<DisplayingsBus> displayings = new ObservableCollection<DisplayingsBus>();
 
         public static Displaying SelectedRide { get; set; }
         public Button NextButton { get; set; }        
@@ -60,8 +60,11 @@ namespace FinalProject.Views
                                join av in avs on d.RideSchedule.IdRideSchedule equals av.rideSchedule
                                select new DisplayingsBus { Bus = av.bus, Displaying = d}).ToList();
             
-
-            foreach (var d in displayingsBus) displayings.Add(d);
+            foreach (var d in displayingsBus)
+            {
+                displayings.Add(d);
+                
+            }
 
             // reset selected ride
             SelectedRide = null;

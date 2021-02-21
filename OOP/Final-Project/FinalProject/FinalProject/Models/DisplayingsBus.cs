@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
-    class DisplayingsBus
+    public class DisplayingsBus
     {
         public int IdDisplaying { get; set; }
         public Bus Bus { get; set; }

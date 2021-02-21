@@ -13,6 +13,8 @@ namespace FinalProject.Views
     /// </summary>
     public partial class ReservationControl : UserControl, INotifyPropertyChanged
     {
+        public Bus Bus { get; set; }
+        public Ticket Ticket { get; set; }
         private Customer CustomerDetails { get; set; }
         private List<int> SelectedSeats { get; set; }
         private Displaying _selectedDisplaying;
@@ -121,9 +123,17 @@ namespace FinalProject.Views
                         break;
                     case 5:
                         int g = 0;
-                        Ticket.BookTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
-                        _middleFrame.Navigate(new TicketControl());
-                        break;
+                        Ticket = Ticket.BookTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
+
+                        if(Ticket != null)
+                        {
+                            _middleFrame.Navigate(new TicketControl(Ticket));
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
                 }
             }
         }
