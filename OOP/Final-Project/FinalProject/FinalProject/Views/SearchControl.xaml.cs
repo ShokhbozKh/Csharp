@@ -63,7 +63,6 @@ namespace FinalProject.Views
             foreach (var d in displayingsBus)
             {
                 displayings.Add(d);
-                
             }
 
             // reset selected ride

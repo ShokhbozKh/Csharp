@@ -39,6 +39,7 @@ namespace FinalProject.Views
             if(dialog.ShowDialog() == true)
             {
                 Customer = dialog.Customer;
+                UsersList.Add(Customer);
             }
         }
 

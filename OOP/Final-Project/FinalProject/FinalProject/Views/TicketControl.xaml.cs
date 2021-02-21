@@ -12,11 +12,12 @@ namespace FinalProject.Views
     public partial class TicketControl : UserControl
     {
         public Ticket Ticket { get; set; }
-        public TicketControl(Ticket ticket)
+        public TicketControl(Ticket ticket, Button nextButton)
         {
             InitializeComponent();
             seats.Content = "";
             Ticket = ticket;
+            nextButton.IsEnabled = false;
             SetUpUI();
         }
 
@@ -58,7 +59,7 @@ namespace FinalProject.Views
             ticketNumber.Content = Ticket.TicketNumber;
             foreach(var seat in ticketSeats)
             {
-                seats.Content += $"R{seat.SeatId}";
+                seats.Content += $"R{seat.SeatId} ";
             }
 
             busType.Content = bus.BusType;
@@ -70,8 +71,8 @@ namespace FinalProject.Views
             for(int i = 0; i < stops.Count; i++)
             {
                 if (i == 0) stop1.Content = stops[i].Location.StationName;
-                if (i == 1) stop2.Content = stops[i].Location.StationName;
-                if (i == 2) stop3.Content = stops[i].Location.StationName;
+                else if (i == 1) stop2.Content = stops[i].Location.StationName;
+                else if (i == 2) stop3.Content = stops[i].Location.StationName;
             }
         }
     }

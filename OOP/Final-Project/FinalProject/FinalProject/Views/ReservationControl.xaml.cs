@@ -122,12 +122,11 @@ namespace FinalProject.Views
                         _middleFrame.Navigate(new PaymetControl());
                         break;
                     case 5:
-                        int g = 0;
                         Ticket = Ticket.BookTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
 
                         if(Ticket != null)
                         {
-                            _middleFrame.Navigate(new TicketControl(Ticket));
+                            _middleFrame.Navigate(new TicketControl(Ticket, nextButton));
                             break;
                         }
                         else

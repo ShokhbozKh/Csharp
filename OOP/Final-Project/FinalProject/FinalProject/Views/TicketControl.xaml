@@ -113,7 +113,7 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Margin="80 0 0 0">
+            <Grid Margin="260 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -129,7 +129,7 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Margin="30 0 0 0">
+            <Grid Margin="50 0 0 0">
                 <StackPanel Grid.Row="0">
                     <Label Content="Stops" FontSize="15" Foreground="DeepSkyBlue" HorizontalAlignment="Center"/>
                     <Label x:Name="stop1" Content="Warszawa centralna 10:15" FontSize="15" Foreground="Black" HorizontalAlignment="Center"/>

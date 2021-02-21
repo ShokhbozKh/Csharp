@@ -75,6 +75,10 @@ namespace FinalProject.Models
                 });
             }
 
+            var d = context.Displayings.Where(s => s.IdDisplaying == displaying.IdDisplaying).FirstOrDefault();
+
+            d.AvialableSeats -= seatIds.Count;
+
             context.SaveChanges();
 
             return ticket;
