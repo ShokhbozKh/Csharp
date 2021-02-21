@@ -1,5 +1,6 @@
 ﻿using FinalProject.DAL;
 using FinalProject.Models;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -22,11 +23,29 @@ namespace FinalProject.Views
         void SetUpUI()
         {
             var context = new DbService();
-            Bus bus = (Bus)context.AvialableSeats
-                .Where(s => s.RideScheduleId == Ticket.Displaying.RideSchedule.IdRideSchedule)
-                .Select(s => new { s.Bus }).Distinct();
 
-            var stops = context.RideStops.Where(s => s.RideId == Ticket.Displaying.RideSchedule.RideDate.Ride.IdRide).ToList();
+            var ticket = context.Tickets
+                .Where(s => s.IdTicket == Ticket.IdTicket)
+                .Include("Displaying.RideSchedule.RideDate.Ride.StartPoint")
+                .Include("Displaying.RideSchedule.RideDate.Ride.DestinationPoint")
+                .Include("Displaying.RideSchedule.Schedule")
+                .Include("Customer")
+                .FirstOrDefault();
+
+            Ticket = ticket;
+            
+            var ticketSeats = context.TicketSeats.Where(s => s.TicketId == Ticket.IdTicket).ToList();
+
+            var bus = context.AvialableSeats
+                .Where(s => s.RideScheduleId == Ticket.Displaying.RideSchedule.IdRideSchedule)
+                .Select(s => s.Bus).FirstOrDefault();
+
+            int g = 0;
+
+            var stops = context.RideStops
+                .Where(s => s.RideId == Ticket.Displaying.RideSchedule.RideDate.Ride.IdRide)
+                .Include("Location")
+                .ToList();
 
             fromLabel.Content = Ticket.Displaying.RideSchedule.RideDate.Ride.StartPoint.LocationName;
             toLabel.Content = Ticket.Displaying.RideSchedule.RideDate.Ride.DestinationPoint.LocationName;
@@ -37,9 +56,9 @@ namespace FinalProject.Views
 
             passengerName.Content = Ticket.Customer.FirstName + Ticket.Customer.LastName;
             ticketNumber.Content = Ticket.TicketNumber;
-            foreach(var seat in Ticket.Seats)
+            foreach(var seat in ticketSeats)
             {
-                seats.Content += $"R{seat}";
+                seats.Content += $"R{seat.SeatId}";
             }
 
             busType.Content = bus.BusType;
