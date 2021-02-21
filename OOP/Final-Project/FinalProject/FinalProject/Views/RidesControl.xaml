@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="FinalProject.Views.RidesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FinalProject.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="From" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <ComboBox Name="fromCombobox" Margin="5" ItemsSource="{Binding fromLocationList}"
+                          Grid.Row="1" Grid.Column="0"
+                          Width="100"/>
+                <Label Content="To" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                <ComboBox Name="toCombobox" Margin="5" ItemsSource="{Binding toLocationList}"
+                          Grid.Row="1" Grid.Column="1"
+                          Width="100"/>
+                <Button x:Name="searchButton" Margin="5" Content="Search"
+                        Grid.Row="1" Grid.Column="2" 
+                        Width="80" Click="SearchButton_Click"/>
+                <DatePicker x:Name="rideDatePicker" Margin="5"
+                    Grid.Row="2" Grid.Column="0"/>
+                <ComboBox Name="busTypeCombobox" Margin="5" ItemsSource="{Binding busTypesList}"
+                          Grid.Row="2" Grid.Column="1"
+                          Width="100"/>
+                <Button x:Name="addNew" Margin="5" Content="Add new ride"
+                        Grid.Row="2" Grid.Column="3" Click="AddNew_Click"/>
+            </Grid>
+        </StackPanel>
+
+        <ListView Name="searchListView" Grid.Row="1" Margin="10" MouseDoubleClick="SearchListView_MouseDoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}"/>
+                    <GridViewColumn Header="Dep. Time" Width="80" DisplayMemberBinding="{Binding Departure}" />
+                    <GridViewColumn Header="Arr. Time" Width="80" DisplayMemberBinding="{Binding Arrival}" />
+                    <GridViewColumn Header="Start point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.StartPoint.StationName}" />
+                    <GridViewColumn Header="Destination point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.DestinationPoint.StationName}" />
+                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding Displaying.AvialableSeats}" />
+                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding Displaying.StandardPrice}" />
+                    <GridViewColumn Header="Hours" Width="80" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.TotalHours}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

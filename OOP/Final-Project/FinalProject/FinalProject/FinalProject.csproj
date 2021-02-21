@@ -266,6 +266,12 @@
     <Compile Include="Views\RideDetailsControl.xaml.cs">
       <DependentUpon>RideDetailsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RideDetailsDialog.xaml.cs">
+      <DependentUpon>RideDetailsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RidesControl.xaml.cs">
+      <DependentUpon>RidesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
@@ -331,6 +337,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RideDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RideDetailsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RidesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

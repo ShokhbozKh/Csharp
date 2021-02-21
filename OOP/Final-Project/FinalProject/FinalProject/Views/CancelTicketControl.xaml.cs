@@ -1,6 +1,7 @@
 ﻿using FinalProject.DAL;
 using FinalProject.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
@@ -13,14 +14,36 @@ namespace FinalProject.Views
     /// </summary>
     public partial class CancelTicketControl : UserControl
     {
+        public ObservableCollection<Customer> Customers { get; set; }
+        private DbService context { get; set; }
         public CancelTicketControl()
         {
             InitializeComponent();
+
+            context = new DbService();
+            Customers = new ObservableCollection<Customer>();
+            LoadData();
+        }
+
+        void LoadData()
+        {
+            var tickets = context.Tickets
+                .Include("Displaying.RideSchedule.RideDate.Ride.StartPoint")
+                .Include("Displaying.RideSchedule.RideDate.Ride.DestinationPoint")
+                .Include("Displaying.RideSchedule.Schedule")
+                .ToList();
+
+            context.Customers.Include("Tickets.Seats.Seat").ToList().ForEach(el => Customers.Add(el));
+
+            customersListBox.ItemsSource = Customers;
+
+            int g = 0;
         }
 
         private void TicketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedTicket = ticketsListView.SelectedItem as TicketDisplay;
+            var selectedTicket = ticketsListView.SelectedItem as Ticket;
+            var selectedCustomer = customersListBox.SelectedItem as Customer;
 
             var s = selectedTicket.Seats;
 
@@ -28,7 +51,7 @@ namespace FinalProject.Views
 
             if(selectedTicket != null)
             {
-                var dialog = new TicketDetailsDialog(selectedTicket);
+                var dialog = new TicketDetailsDialog(selectedCustomer, selectedTicket);
                 dialog.Show();
             }
         }
@@ -36,20 +59,14 @@ namespace FinalProject.Views
         private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var context = new DbService();
-            /*var ticket = context.Tickets.Where(s => s.TicketNumber == "c287b748-9eb5-41f8-b007-9cf248ee09fd").Include("Displaying.RideSchedule").FirstOrDefault();
-            var seats = context.TicketSeats.Where(s => s.TicketId == ticket.IdTicket).ToList();
-            var bus = context.AvialableSeats.Where(s => s.RideScheduleId == ticket.Displaying.RideSchedule.IdRideSchedule).Select(s => new { Bus = s.Bus }).Distinct().FirstOrDefault();*/
 
-            var tickets = context.Tickets.Where(s => s.CustomerId == 14)
-                .Include("Displaying.RideSchedule.RideDate.Ride.StartPoint")
-                .Include("Displaying.RideSchedule.RideDate.Ride.DestinationPoint")
-                .Include("Displaying.RideSchedule.Schedule")
-                .Include("Customer")
-                .ToList();
+            var customer = context.Customers.Where(s => s.UserId == 14).Include("Tickets").SingleOrDefault();
+
+            int g = 0;
 
             List<TicketDisplay> result = new List<TicketDisplay>();
             
-            foreach (Ticket ticket in tickets)
+            foreach (Ticket ticket in customer.Tickets)
             {
                 var seats = context.TicketSeats.Where(s => s.TicketId == ticket.IdTicket).Select(s => s.Seat).ToList();
                 var bus = context.AvialableSeats.Where(s => s.RideScheduleId == ticket.Displaying.RideSchedule.IdRideSchedule).Select(s => s.Bus).Distinct().FirstOrDefault();
@@ -62,7 +79,13 @@ namespace FinalProject.Views
                 });
             }
 
-            ticketsListView.ItemsSource = result;
+            ticketsListView.ItemsSource = result;            
+        }
+
+        private void CustomersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var customer = customersListBox.SelectedItem as Customer;
+            ticketsListView.ItemsSource = customer.Tickets.ToList();
 
             int g = 0;
         }

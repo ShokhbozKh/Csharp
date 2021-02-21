@@ -37,8 +37,7 @@ namespace FinalProject.Models
         [EnumDataType(typeof(TicketType))]
         public TicketType TicketType { get; set; }
 
-        [NotMapped]
-        public List<int> Seats { get; set; }
+        public ICollection<TicketSeats> Seats { get; set; }
 
         public static Ticket BookTicket(User customer, Displaying displaying, List<int> seatIds)
         {
@@ -56,7 +55,6 @@ namespace FinalProject.Models
                 TicketNumber = Guid.NewGuid().ToString(),
                 CustomerId = customer.UserId,
                 Price = displaying.StandardPrice,
-                Seats = seatIds,
                 TicketStatus = TicketStatus.Booked,
                 TicketType = TicketType.Standard,
                 TicketClassAttributeId = 2,

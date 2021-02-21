@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,10 +9,6 @@ namespace FinalProject.Models
     [Table("Users")]
     public abstract class User
     {
-        public User()
-        {
-            PromoCode = Guid.NewGuid();
-        }
         [Key]
         public int UserId { get; set; }
         [Required]
@@ -36,6 +34,8 @@ namespace FinalProject.Models
         {
             get => $"{FirstName} {LastName}";
         }
+
+        public ICollection<Ticket> Tickets { get; set; }
 
         public abstract void BookTicket();
     }

@@ -20,5 +20,10 @@ namespace FinalProject.Models
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} {PassportId}";
+        }
     }
 }

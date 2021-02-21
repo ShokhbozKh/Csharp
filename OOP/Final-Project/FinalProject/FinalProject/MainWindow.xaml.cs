@@ -50,7 +50,12 @@ namespace FinalProject
 
         private void RegisterCustomer_Click(object sender, RoutedEventArgs e)
         {
+            if (_middleFrame.CanGoBack)
+            {
+                _middleFrame.RemoveBackEntry();
+            }
 
+            _middleFrame.Navigate(new RidesControl());
         }
 
         private void CustomerDetails_Click(object sender, RoutedEventArgs e)
