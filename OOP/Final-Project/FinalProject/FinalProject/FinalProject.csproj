@@ -193,6 +193,14 @@
     <Compile Include="Migrations\202102192314206_RemoveUnecessaryAttributesDisplaying.designer.cs">
       <DependentUpon>202102192314206_RemoveUnecessaryAttributesDisplaying.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102210036004_TurnOfAutoIncrementOnTicketId.cs" />
+    <Compile Include="Migrations\202102210036004_TurnOfAutoIncrementOnTicketId.designer.cs">
+      <DependentUpon>202102210036004_TurnOfAutoIncrementOnTicketId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102210050590_ChangeRelationBetweenTicketDisplaying.cs" />
+    <Compile Include="Migrations\202102210050590_ChangeRelationBetweenTicketDisplaying.designer.cs">
+      <DependentUpon>202102210050590_ChangeRelationBetweenTicketDisplaying.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AvialableSeats.cs" />
     <Compile Include="Models\Bus.cs" />
@@ -424,6 +432,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102192314206_RemoveUnecessaryAttributesDisplaying.resx">
       <DependentUpon>202102192314206_RemoveUnecessaryAttributesDisplaying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102210036004_TurnOfAutoIncrementOnTicketId.resx">
+      <DependentUpon>202102210036004_TurnOfAutoIncrementOnTicketId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102210050590_ChangeRelationBetweenTicketDisplaying.resx">
+      <DependentUpon>202102210050590_ChangeRelationBetweenTicketDisplaying.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

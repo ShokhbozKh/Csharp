@@ -21,7 +21,7 @@ namespace FinalProject.Models
         public int TicketClassAttributeId { get; set; }
         public int DiscountReasonId { get; set; }
         public int CustomerId { get; set; }
-        //public int DisplayingId { get; set; }
+        public int DisplayingId { get; set; }
 
         [ForeignKey("TicketClassAttributeId")]
         public TicketClassAttribute TicketClassAttribute { get; set; }
@@ -29,7 +29,7 @@ namespace FinalProject.Models
         public DiscountReason DiscountReason { get; set; }
         [ForeignKey("CustomerId")]
         public User Customer { get; set; }
-        [ForeignKey("IdTicket")]
+        [ForeignKey("DisplayingId")]
         public Displaying Displaying { get; set; }
 
         [EnumDataType(typeof(TicketStatus))]
@@ -40,7 +40,7 @@ namespace FinalProject.Models
         [NotMapped]
         public List<int> Seats { get; set; }
 
-        public static Ticket ReserveTicket(User customer, Displaying displaying, List<int> seatIds)
+        public static Ticket BookTicket(User customer, Displaying displaying, List<int> seatIds)
         {
             var context = new DbService();
 
@@ -53,11 +53,18 @@ namespace FinalProject.Models
 
             Ticket ticket = new Ticket()
             {
+                TicketNumber = Guid.NewGuid().ToString(),
                 CustomerId = customer.UserId,
-                Displaying = displaying,
                 Price = displaying.StandardPrice,
-                Seats = seatIds
+                Seats = seatIds,
+                TicketStatus = TicketStatus.Booked,
+                TicketType = TicketType.Standard,
+                TicketClassAttributeId = 2,
+                DisplayingId = displaying.IdDisplaying,
+                DiscountReasonId = 1
             };
+
+            context.Tickets.Add(ticket);
 
             context.SaveChanges();
 

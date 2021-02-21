@@ -121,7 +121,7 @@ namespace FinalProject.Views
                         break;
                     case 5:
                         int g = 0;
-                        Ticket.ReserveTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
+                        Ticket.BookTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
                         _middleFrame.Navigate(new TicketControl());
                         break;
                 }
