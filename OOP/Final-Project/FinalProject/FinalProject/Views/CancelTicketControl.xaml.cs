@@ -33,7 +33,7 @@ namespace FinalProject.Views
                 .Include("Displaying.RideSchedule.Schedule")
                 .ToList();
 
-            context.Customers.Include("Tickets.Seats.Seat").ToList().ForEach(el => Customers.Add(el));
+            context.Customers.Include("Tickets.Seats.Seat").Include("Tickets.Displaying.RideSchedule.AvialableSeats").ToList().ForEach(el => Customers.Add(el));
 
             customersListBox.ItemsSource = Customers;
 
@@ -42,16 +42,15 @@ namespace FinalProject.Views
 
         private void TicketsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedTicket = ticketsListView.SelectedItem as Ticket;
-            var selectedCustomer = customersListBox.SelectedItem as Customer;
+            //var selectedCustomer = customersListBox.SelectedItem as Customer;
 
-            var s = selectedTicket.Seats;
+            //var s = selectedTicket.Seats;
 
-            int g = 0;
+            //int g = 0;
 
-            if(selectedTicket != null)
+            if (ticketsListView.SelectedItem is Ticket selectedTicket)
             {
-                var dialog = new TicketDetailsDialog(selectedCustomer, selectedTicket);
+                var dialog = new TicketDetailsDialog(selectedTicket);
                 dialog.Show();
             }
         }

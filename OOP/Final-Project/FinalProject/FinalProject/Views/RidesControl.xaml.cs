@@ -3,6 +3,7 @@ using FinalProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace FinalProject.Views
     /// </summary>
     public partial class RidesControl : UserControl
     {
-        List<string> fromLocationList = new List<string>();
-        List<string> toLocationList = new List<string>();
-        readonly List<string> busTypesList = new List<string>();
+        List<Location> fromLocationList = new List<Location>();
+        List<Location> toLocationList = new List<Location>();
+        readonly List<BusType> busTypesList = new List<BusType>();
         private static DbService context;
         public static readonly ObservableCollection<DisplayingsBus> displayings = new ObservableCollection<DisplayingsBus>();
         public RidesControl()
@@ -37,12 +38,12 @@ namespace FinalProject.Views
 
         void LoadData()
         {
-            fromLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
-            toLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
-            busTypesList.Add(BusType.All.ToString());
-            busTypesList.Add(BusType.Business.ToString());
-            busTypesList.Add(BusType.Express.ToString());
-            busTypesList.Add(BusType.Regular.ToString());
+            fromLocationList = context.Locations.ToList();
+            toLocationList = context.Locations.ToList();
+            busTypesList.Add(BusType.All);
+            busTypesList.Add(BusType.Business);
+            busTypesList.Add(BusType.Express);
+            busTypesList.Add(BusType.Regular);
 
             fromCombobox.ItemsSource = fromLocationList;
             toCombobox.ItemsSource = toLocationList;
@@ -53,26 +54,9 @@ namespace FinalProject.Views
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var date = rideDatePicker.SelectedDate;
-            BusType busType;
-
-            switch (busTypeCombobox.SelectedItem.ToString())
-            {
-                case "All":
-                    busType = BusType.All;
-                    break;
-                case "Business":
-                    busType = BusType.Business;
-                    break;
-                case "Express":
-                    busType = BusType.Express;
-                    break;
-                case "Regular":
-                    busType = BusType.Regular;
-                    break;
-                default:
-                    busType = BusType.All;
-                    break;
-            }
+            Location startPoint = fromCombobox.SelectedItem as Location;
+            Location destinationPoint = toCombobox.SelectedItem as Location;
+            //BusType busType = (BusType)Enum.Parse(typeof(BusType), (string)busTypeCombobox.SelectedValue);
 
             if (date == null)
             {
@@ -80,62 +64,33 @@ namespace FinalProject.Views
                 return;
             }
 
-            SearchDetailsChanged(fromCombobox.SelectedItem.ToString(), toCombobox.SelectedItem.ToString(), (DateTime)date, busType);
+            var rides = context.Rides
+                .Where(s => s.StartPoint.IdLocation == startPoint.IdLocation && s.DestinationPoint.IdLocation == destinationPoint.IdLocation)
+                .Include("RideStops")
+                .ToList();
+
+            searchListView.ItemsSource = rides;
+
+            int g = 0;
         }
 
         private void SearchListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedRide = searchListView.SelectedItem as DisplayingsBus;
-
-            if(selectedRide != null)
+            if (searchListView.SelectedItem is Ride selectedRide)
             {
                 var dialog = new RideDetailsDialog(selectedRide);
                 dialog.Show();
             }
         }
 
-        public static void SearchDetailsChanged(string startPoint, string destinationPoint, DateTime selectedDate, BusType busType = BusType.All)
+        public static void SearchDetailsChanged(Location startPoint, Location destinationPoint, DateTime selectedDate, BusType busType = BusType.All)
         {
-            // Clear collection from previous search
-            displayings.Clear();
-
-            var display = context.Displayings.Include("RideSchedule.RideDate.Ride.StartPoint").Include("RideSchedule.Schedule").ToList();
-
-            // Get distinct ride schedule by passed details
-            var avs = context.AvialableSeats
-                .Where(s => s.RideSchedule.RideDate.Ride.StartPoint.LocationName == startPoint
-                        && s.RideSchedule.RideDate.Ride.DestinationPoint.LocationName == destinationPoint
-                        && s.RideSchedule.RideDate.Date.Month == selectedDate.Month
-                        && s.RideSchedule.RideDate.Date.Day == selectedDate.Day)
-                .Select(s => new
-                {
-                    bus = s.Bus,
-                    rideSchedule = s.RideScheduleId
-                })
-                .Distinct().ToList();
-
-            // Filter by bus type
-            if (busType != BusType.All)
-            {
-                avs = avs.Where(s => s.bus.BusType == busType).ToList();
-            }
-
-            // Make a list from concateneted avialableSeats and displayings tables
-            var displayingsBus = (from d in context.Displayings.Include("RideSchedule").ToList()
-                                  join av in avs on d.RideSchedule.IdRideSchedule equals av.rideSchedule
-                                  select new DisplayingsBus { Bus = av.bus, Displaying = d }).ToList();
-
-            foreach (var d in displayingsBus)
-            {
-                displayings.Add(d);
-            }
         }
 
         private void AddNew_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new RideDetailsDialog();
             dialog.Show();
-
         }
     }
 }

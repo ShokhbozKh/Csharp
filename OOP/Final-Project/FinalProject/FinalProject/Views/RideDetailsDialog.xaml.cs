@@ -21,9 +21,9 @@ namespace FinalProject.Views
     /// </summary>
     public partial class RideDetailsDialog : Window
     {
-        List<string> fromLocationList = new List<string>();
-        List<string> toLocationList = new List<string>();
-        readonly List<string> busTypesList = new List<string>();
+        List<Location> fromLocationList = new List<Location>();
+        List<Location> toLocationList = new List<Location>();
+        readonly List<BusType> busTypesList = new List<BusType>();
         private static DbService context;
 
         public RideDetailsDialog()
@@ -33,22 +33,34 @@ namespace FinalProject.Views
             LoadData();
         }
 
-        public RideDetailsDialog(DisplayingsBus displaying)
+        public RideDetailsDialog(Ride ride)
         {
             InitializeComponent();
             context = new DbService();
             LoadData();
-            priceTextbox.Text = displaying.Displaying.StandardPrice.ToString();
+
+            fromLocationList.ForEach(el =>
+            {
+                if (el.IdLocation == ride.StartPoint.IdLocation) startPointCombobox.SelectedItem = el;
+                else if (el.IdLocation == ride.DestinationPoint.IdLocation) destinationPointCombobox.SelectedItem = el;
+            });
+            
+            for(int i = 0; i < ride.RideStops.ToList().Count; i++)
+            {
+                if (stopsListbox.Items.GetItemAt(i) == ride.RideStops.ElementAt(i)) stopsListbox.SelectedItems.Add(ride.RideStops.ElementAt(i));
+            }
+
+            int g = 0;
         }
 
         void LoadData()
         {
-            fromLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
-            toLocationList = context.Locations.Select(s => s.LocationName).Distinct().ToList();
-            busTypesList.Add(BusType.All.ToString());
-            busTypesList.Add(BusType.Business.ToString());
-            busTypesList.Add(BusType.Express.ToString());
-            busTypesList.Add(BusType.Regular.ToString());
+            fromLocationList = context.Locations.ToList();
+            toLocationList = context.Locations.ToList();
+            busTypesList.Add(BusType.All);
+            busTypesList.Add(BusType.Business);
+            busTypesList.Add(BusType.Express);
+            busTypesList.Add(BusType.Regular);
 
             startPointCombobox.ItemsSource = fromLocationList;
             destinationPointCombobox.ItemsSource = toLocationList;
@@ -58,7 +70,39 @@ namespace FinalProject.Views
 
         private void AddRide_Click(object sender, RoutedEventArgs e)
         {
+            var context = new DbService();
 
+            Location fromLocation = startPointCombobox.SelectedItem as Location;
+            Location toLocation = destinationPointCombobox.SelectedItem as Location;
+            BusType busType = (BusType)Enum.Parse(typeof(BusType), (string)busTypeCombobox.SelectedValue);
+            List<Location> stops = new List<Location>();
+
+            for (int i = 0; i < stopsListbox.SelectedItems.Count; i++)
+            {
+                stops.Add(stopsListbox.SelectedItems[i] as Location);
+            }
+
+            Ride newRide = new Ride()
+            {
+                StartPoint = fromLocation,
+                DestinationPoint = toLocation,
+                TotalHours = 8
+            };
+            
+            context.Rides.Add(newRide);
+            
+            foreach(Location stop in stops)
+            {
+                context.RideStops.Add(new RideStop()
+                {
+                    Ride = newRide,
+                    Location = stop
+                });
+            }
+
+            context.SaveChanges();
+
+            int g = 0;
         }
     }
 }

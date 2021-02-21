@@ -10,13 +10,13 @@ namespace FinalProject.Views
     /// </summary>
     public partial class TicketDetailsDialog : Window
     {
-        public Ticket Ticket { get; set; }
-        public Customer Customer { get; set; }
-        public TicketDetailsDialog(Customer customer, Ticket ticket)
+        public Ticket Ticket { get; set; }        
+        public TicketDetailsDialog(Ticket ticket)
         {
             InitializeComponent();
             Ticket = ticket;
-            Customer = customer;
+
+            int g = 0;
 
             SetupUI();
         }
@@ -46,30 +46,30 @@ namespace FinalProject.Views
             var ticketToDelete = context.Tickets.Where(s => s.IdTicket == Ticket.IdTicket).SingleOrDefault();
             context.Tickets.Remove(ticketToDelete);
 
-            var ts = context.TicketSeats.ToList();
-            var avs = context.AvialableSeats.Where(s => s.RideScheduleId == Ticket.Displaying.RideSchedule.IdRideSchedule).ToList();
-            var displaying = context.Displayings.Where(s => s.IdDisplaying == Ticket.DisplayingId).SingleOrDefault();
-
-            // remove from TicketSeats table
+            // reset avialability of seats
             Ticket.Seats.ToList().ForEach(seat =>
             {
-                var seatToDelete = context.TicketSeats.Where(s => s.IdTicketSeats == seat.IdTicketSeats).SingleOrDefault();
-                context.TicketSeats.Remove(seatToDelete);
+                Ticket.Displaying.RideSchedule.AvialableSeats.ToList().ForEach(avs =>
+                {
+                    if (avs.SeatId == seat.SeatId)
+                    {
+                        context.AvialableSeats.Attach(avs);
+                        avs.IsAvialable = true;
+                    }
+                });
+            });
+
+            // remove from db
+            Ticket.Seats.ToList().ForEach(el =>
+            {
+                Ticket.Seats.Remove(el);
             });
 
             // reset number of avialable seats for refunded displaying
-            displaying.AvialableSeats += Ticket.Seats.Count;
+            context.Displayings.Attach(Ticket.Displaying);
+            Ticket.Displaying.AvialableSeats += Ticket.Seats.Count;
 
             int g = 0;
-
-            // reset state of avialable seats
-            foreach(var seat in avs)
-            {
-                foreach(var ticketSeat in Ticket.Seats)
-                {
-                    if (ticketSeat.SeatId == seat.SeatId) seat.IsAvialable = true;
-                }
-            }
 
             context.SaveChanges();
 

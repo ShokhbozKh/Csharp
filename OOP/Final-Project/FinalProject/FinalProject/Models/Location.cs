@@ -12,7 +12,7 @@ namespace FinalProject.Models
 
         public override string ToString()
         {
-            return LocationName;
+            return $"{LocationName}, {StationName}";
         }
     }
 }

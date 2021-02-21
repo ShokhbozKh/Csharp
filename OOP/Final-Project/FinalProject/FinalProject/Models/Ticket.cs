@@ -37,7 +37,7 @@ namespace FinalProject.Models
         [EnumDataType(typeof(TicketType))]
         public TicketType TicketType { get; set; }
 
-        public ICollection<TicketSeats> Seats { get; set; }
+        public ICollection<TicketSeats> Seats { get; set; }        
 
         public static Ticket BookTicket(User customer, Displaying displaying, List<int> seatIds)
         {

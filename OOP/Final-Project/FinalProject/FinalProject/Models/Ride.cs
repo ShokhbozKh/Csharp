@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
@@ -15,5 +16,7 @@ namespace FinalProject.Models
         public Location StartPoint { get; set; }
         [ForeignKey("DestinationPointId")]
         public Location DestinationPoint { get; set; }
+
+        public ICollection<RideStop> RideStops { get; set; }
     }
 }

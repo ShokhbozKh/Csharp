@@ -55,14 +55,9 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Operator (Bus type)" Width="140" DisplayMemberBinding="{Binding Bus.BusName}"/>
-                    <GridViewColumn Header="Dep. Time" Width="80" DisplayMemberBinding="{Binding Departure}" />
-                    <GridViewColumn Header="Arr. Time" Width="80" DisplayMemberBinding="{Binding Arrival}" />
-                    <GridViewColumn Header="Start point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.StartPoint.StationName}" />
-                    <GridViewColumn Header="Destination point" Width="140" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.DestinationPoint.StationName}" />
-                    <GridViewColumn Header="Avialable seats" Width="100" DisplayMemberBinding="{Binding Displaying.AvialableSeats}" />
-                    <GridViewColumn Header="Price" Width="80" DisplayMemberBinding="{Binding Displaying.StandardPrice}" />
-                    <GridViewColumn Header="Hours" Width="80" DisplayMemberBinding="{Binding Displaying.RideSchedule.RideDate.Ride.TotalHours}" />
+                    <GridViewColumn Header="Start point" Width="180" DisplayMemberBinding="{Binding StartPoint}"/>
+                    <GridViewColumn Header="Destination point" Width="80" DisplayMemberBinding="{Binding DestinationPoint}" />
+                    <GridViewColumn Header="Hours" Width="50" DisplayMemberBinding="{Binding TotalHours}" />
                 </GridView>
             </ListView.View>
         </ListView>

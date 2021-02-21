@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
@@ -14,5 +15,7 @@ namespace FinalProject.Models
         public RideDate RideDate { get; set; }
         [ForeignKey("ScheduleId")]
         public Schedule Schedule { get; set; }
+
+        public ICollection<AvialableSeats> AvialableSeats { get; set; }
     }
 }
