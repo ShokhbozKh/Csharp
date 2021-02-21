@@ -59,6 +59,8 @@ namespace FinalProject.Views
         {
             InitializeComponent();
 
+            _middleFrame.JournalOwnership = JournalOwnership.OwnsJournal;
+
             _middleFrame.Navigate(new SearchControl(ref nextButton));
 
             _middleFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;

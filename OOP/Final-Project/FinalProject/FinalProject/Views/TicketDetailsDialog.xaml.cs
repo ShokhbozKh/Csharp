@@ -63,16 +63,15 @@ namespace FinalProject.Views
 
             displaying.AvialableSeats += Ticket.Seats.Count;
 
-            avs.ForEach(s =>
+            //int g = 0;
+
+            foreach(var seat in avs)
             {
-                if (Ticket.Seats.Contains(s.Seat))
+                foreach(var ticketSeat in Ticket.Seats)
                 {
-                    s.IsAvialable = true;
+                    if (ticketSeat.IdSeat == seat.SeatId) seat.IsAvialable = true;
                 }
-            });
-
-            int g = 0;
-
+            }
             context.SaveChanges();
         }
     }

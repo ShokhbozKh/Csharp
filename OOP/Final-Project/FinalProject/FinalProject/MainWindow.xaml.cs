@@ -25,6 +25,7 @@ namespace FinalProject
         {
             InitializeComponent();
             //new LoginDialog().Show();
+            _middleFrame.JournalOwnership = JournalOwnership.OwnsJournal;
             _middleFrame.Navigate(new ReservationControl());
         }
 
@@ -35,6 +36,10 @@ namespace FinalProject
 
         private void CancelTicket_Click(object sender, RoutedEventArgs e)
         {
+            if (_middleFrame.CanGoBack)
+            {
+                _middleFrame.RemoveBackEntry();
+            }
             _middleFrame.Navigate(new CancelTicketControl());
         }
 
@@ -55,6 +60,10 @@ namespace FinalProject
 
         private void SearchTrip_Click(object sender, RoutedEventArgs e)
         {
+            if (_middleFrame.CanGoBack)
+            {
+                _middleFrame.RemoveBackEntry();
+            }
             _middleFrame.Navigate(new ReservationControl());
         }
     }
