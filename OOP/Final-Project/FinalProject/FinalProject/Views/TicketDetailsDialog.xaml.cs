@@ -43,8 +43,8 @@ namespace FinalProject.Views
             var context = new DbService();
 
             // delete from Tickets table
-            var ticketToDelete = context.Tickets.Where(s => s.IdTicket == Ticket.IdTicket).SingleOrDefault();
-            context.Tickets.Remove(ticketToDelete);
+            /*var ticketToDelete = context.Tickets.Where(s => s.IdTicket == Ticket.IdTicket).SingleOrDefault();
+            context.Tickets.Remove(ticketToDelete);*/
 
             // reset avialability of seats
             Ticket.Seats.ToList().ForEach(seat =>
@@ -65,11 +65,15 @@ namespace FinalProject.Views
                 Ticket.Seats.Remove(el);
             });
 
+            int g = 0;
+
             // reset number of avialable seats for refunded displaying
             context.Displayings.Attach(Ticket.Displaying);
             Ticket.Displaying.AvialableSeats += Ticket.Seats.Count;
 
-            int g = 0;
+            context.Tickets.Attach(Ticket);
+            Ticket.Displaying.AvialableSeats += Ticket.Seats.Count;
+            context.Tickets.Remove(Ticket);
 
             context.SaveChanges();
 
