@@ -33,14 +33,8 @@ namespace FinalProject.Views
         void LoadData()
         {
             int g = 0;
-            /*Seats = new ObservableCollection<int>();
-
-            for (int i = 0; i < 20; i++) Seats.Add(i);*/
 
             var avs = context.AvialableSeats.Where(s => s.RideScheduleId == RideScheduleId).ToList();
-            avs[0].IsAvialable = false;
-            avs[10].IsAvialable = false;
-            avs[11].IsAvialable = false;
             Seats = new ObservableCollection<SeatModel>();
 
             avs.ForEach(el => Seats.Add(new SeatModel()

@@ -1,5 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FinalProject.DAL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace FinalProject.Models
 {
@@ -9,7 +13,7 @@ namespace FinalProject.Models
         public int IdTicket { get; set; }
         [Required]
         [MaxLength(50)]
-        public string TicketNumber { get; }
+        public string TicketNumber { get; set; }
         [Range(1, 1500)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
@@ -32,5 +36,33 @@ namespace FinalProject.Models
         public TicketStatus TicketStatus { get; set; }
         [EnumDataType(typeof(TicketType))]
         public TicketType TicketType { get; set; }
+
+        [NotMapped]
+        public List<int> Seats { get; set; }
+
+        public static Ticket ReserveTicket(User customer, Displaying displaying, List<int> seatIds)
+        {
+            var context = new DbService();
+
+            var avs = context.AvialableSeats.Where(s => s.RideScheduleId == displaying.RideSchedule.IdRideSchedule);
+
+            foreach(var av in avs)
+            {
+                if (seatIds.Contains(av.SeatId)) av.IsAvialable = false;
+            }
+
+            Ticket ticket = new Ticket()
+            {
+                CustomerId = customer.UserId,
+                Displaying = displaying,
+                Price = displaying.StandardPrice,
+                Seats = seatIds
+            };
+
+            context.SaveChanges();
+
+            return ticket;
+        }
+
     }
 }

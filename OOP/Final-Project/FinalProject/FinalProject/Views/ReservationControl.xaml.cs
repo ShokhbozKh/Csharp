@@ -78,6 +78,9 @@ namespace FinalProject.Views
             {
                 Progress += 1;
 
+                if (Progress == 4) nextButton.Content = "Buy";
+                else nextButton.Content = "Next";
+
                 switch (Progress)
                 {
                     case 1:
@@ -117,7 +120,8 @@ namespace FinalProject.Views
                         _middleFrame.Navigate(new PaymetControl());
                         break;
                     case 5:
-                        //int g = 0;
+                        int g = 0;
+                        Ticket.ReserveTicket(CustomerDetails, SelectedDisplaying, SelectedSeats);
                         _middleFrame.Navigate(new TicketControl());
                         break;
                 }
@@ -126,7 +130,6 @@ namespace FinalProject.Views
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            int g = 0;
             if (m_progress - 1 >= 1)
             {
                 Progress -= 1;
