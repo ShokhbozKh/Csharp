@@ -1,15 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Genres
 {
     public class CreateModel : PageModel
     {
-        private readonly Data.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
 
-        public CreateModel(Data.RazorPagesMovieContext context)
+        public CreateModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
         {
             _context = context;
         }
@@ -20,7 +25,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public Genre Genre { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -30,7 +35,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return Page();
             }
 
-            _context.Movie.Add(Movie);
+            _context.Genre.Add(Genre);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

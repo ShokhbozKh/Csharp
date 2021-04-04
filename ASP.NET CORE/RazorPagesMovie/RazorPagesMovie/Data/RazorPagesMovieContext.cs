@@ -11,5 +11,14 @@ namespace RazorPagesMovie.Data
         }
 
         public DbSet<Movie> Movie { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Genre>()
+                .HasMany(m => m.Movies)
+                .WithOne(g => g.Genre)
+                .IsRequired();
+        }
     }
 }

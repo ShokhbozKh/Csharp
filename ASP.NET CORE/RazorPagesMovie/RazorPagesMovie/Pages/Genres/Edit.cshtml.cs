@@ -4,23 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Genres
 {
     public class EditModel : PageModel
     {
-        private readonly RazorPagesMovieContext _context;
+        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
 
-        public EditModel(RazorPagesMovieContext context)
+        public EditModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
-        public Movie Movie { get; set; }
-        public SelectList GenreList { get; set; }
         [BindProperty]
         public Genre Genre { get; set; }
 
@@ -31,10 +27,9 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
-            GenreList = new SelectList(_context.Genre);
+            Genre = await _context.Genre.FirstOrDefaultAsync(m => m.GenreId == id);
 
-            if (Movie == null)
+            if (Genre == null)
             {
                 return NotFound();
             }
@@ -45,15 +40,12 @@ namespace RazorPagesMovie.Pages.Movies
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-
-            int g = 0;
-            Movie.Genre.GenreId = Genre.GenreId;
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            _context.Attach(Genre).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +53,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.ID))
+                if (!GenreExists(Genre.GenreId))
                 {
                     return NotFound();
                 }
@@ -74,9 +66,9 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
 
-        private bool MovieExists(int id)
+        private bool GenreExists(int id)
         {
-            return _context.Movie.Any(e => e.ID == id);
+            return _context.Genre.Any(e => e.GenreId == id);
         }
     }
 }

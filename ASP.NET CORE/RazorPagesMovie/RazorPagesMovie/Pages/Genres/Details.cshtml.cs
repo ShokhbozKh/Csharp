@@ -1,22 +1,25 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Genres
 {
     public class DetailsModel : PageModel
     {
-        private readonly RazorPagesMovieContext _context;
+        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
 
-        public DetailsModel(RazorPagesMovieContext context)
+        public DetailsModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
         {
             _context = context;
         }
 
-        public Movie Movie { get; set; }
+        public Genre Genre { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -25,9 +28,9 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            Genre = await _context.Genre.FirstOrDefaultAsync(m => m.GenreId == id);
 
-            if (Movie == null)
+            if (Genre == null)
             {
                 return NotFound();
             }
