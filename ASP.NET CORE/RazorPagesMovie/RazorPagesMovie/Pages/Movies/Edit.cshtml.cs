@@ -1,15 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    public class EditModel : PageModel
+    public class EditModel : GenreNamePageModel
     {
         private readonly RazorPagesMovieContext _context;
 
@@ -20,9 +17,6 @@ namespace RazorPagesMovie.Pages.Movies
 
         [BindProperty]
         public Movie Movie { get; set; }
-        public SelectList GenreList { get; set; }
-        [BindProperty]
-        public Genre Genre { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,52 +25,57 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
-            GenreList = new SelectList(_context.Genre);
+            Movie = await _context.Movie
+                .Include(g => g.Genre).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)
             {
                 return NotFound();
             }
+
+            PopelateGenresDropDownList(_context, Movie.Genre);
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-
-            int g = 0;
-            Movie.Genre.GenreId = Genre.GenreId;
-            if (!ModelState.IsValid)
+            if(id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            var movieToUpdate = await _context.Movie.FindAsync(id);
 
-            try
+            if(movieToUpdate == null)
+            {
+                return NotFound();
+            }
+
+
+            if (await TryUpdateModelAsync<Movie>
+            (
+                movieToUpdate,
+                "movie",
+                m => m.GenreId,
+                m => m.Title,
+                m => m.ReleaseDate,
+                m => m.Price,
+                m => m.Rating
+            ))
             {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MovieExists(Movie.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
+            PopelateGenresDropDownList(_context, movieToUpdate.Genre);
+            return Page();
         }
 
-        private bool MovieExists(int id)
+        /*private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.ID == id);
-        }
+        }*/
     }
 }

@@ -14,7 +14,7 @@ namespace RazorPagesMovie.Models
         public int GenreId { get; set; }
         [Required]
         [StringLength(30, MinimumLength = 5)]
-        [Display(Name = "Genre")]
+        [Display(Name = "Genre Title")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string GenreTitle { get; set; }
 

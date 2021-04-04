@@ -29,7 +29,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            Movie = await _context.Movie.Include(g => g.Genre).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)
             {

@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    public class CreateModel : PageModel
+    public class CreateModel : GenreNamePageModel
     {
         private readonly Data.RazorPagesMovieContext _context;
 
@@ -14,26 +13,41 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         [BindProperty]
         public Movie Movie { get; set; }
+
+        public IActionResult OnGet()
+        {
+            PopelateGenresDropDownList(_context);
+
+            return Page();
+        }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var emptyMovie = new Movie();
+
+            if (await TryUpdateModelAsync<Movie>
+                (
+                    emptyMovie,
+                    "movie",
+                    s => s.ID,
+                    s => s.GenreId,
+                    s => s.Genre,
+                    s => s.Title,
+                    s => s.ReleaseDate,
+                    s => s.Price,
+                    s => s.Rating
+                ))
             {
-                return Page();
+                _context.Movie.Add(emptyMovie);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Movie.Add(Movie);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            PopelateGenresDropDownList(_context);
+            return Page();
         }
     }
 }
