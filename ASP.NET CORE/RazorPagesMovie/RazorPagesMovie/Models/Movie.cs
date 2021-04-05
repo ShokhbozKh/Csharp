@@ -30,5 +30,10 @@ namespace RazorPagesMovie.Models
 
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

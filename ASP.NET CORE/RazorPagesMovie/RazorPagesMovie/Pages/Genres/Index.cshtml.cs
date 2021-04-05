@@ -30,22 +30,28 @@ namespace RazorPagesMovie.Pages.Genres
 
             List<string> options = new List<string>
             {
-                "By name",
-                "By number of movies"
+                "By name (asc)",
+                "By name (desc)",
+                "By number of movies (asc)",
+                "By number of movies (desc)"
             };
+
+            int g = 0;
 
             if (!string.IsNullOrEmpty(SortQuery))
             {
 
-                if (SortQuery == "By name")
+                if (SortQuery == "By name (asc)")
                     Genre = Genre.OrderBy(s => s.GenreTitle).ToList();
-                else if (SortQuery == "By number of movies")
+                else if (SortQuery == "By name (desc)")
+                    Genre = Genre.OrderByDescending(s => s.GenreTitle).ToList();
+                else if (SortQuery == "By number of movies (asc)")
                     Genre = Genre.OrderBy(s => s.Movies.Count).ToList();
+                else if (SortQuery == "By number of movies (desc)")
+                    Genre = Genre.OrderByDescending(s => s.Movies.Count).ToList();
             }
 
             SortOptions = new SelectList(options);
-
-            int g = 0;
         }
     }
 }

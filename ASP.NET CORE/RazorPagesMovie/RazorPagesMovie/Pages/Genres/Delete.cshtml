@@ -2,7 +2,7 @@
 @model RazorPagesMovie.Pages.Genres.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Genre";
 }
 
 <h1>Delete</h1>
@@ -19,7 +19,13 @@
             @Html.DisplayFor(model => model.Genre.GenreTitle)
         </dd>
     </dl>
-    
+    <div class="form-group" style="width: 250px;">
+        <label asp-for="MoviesSL" class="control-label"></label>
+        <select asp-for="Genre.Movies" class="form-control"
+                asp-items="@Model.MoviesSL">
+        </select>
+    </div>
+
     <form method="post">
         <input type="hidden" asp-for="Genre.GenreId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

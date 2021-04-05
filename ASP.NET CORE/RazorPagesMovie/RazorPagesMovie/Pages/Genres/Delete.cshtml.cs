@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
@@ -21,6 +23,8 @@ namespace RazorPagesMovie.Pages.Genres
 
         [BindProperty]
         public Genre Genre { get; set; }
+        [Display(Name = "Movies list")]
+        public SelectList MoviesSL { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,7 +33,8 @@ namespace RazorPagesMovie.Pages.Genres
                 return NotFound();
             }
 
-            Genre = await _context.Genre.FirstOrDefaultAsync(m => m.GenreId == id);
+            Genre = await _context.Genre.Include(m => m.Movies).FirstOrDefaultAsync(m => m.GenreId == id);
+            MoviesSL = new SelectList(Genre.Movies);
 
             if (Genre == null)
             {

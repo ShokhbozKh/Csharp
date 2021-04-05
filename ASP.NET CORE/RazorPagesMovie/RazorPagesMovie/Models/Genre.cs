@@ -18,6 +18,7 @@ namespace RazorPagesMovie.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string GenreTitle { get; set; }
 
+        [Display(Name = "Number of movies")]
         public ICollection<Movie> Movies { get; set; }
 
         public override string ToString()
