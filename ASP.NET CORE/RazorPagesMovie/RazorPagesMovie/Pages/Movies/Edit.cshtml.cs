@@ -72,10 +72,5 @@ namespace RazorPagesMovie.Pages.Movies
             PopelateGenresDropDownList(_context, movieToUpdate.Genre);
             return Page();
         }
-
-        /*private bool MovieExists(int id)
-        {
-            return _context.Movie.Any(e => e.ID == id);
-        }*/
     }
 }
