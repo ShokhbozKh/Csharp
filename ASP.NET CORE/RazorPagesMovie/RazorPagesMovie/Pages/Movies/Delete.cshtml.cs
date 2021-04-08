@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
@@ -10,30 +11,37 @@ namespace RazorPagesMovie.Pages.Movies
     public class DeleteModel : PageModel
     {
         private readonly RazorPagesMovieContext _context;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(RazorPagesMovieContext context)
+        public DeleteModel(RazorPagesMovieContext context, ILogger<DeleteModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
         public Movie Movie { get; set; }
+        public string ErrorMessage { get; set; }
 
-        public RazorPagesMovieContext Context => _context;
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Movie = await Context.Movie.Include(g => g.Genre).FirstOrDefaultAsync(m => m.ID == id);
+            Movie = await _context.Movie.Include(g => g.Genre).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)
             {
                 return NotFound();
             }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ErrorMessage = $"Delete {id} failed. Try again";
+            }
+
             return Page();
         }
 
@@ -44,15 +52,26 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await Context.Movie.FindAsync(id);
+            var movie = await _context.Movie.FindAsync(id);
 
-            if (Movie != null)
+            if(movie == null)
             {
-                Context.Movie.Remove(Movie);
-                await Context.SaveChangesAsync();
+                return NotFound();
             }
 
-            return RedirectToPage("./Index");
+            try
+            {
+                _context.Movie.Remove(movie);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, ErrorMessage);
+
+                return RedirectToPage("./Delete", new { id, saveChangesError = true });
+            }
         }
     }
 }

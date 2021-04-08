@@ -36,12 +36,11 @@ namespace RazorPagesMovie.Pages.Genres
                           where g.GenreTitle == "Action"
                           select m).ToList();
 
-            int d = 0;
-
             if (Genre == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }
