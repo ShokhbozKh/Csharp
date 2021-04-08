@@ -29,9 +29,10 @@ namespace RazorPagesMovie.Pages.Movies
         public string RatingSort { get; set; }
 
         // filtering
+        [BindProperty]
         public string MovieGenre { get; set; }
 
-        // search
+        // searching
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
 
@@ -39,17 +40,13 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty(SupportsGet = true)]
         public PaginatedList<Movie> Movies { get; set; }
 
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, string searchString, string movieGenre)
         {
             int? pageIndex = null;
             // set the sort order
             TitleSort = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             PriceSort = sortOrder == "price" ? "price_desc" : "price";
             RatingSort = sortOrder == "rating" ? "rating_desc" : "rating";
-
-            IQueryable<string> genreQuery = _context.Genre
-                .OrderBy(g => g.GenreTitle)
-                .Select(g => g.GenreTitle);
 
             var movies = _context.Movie.Include("Genre");
 
@@ -68,6 +65,7 @@ namespace RazorPagesMovie.Pages.Movies
                 movies = movies.Where(s => s.Title.Contains(SearchString));
             }
 
+            MovieGenre = movieGenre;
             if (!string.IsNullOrEmpty(MovieGenre))
             {
                 movies = movies.Where(x => x.Genre.GenreTitle == MovieGenre);
@@ -77,7 +75,11 @@ namespace RazorPagesMovie.Pages.Movies
             Movies = await PaginatedList<Movie>.CreateAsync(
                 movies.AsNoTracking(), pageIndex ?? 1, pageSize);
 
-            Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            var genreQuery = _context.Genre
+                            .OrderBy(g => g.GenreTitle)
+                            .Select(g => g.GenreTitle);
+
+            Genres = new SelectList(await genreQuery.ToListAsync());
             
             //int g = 0;
         }
