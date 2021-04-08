@@ -16,6 +16,11 @@ namespace RazorPagesMovie.Data
                 serviceProvider.GetRequiredService<
                     DbContextOptions<RazorPagesMovieContext>>());
 
+            if (context.Movie.Any())
+            {
+                return;   // DB has been seeded
+            }
+
             var faker = new Faker("en");
             var movieNames = GetMovieNames();
             var genreNames = GetGenresNames();

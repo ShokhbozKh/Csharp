@@ -12,47 +12,54 @@
 <form>
     <p>
         Filter by 
-        <select class="mr-4" asp-for="MovieGenre" asp-items="Model.Genres">
+        <select class="mr-4" name="genreTitle" asp-for="CurrentFilter" asp-items="Model.Genres">
             <option value="">All</option>
         </select>
         Search by title 
-        <input type="text" asp-for="SearchString" />
+        <input type="text" name="searchString" value="@Model.CurrentSearch"/>
         <input type="submit" value="Filter" />
     </p>
 </form>
+
+<p>Number of movies found: @Model.MoviesCount</p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
                 <a asp-page="./Index" 
-                   asp-route-sortOrder="@Model.TitleSort"
+                   asp-route-sortBy="@Model.TitleSort"
                    asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-movieGenre="@Model.CurrentFilter">
+                   asp-route-genreTitle="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Title)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index"
-                   asp-route-sortOrder="@Model.PriceSort"
+                   asp-route-sortBy="@Model.PriceSort"
                    asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-movieGenre="@Model.CurrentFilter">
+                   asp-route-genreTitle="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Price)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index"
-                   asp-route-sortOrder="@Model.RatingSort"
+                   asp-route-sortBy="@Model.RatingSort"
                    asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-movieGenre="@Model.CurrentFilter">
+                   asp-route-genreTitle="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Rating)
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Genre.GenreTitle)
+                <a asp-page="./Index"
+                   asp-route-sortBy="@Model.DateSort"
+                   asp-route-searchString="@Model.CurrentSearch"
+                   asp-route-genreTitle="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                @Html.DisplayNameFor(model => model.Movies[0].Genre.GenreTitle)
             </th>
             <th></th>
         </tr>
@@ -92,8 +99,8 @@
 }
 
 <a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-movieGenre="@Model.CurrentFilter"
+   asp-route-sortBy="@Model.CurrentSort"
+   asp-route-genreTitle="@Model.CurrentFilter"
    asp-route-searchString="@Model.CurrentSearch"
    asp-route-pageIndex="@(Model.Movies.PageIndex - 1)"
    class="btn btn-primary @prevDisabled">
@@ -101,8 +108,8 @@
 </a>
 
 <a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-movieGenre="@Model.CurrentFilter"
+   asp-route-sortBy="@Model.CurrentSort"
+   asp-route-genreTitle="@Model.CurrentFilter"
    asp-route-searchString="@Model.CurrentSearch"
    asp-route-pageIndex="@(Model.Movies.PageIndex + 1)"
    class="btn btn-primary @nextDisabled">
