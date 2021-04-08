@@ -25,17 +25,26 @@
     <thead>
         <tr>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort">
+                <a asp-page="./Index" 
+                   asp-route-sortOrder="@Model.TitleSort"
+                   asp-route-searchString="@Model.CurrentSearch"
+                   asp-route-movieGenre="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Title)
                 </a>
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort">
+                <a asp-page="./Index"
+                   asp-route-sortOrder="@Model.PriceSort"
+                   asp-route-searchString="@Model.CurrentSearch"
+                   asp-route-movieGenre="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Price)
                 </a>
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.RatingSort">
+                <a asp-page="./Index"
+                   asp-route-sortOrder="@Model.RatingSort"
+                   asp-route-searchString="@Model.CurrentSearch"
+                   asp-route-movieGenre="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Movies[0].Rating)
                 </a>
             </th>
@@ -76,3 +85,26 @@
         }
     </tbody>
 </table>
+
+@{ 
+    var prevDisabled = !Model.Movies.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Movies.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-movieGenre="@Model.CurrentFilter"
+   asp-route-searchString="@Model.CurrentSearch"
+   asp-route-pageIndex="@(Model.Movies.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-movieGenre="@Model.CurrentFilter"
+   asp-route-searchString="@Model.CurrentSearch"
+   asp-route-pageIndex="@(Model.Movies.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

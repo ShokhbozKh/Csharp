@@ -36,20 +36,42 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
 
+        // track current sort and filter
+        public string CurrentSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSearch { get; set; }
+
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
         public PaginatedList<Movie> Movies { get; set; }
 
-        public async Task OnGetAsync(string sortOrder, string searchString, string movieGenre)
-        {
-            int? pageIndex = null;
+        public async Task OnGetAsync(string sortOrder, string searchString, 
+            string movieGenre, int? pageIndex)
+        {            
+            // Fetch Movies and Genres data
+            var movies = _context.Movie.Include("Genre");
+
+            var genreQuery = _context.Genre
+                            .OrderBy(g => g.GenreTitle)
+                            .Select(g => g.GenreTitle);
+
             // set the sort order
             TitleSort = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             PriceSort = sortOrder == "price" ? "price_desc" : "price";
             RatingSort = sortOrder == "rating" ? "rating_desc" : "rating";
 
-            var movies = _context.Movie.Include("Genre");
+            if (searchString != null )
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                CurrentSort = sortOrder;
+                CurrentSearch = searchString;
+                CurrentFilter = movieGenre;
+            }
 
+            // Order by columns
             movies = sortOrder switch
             {
                 "title_desc" => movies.OrderByDescending(m => m.Title),
@@ -60,28 +82,29 @@ namespace RazorPagesMovie.Pages.Movies
                 _ => movies.OrderBy(m => m.Title),
             };
 
+            // Filter by search input
+            SearchString = searchString;
             if (!string.IsNullOrEmpty(SearchString))
             {
                 movies = movies.Where(s => s.Title.Contains(SearchString));
             }
 
+            // Filter by selectlist genre title
             MovieGenre = movieGenre;
             if (!string.IsNullOrEmpty(MovieGenre))
             {
                 movies = movies.Where(x => x.Genre.GenreTitle == MovieGenre);
             }
 
+            // Get the page size (no. of items per page) or set default 5,
+            // make new PaginatedList
             var pageSize = _configuration.GetValue("PageSize", 5);
             Movies = await PaginatedList<Movie>.CreateAsync(
                 movies.AsNoTracking(), pageIndex ?? 1, pageSize);
 
-            var genreQuery = _context.Genre
-                            .OrderBy(g => g.GenreTitle)
-                            .Select(g => g.GenreTitle);
-
             Genres = new SelectList(await genreQuery.ToListAsync());
             
-            //int g = 0;
+            //int deb = 0;
         }
     }
 }

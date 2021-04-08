@@ -28,6 +28,8 @@ namespace RazorPagesMovie.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$")]
         public string Rating { get; set; }
 
+        public string Description { get; set; }
+
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
 
