@@ -1,17 +1,22 @@
 ﻿@page "{id:int}"
+@using RazorPagesMovie.Helpers 
 @model RazorPagesMovie.Pages.Movies.EditModel
 
 @{
     ViewData["Title"] = "Edit Movie";
 }
 
-<h4>Movie</h4>
+<h4>
+    Movie - <label>Version</label>
+    @Utility.GetLastChars(Model.Movie.ConcurrencyToken)
+</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Movie.ID" />
+            <input type="hidden" asp-for="Movie.ConcurrencyToken" />
             <div class="form-group">
                 <label asp-for="Movie.Title" class="control-label"></label>
                 <input asp-for="Movie.Title" class="form-control" />

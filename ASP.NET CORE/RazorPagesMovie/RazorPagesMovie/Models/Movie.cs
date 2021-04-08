@@ -30,6 +30,9 @@ namespace RazorPagesMovie.Models
 
         public string Description { get; set; }
 
+        [Timestamp]
+        public byte[] ConcurrencyToken { get; set; }
+
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
 

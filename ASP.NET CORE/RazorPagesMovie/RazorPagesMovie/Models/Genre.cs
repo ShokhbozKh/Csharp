@@ -12,11 +12,15 @@ namespace RazorPagesMovie.Models
 
         [Key]
         public int GenreId { get; set; }
+        
         [Required]
         [StringLength(30, MinimumLength = 5)]
         [Display(Name = "Genre Title")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string GenreTitle { get; set; }
+
+        [Timestamp]
+        public byte[] ConcurrencyToken { get; set; }
 
         [Display(Name = "Number of movies")]
         public ICollection<Movie> Movies { get; set; }

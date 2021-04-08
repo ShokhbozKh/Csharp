@@ -36,7 +36,7 @@ namespace RazorPagesMovie.Pages.Genres
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
