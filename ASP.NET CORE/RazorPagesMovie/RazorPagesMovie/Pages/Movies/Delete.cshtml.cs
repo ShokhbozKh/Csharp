@@ -30,7 +30,9 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.Include(g => g.Genre).FirstOrDefaultAsync(m => m.ID == id);
+            Movie = await _context.Movie.Include(g => g.Genre)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)
             {
@@ -62,13 +64,15 @@ namespace RazorPagesMovie.Pages.Movies
                 }
                 return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex) 
             {
-                return RedirectToPage("./Delete", new { id, saveChangesError = true });
+                _logger.LogError(ex.Message, "DB delete error");
+                return RedirectToPage("./Delete", (id, saveChangesError: true)); 
             }
-            catch (DbUpdateException)
-            {
-                return RedirectToPage("../Error");
+            catch (DbUpdateException ex) 
+            { 
+                _logger.LogError(ex.Message, "DB delete error"); 
+                return RedirectToPage("../Error"); 
             }
         }
     }
