@@ -100,6 +100,18 @@
     </tbody>
 </table>
 
+<div class="card-columns">
+    @foreach(var movie in Model.Movies)
+    {
+    <div class="card">
+        <div class="card-img" style="background-image: url('@movie.Image');"></div>
+        <div class="card-body">
+            <h5 class="card-title">@movie.Title</h5>
+        </div>
+    </div>
+    }
+</div>
+
 @{
     var prevDisabled = !Model.Movies.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.Movies.HasNextPage ? "disabled" : "";

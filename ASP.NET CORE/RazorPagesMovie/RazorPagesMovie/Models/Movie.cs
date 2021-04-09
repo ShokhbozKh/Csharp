@@ -30,6 +30,8 @@ namespace RazorPagesMovie.Models
 
         public string Description { get; set; }
 
+        public string Image { get; set; }
+
         [Timestamp]
         public byte[] ConcurrencyToken { get; set; }
 

@@ -5,13 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Models;
 using Bogus;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace RazorPagesMovie.Data
 {
-    public class SeedData
+    public static class SeedData
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        private static List<string> imageList;
+        private static readonly Random random = new Random();
+        public static void Initialize(IServiceProvider serviceProvider, IWebHostEnvironment hostEnvironment)
         {
+             imageList = GetMovieImages(hostEnvironment);   
+
             using var context = new RazorPagesMovieContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<RazorPagesMovieContext>>());
@@ -42,6 +49,7 @@ namespace RazorPagesMovie.Data
                         Price = GetRandomPrice(5.5, 30.5),
                         Rating = GetRandomRating(),
                         Description = faker.Lorem.Sentence(20, 100),
+                        Image = GetRandomImage(),
                         GenreId = GetRandomGenreId()
                     }
                );
@@ -94,16 +102,14 @@ namespace RazorPagesMovie.Data
 
         private static DateTime GetRandomDate()
         {
-            Random rnd = new Random();
             DateTime start = new DateTime(1995, 1, 1);
             int range = (DateTime.Today - start).Days;
-            return start.AddDays(rnd.Next(range));
+            return start.AddDays(random.Next(range));
         }
 
         private static decimal GetRandomPrice(double minimum, double maximum)
         {
-            Random rnd = new Random();
-            return (decimal)(rnd.NextDouble() * (maximum - minimum) + minimum);
+            return (decimal)(random.NextDouble() * (maximum - minimum) + minimum);
         }
 
         private static string GetRandomRating()
@@ -116,16 +122,32 @@ namespace RazorPagesMovie.Data
                 "R",
                 "NC-17"
             };
-            
-            Random rnd = new Random();
 
-            return ratings.ElementAt(rnd.Next(0, ratings.Count));
+            return ratings.ElementAt(random.Next(0, ratings.Count));
         }
 
         private static int GetRandomGenreId()
         {
-            Random rnd = new Random();
-            return rnd.Next(1, 10);
+            return random.Next(1, 10);
+        }
+
+        private static string GetRandomImage()
+        {
+            return imageList.ElementAt(random.Next(0, imageList.Count));
+        }
+
+        private static List<string> GetMovieImages(IWebHostEnvironment hostEnvironment)
+        {
+            if(hostEnvironment != null)
+            {
+                var provider = new PhysicalFileProvider(hostEnvironment.WebRootPath);
+                var path = provider.GetDirectoryContents(Path.Combine("images"));
+                var images = path.Select(s => s.Name).ToList();
+
+                return images;
+            }
+
+            return new List<string>();
         }
     }
 }

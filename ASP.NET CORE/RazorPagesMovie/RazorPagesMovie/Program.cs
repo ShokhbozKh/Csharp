@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Data;
 using System;
 
@@ -16,10 +16,11 @@ namespace RazorPagesMovie
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var hostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
 
                 try
                 {
-                    SeedData.Initialize(services);
+                    SeedData.Initialize(services, hostEnvironment);
                 }
                 catch (Exception ex)
                 {
@@ -36,6 +37,10 @@ namespace RazorPagesMovie
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureWebHost(webHostBuilder =>
+                {
+                    webHostBuilder.UseEnvironment("wwwroot");
                 });
     }
 }
