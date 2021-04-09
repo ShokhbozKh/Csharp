@@ -10,7 +10,7 @@ namespace RazorPagesMovie.Models
     {
         public SelectList GenreNameSL { get; set; }
 
-        public void PopelateGenresDropDownList(RazorPagesMovieContext context, object selectedGenre = null)
+        public void PopulateGenresDropDownList(RazorPagesMovieContext context, object selectedGenre = null)
         {
             var genresQuery = from g in context.Genre
                              orderby g.GenreTitle

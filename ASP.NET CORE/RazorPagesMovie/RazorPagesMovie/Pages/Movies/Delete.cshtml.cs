@@ -39,7 +39,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             if (saveChangesError.GetValueOrDefault())
             {
-                ErrorMessage = $"Delete {id} failed. Try again";
+                ErrorMessage = $"Delete {id} failed because it was deleted by another user. If you still want to delete this record, click Delete button again";
             }
 
             return Page();
@@ -47,30 +47,28 @@ namespace RazorPagesMovie.Pages.Movies
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movie = await _context.Movie.FindAsync(id);
-
-            if(movie == null)
-            {
-                return NotFound();
-            }
-
             try
             {
-                _context.Movie.Remove(movie);
-                await _context.SaveChangesAsync();
+                // Movie.ConcurrencyToken value is from when the entity was fetched
+                // from OnGetAsync method. If it doesn't match the DB, 
+                // DbUpdateConcurrencyException is thrown
+                if(await _context.Movie.AnyAsync(
+                    m => m.ID == id))
+                {
+                    _context.Movie.Remove(Movie);
+                    await _context.SaveChangesAsync();
 
-                return RedirectToPage("./Index");
+                    return RedirectToPage("./Index");
+                }
+                return NotFound();
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateConcurrencyException)
             {
-                _logger.LogError(ex, ErrorMessage);
-
                 return RedirectToPage("./Delete", new { id, saveChangesError = true });
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToPage("../Error");
             }
         }
     }

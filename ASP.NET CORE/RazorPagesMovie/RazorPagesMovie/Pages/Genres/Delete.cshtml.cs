@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Genres
 {
@@ -34,8 +34,9 @@ namespace RazorPagesMovie.Pages.Genres
                 return NotFound();
             }
 
-            Genre = await _context.Genre.Include(m => m.Movies).FirstOrDefaultAsync(m => m.GenreId == id);
-            MoviesSL = new SelectList(Genre.Movies);
+            Genre = await _context.Genre
+                .Include(m => m.Movies)
+                .FirstOrDefaultAsync(m => m.GenreId == id);
 
             if (Genre == null)
             {
@@ -44,40 +45,41 @@ namespace RazorPagesMovie.Pages.Genres
 
             if (errorSaveChanges.GetValueOrDefault())
             {
-                ErrorMessage = $"Deleting {id} failed. Please, try again";
+                ErrorMessage = $"Deleting {id} failed because it was modified by another user. If you still want to delete this record, please click Delete button again.";
             }
+
+            MoviesSL = new SelectList(Genre.Movies);
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var genre = await _context.Genre.FindAsync(id);
-
-            if(genre == null)
-            {
-                return NotFound();
-            }
-
             try
             {
-                _context.Genre.Remove(genre);
-                await _context.SaveChangesAsync();
+                if (await _context.Genre.AnyAsync(
+                    m => m.GenreId == id))
+                {
+                    // Genre.ConcurrencyToken value is from when the entity
+                    // was fetched from OnGetAsync. If it doesn't match the DB,
+                    // DbUpdateConcurrencyException is thrown
+                    _context.Genre.Remove(Genre);
+                    await _context.SaveChangesAsync();
 
-                return RedirectToPage("./Index");
+                    return RedirectToPage("./Index");
+                }
+                return NotFound();
             }
-            catch(DbUpdateException ex)
+            catch (DbUpdateConcurrencyException ex)
             {
-                _logger.LogError(ex, ErrorMessage);
-
-                return RedirectToPage("./Delete", new { id, saveChangesError = true });
+                _logger.LogError(ex.Message, "DB delete concurrency error");
+                return RedirectToPage("./Delete", new { concurrencyError = true, id });
             }
-
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex.Message, "DB delete error");
+                return RedirectToPage("../Error");
+            }
         }
     }
 }

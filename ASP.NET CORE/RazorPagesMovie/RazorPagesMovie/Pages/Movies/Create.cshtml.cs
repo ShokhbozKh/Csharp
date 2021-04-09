@@ -19,7 +19,7 @@ namespace RazorPagesMovie.Pages.Movies
 
         public IActionResult OnGet()
         {
-            PopelateGenresDropDownList(_context);
+            PopulateGenresDropDownList(_context);
 
             return Page();
         }
@@ -46,7 +46,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return RedirectToPage("./Index");
             }
 
-            PopelateGenresDropDownList(_context);
+            PopulateGenresDropDownList(_context);
             return Page();
         }
     }

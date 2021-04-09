@@ -36,7 +36,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            PopelateGenresDropDownList(_context, Movie.Genre);
+            PopulateGenresDropDownList(_context, Movie.Genre);
 
             return Page();
         }
@@ -102,19 +102,17 @@ namespace RazorPagesMovie.Pages.Movies
             .Select(E => E.ErrorMessage)
             .ToList();
 
-            PopelateGenresDropDownList(_context, movieToUpdate.Genre);
+            PopulateGenresDropDownList(_context, movieToUpdate.Genre);
             return Page();
         }
 
         private IActionResult HandleDeletedMovie()
         {
-            var deletedMovie = new Movie();
-
             // ModelState contains the posted data because of the deletion error
             // and overides the Department instance values when displaying Page().
             ModelState.AddModelError(string.Empty, "Unable to save. The department was deleted by another user.");
 
-            PopelateGenresDropDownList(_context, Movie.Genre);
+            PopulateGenresDropDownList(_context, Movie.Genre);
             return Page();
         }
 
@@ -143,7 +141,7 @@ namespace RazorPagesMovie.Pages.Movies
             }*/
             if (dbValues.GenreId != clientValues.GenreId)
             {
-                Genre dbGenre = await _context.Genre
+                Genre dbGenre = await context.Genre
                     .FindAsync(dbValues.GenreId);
                 ModelState.AddModelError("Movie.GenreId", $"Current value: {dbGenre?.GenreTitle}");
             }
