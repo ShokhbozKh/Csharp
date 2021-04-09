@@ -24,90 +24,95 @@
 
 <p>Number of movies found: @Model.MoviesCount</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-page="./Index"
-                   asp-route-sortBy="@Model.TitleSort"
-                   asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-genreTitle="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Movies[0].Title)
-                </a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-route-sortBy="@Model.PriceSort"
-                   asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-genreTitle="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Movies[0].Price)
-                </a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-route-sortBy="@Model.RatingSort"
-                   asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-genreTitle="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Movies[0].Rating)
-                </a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-route-sortBy="@Model.DateSort"
-                   asp-route-searchString="@Model.CurrentSearch"
-                   asp-route-genreTitle="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
-                </a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Genre.GenreTitle)
-            </th>
-            <th>
-                Token
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Movies)
-        {
+@*
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelIem => item.Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre.GenreTitle)
-                </td>
-                <td>
-                    @Utility.GetLastChars(item.ConcurrencyToken)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
+                <th>
+                    <a asp-page="./Index"
+                       asp-route-sortBy="@Model.TitleSort"
+                       asp-route-searchString="@Model.CurrentSearch"
+                       asp-route-genreTitle="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Movies[0].Title)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index"
+                       asp-route-sortBy="@Model.PriceSort"
+                       asp-route-searchString="@Model.CurrentSearch"
+                       asp-route-genreTitle="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Movies[0].Price)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index"
+                       asp-route-sortBy="@Model.RatingSort"
+                       asp-route-searchString="@Model.CurrentSearch"
+                       asp-route-genreTitle="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Movies[0].Rating)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index"
+                       asp-route-sortBy="@Model.DateSort"
+                       asp-route-searchString="@Model.CurrentSearch"
+                       asp-route-genreTitle="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Genre.GenreTitle)
+                </th>
+                <th>
+                    Token
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Movies)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelIem => item.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre.GenreTitle)
+                    </td>
+                    <td>
+                        @Utility.GetLastChars(item.ConcurrencyToken)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="card-img" style="background-image: url(~/images/@movie.Image); height: 150px" alt="Image" />
+*@
 
 <div class="card-columns">
-    @foreach(var movie in Model.Movies)
+    @foreach (var movie in Model.Movies)
     {
     <div class="card">
-        <div class="card-img" style="background-image: url('@movie.Image');"></div>
-        <div class="card-body">
-            <h5 class="card-title">@movie.Title</h5>
-        </div>
+        @{
+            <img class="card-img" src="~/images/@movie.Image" style="height: 200px;" />
+            <div class="card-body">
+                <h5 class="card-title">@movie.Title</h5>
+            </div>
+        }
     </div>
     }
 </div>

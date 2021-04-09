@@ -141,8 +141,8 @@ namespace RazorPagesMovie.Data
             if(hostEnvironment != null)
             {
                 var provider = new PhysicalFileProvider(hostEnvironment.WebRootPath);
-                var path = provider.GetDirectoryContents(Path.Combine("images"));
-                var images = path.Select(s => s.Name).ToList();
+                var constents = provider.GetDirectoryContents(Path.Combine("images"));
+                var images = constents.Select(s => s.Name).ToList();
 
                 return images;
             }
