@@ -16,7 +16,9 @@ namespace RazorPagesMovie
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var hostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+                var hostEnvironment = services.GetRequiredService<IWebHostEnvironment>();
+
+                var isDev = hostEnvironment.IsDevelopment();
 
                 try
                 {
@@ -37,10 +39,6 @@ namespace RazorPagesMovie
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .ConfigureWebHost(webHostBuilder =>
-                {
-                    webHostBuilder.UseEnvironment("wwwroot");
                 });
     }
 }
