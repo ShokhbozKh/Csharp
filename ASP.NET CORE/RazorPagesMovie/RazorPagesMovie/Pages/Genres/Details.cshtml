@@ -17,25 +17,30 @@
                 @Html.DisplayFor(model => model.Genre.GenreTitle)
             </dd>
         </dl>
-        <h5>Movies</h5>
-        <hr />
-        <br />
-        @foreach (var movie in Model.Movies)
-        {
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayFor(modelItem => movie.Title)
-                </dt>
-                <dd class="col-sm-10">
-                    <a asp-page="../Movies/Details" asp-route-id="@movie.ID">Navigate</a>
-                </dd>
-            </dl>
-        }
     </div>
 </div>
 
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Genre.GenreId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+<hr />
+
+<h5>Movies</h5>
+
+<form method="post">
+    <select asp-for="ID" asp-items="@Model.MoviesSL" size="@Model.Movies.Count">
+    </select>
+    <br />
+    <button class="btn btn-success mt-2"
+            type="submit">
+        Navigate
+    </button>
+</form>
+
+
+@*asp-page="../Movies/Details" asp-route-id="@Model?.SelectedMovie?.ID"*@
+
+<div class="mt-lg-5">
+    <a class="btn btn-outline-warning"
+       asp-page="./Edit" asp-route-id="@Model.Genre.GenreId">Edit</a> |
+    <a class="btn btn-outline-info"
+       asp-page="./Index">Back to List</a>
 </div>
 

@@ -14,7 +14,7 @@
         <select asp-for="SortQuery" asp-items="Model.SortOptions">
             <option value="">All</option>
         </select>
-        <input type="submit" value="Sort" />
+        <button class="btn btn-outline-success my-2 my-sm-0 ml-lg-4" type="submit">Sort</button>
     </p>
 </form>
 
@@ -40,11 +40,15 @@
                 @Html.DisplayFor(modelItem => item.Movies.Count)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.GenreId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.GenreId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.GenreId">Delete</a>
+                <a class="btn btn-outline-warning"
+                   asp-page="./Edit" asp-route-id="@item.GenreId">Edit</a>
+                <a class="btn btn-outline-info"
+                   asp-page="./Details" asp-route-id="@item.GenreId">Details</a>
+                <a class="btn btn-outline-danger"
+                   asp-page="./Delete" asp-route-id="@item.GenreId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+

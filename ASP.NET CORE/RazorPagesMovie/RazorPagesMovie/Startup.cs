@@ -50,6 +50,7 @@ namespace RazorPagesMovie
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapAreaControllerRoute("Movies/Details", "Movies", "Movies/Details/2");
             });
         }
     }
