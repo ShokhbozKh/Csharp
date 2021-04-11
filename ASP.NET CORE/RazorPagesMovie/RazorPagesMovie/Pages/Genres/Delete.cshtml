@@ -9,7 +9,7 @@
 
 <p class="text-danger">@Model.ErrorMessage</p>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this Genre?</h3>
 <div>
     <h4>Genre</h4>
     <hr />
@@ -31,7 +31,8 @@
     <form method="post">
         <input type="hidden" asp-for="Genre.GenreId" />
         <input type="hidden" asp-for="Genre.ConcurrencyToken" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input class="btn btn-danger" type="submit" value="Delete" /> |
+        <a class="btn btn-primary"
+           asp-page="./Index">Back to List</a>
     </form>
 </div>

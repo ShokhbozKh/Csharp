@@ -7,21 +7,29 @@
 }
 
 <p>
-    <a class="btn btn-primary" asp-page="Create">Create New</a>
+    <a class="btn btn-primary" asp-page="Create">Add new movie</a>
 </p>
 
 <form class="form-inline my-2 my-lg-0">
     <p>
         Genre
-        <select class="form-control form-control-sm mb-4 mr-4 mt-4" aria-label=".form-select-lg example"
-                name="genreTitle" 
+        <select class="form-control form-control-sm mb-4 ml-2 mr-4 mt-4" aria-label=".form-select-lg example"
+                name="genreTitle"
                 asp-for="CurrentFilter" asp-items="Model.Genres">
             <option value="">All</option>
         </select>
-        <input class="form-control mr-sm-2" type="search" 
+        Sort
+        <select class="form-control form-control-sm mb-4 ml-2 mr-4 mt-4" aria-label=".form-select-lg example"
+                name="sortBy"
+                asp-for="CurrentSort" asp-items="Model.SortOptions">
+        </select>
+        <input class="form-control mr-sm-2" type="search"
                placeholder="Search" aria-label="Search"
-               value="@Model.CurrentSearch">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+               name="searchString" value="@Model.CurrentSearch">
+        <button class="btn btn-outline-success my-2 my-sm-0"
+                type="submit" value="Filter">
+            Search
+        </button>
     </p>
 </form>
 

@@ -23,17 +23,7 @@ namespace RazorPagesMovie.Pages.Genres
         public List<Movie> Movies { get; set; }
         public SelectList MoviesSL { get; set; }
         [BindProperty]
-        public Movie SelectedMovie 
-        { 
-            get; 
-            set; 
-        }
-        [BindProperty]
-        public int ID 
-        { 
-            get; 
-            set; 
-        }
+        public int SelectedMovieId { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -44,7 +34,6 @@ namespace RazorPagesMovie.Pages.Genres
 
             Genre = await _context.Genre.Include(m => m.Movies).FirstOrDefaultAsync(m => m.GenreId == id);
             Movies = Genre.Movies.ToList();
-            ID = Movies[0].ID;
 
             var result = (from m in _context.Movie
                           join g in _context.Genre on m.GenreId equals g.GenreId
@@ -57,14 +46,15 @@ namespace RazorPagesMovie.Pages.Genres
             }
 
             MoviesSL = new SelectList(Movies, nameof(Movie.ID), nameof(Movie.Title));
+            // Set the default value for Movie navigation
+            SelectedMovieId = Movies[0].ID;
 
             return Page();
         }
 
-        public IActionResult OnPost(int? id)
+        public IActionResult OnPost()
         {
-
-            return Redirect($"/Movies/Details/{id}");
+            return Redirect($"/Movies/Details/{SelectedMovieId}");
         }
     }
 }

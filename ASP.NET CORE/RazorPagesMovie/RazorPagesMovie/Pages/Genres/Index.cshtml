@@ -5,10 +5,6 @@
     ViewData["Title"] = "Genres";
 }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
 <form>
     <p>
         <select asp-for="SortQuery" asp-items="Model.SortOptions">
@@ -51,4 +47,9 @@
 }
     </tbody>
 </table>
+
+<p>
+    <a class="btn btn-primary"
+       asp-page="Create">Add new genre</a>
+</p>
 

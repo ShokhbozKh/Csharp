@@ -24,10 +24,12 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         // sorting
+        /*
         public string TitleSort { get; set; }
         public string PriceSort { get; set; }
         public string RatingSort { get; set; }
         public string DateSort { get; set; }
+        */
 
         // track current sort and filter
         public string CurrentSort { get; set; }
@@ -37,6 +39,7 @@ namespace RazorPagesMovie.Pages.Movies
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
         public PaginatedList<Movie> Movies { get; set; }
+        public SelectList SortOptions { get; set; }
         public int MoviesCount { get; set; }
 
         public async Task OnGetAsync(string sortBy, string searchString, 
@@ -49,26 +52,20 @@ namespace RazorPagesMovie.Pages.Movies
                             .OrderBy(g => g.GenreTitle)
                             .Select(g => g.GenreTitle);
 
-            // set the sort order
-            TitleSort = string.IsNullOrEmpty(sortBy) ? "title_desc" : "";
-            PriceSort = sortBy == "price" ? "price_desc" : "price";
-            RatingSort = sortBy == "rating" ? "rating_desc" : "rating";
-            DateSort = sortBy == "releaseDate" ? "releaseDate_desc" : "releaseDate";
-
             CurrentSort = sortBy;
             CurrentSearch = searchString;
             CurrentFilter = genreTitle;
-
+            
             // Order by columns
             movies = sortBy switch
             {
-                "title_desc" => movies.OrderByDescending(m => m.Title),
-                "price" => movies.OrderBy(m => m.Price),
-                "price_desc" => movies.OrderByDescending(m => m.Price),
-                "rating" => movies.OrderBy(m => m.Rating),
-                "rating_desc" => movies.OrderByDescending(m => m.Rating),
-                "releaseDate" => movies.OrderBy(m => m.ReleaseDate),
-                "releaseDate_desc" => movies.OrderByDescending(m => m.ReleaseDate),
+                "Title (desc)" => movies.OrderByDescending(m => m.Title),
+                "Price (asc)" => movies.OrderBy(m => m.Price),
+                "Price (desc)" => movies.OrderByDescending(m => m.Price),
+                "Release date (asc)" => movies.OrderBy(m => m.ReleaseDate),
+                "Release date (desc)" => movies.OrderByDescending(m => m.ReleaseDate),
+                "Rating (asc)" => movies.OrderBy(m => m.Rating),
+                "Rating (desc)" => movies.OrderByDescending(m => m.Rating),
                 _ => movies.OrderBy(m => m.Title),
             };
 
@@ -93,6 +90,17 @@ namespace RazorPagesMovie.Pages.Movies
                 movies.AsNoTracking(), pageIndex ?? 1, pageSize);
 
             Genres = new SelectList(await genreQuery.ToListAsync());
+            SortOptions = new SelectList(new List<string>
+            {
+                "Title (asc)",
+                "Title (desc)",
+                "Price (asc)",
+                "Price (desc)",
+                "Release date (asc)",
+                "Release date (desc)",
+                "Rating (asc)",
+                "Rating (desc)",
+            });
             
             //int deb = 0;
         }

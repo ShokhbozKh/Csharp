@@ -25,10 +25,10 @@
 <h5>Movies</h5>
 
 <form method="post">
-    <select asp-for="ID" asp-items="@Model.MoviesSL" size="@Model.Movies.Count">
+    <select asp-for="SelectedMovieId" asp-items="Model.MoviesSL" size="@Model.Movies.Count">
     </select>
     <br />
-    <button class="btn btn-success mt-2"
+    <button class="btn btn-outline-info mt-2"
             type="submit">
         Navigate
     </button>
@@ -38,9 +38,9 @@
 @*asp-page="../Movies/Details" asp-route-id="@Model?.SelectedMovie?.ID"*@
 
 <div class="mt-lg-5">
-    <a class="btn btn-outline-warning"
+    <a class="btn btn-warning"
        asp-page="./Edit" asp-route-id="@Model.Genre.GenreId">Edit</a> |
-    <a class="btn btn-outline-info"
+    <a class="btn btn-primary"
        asp-page="./Index">Back to List</a>
 </div>
 
