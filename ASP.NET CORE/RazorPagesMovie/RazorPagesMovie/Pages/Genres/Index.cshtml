@@ -5,22 +5,18 @@
     ViewData["Title"] = "Genres";
 }
 
-<form>
-    <p>
-        <select asp-for="SortQuery" asp-items="Model.SortOptions">
-        </select>
-        <button class="btn btn-outline-success my-2 my-sm-0 ml-lg-4" type="submit">Sort</button>
-    </p>
-</form>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Genre[0].GenreTitle)
+                <a asp-page="./Index" asp-route-sortBy="@Model.TitleSort">
+                    @Html.DisplayNameFor(model => model.Genre[0].GenreTitle)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre[0].Movies)
+                <a asp-page="./Index" asp-route-sortBy="@Model.NumOfMoviesSort">
+                    @Html.DisplayNameFor(model => model.Genre[0].Movies)
+                </a>
             </th>
             <th></th>
         </tr>

@@ -19,39 +19,33 @@ namespace RazorPagesMovie.Pages.Genres
             _context = context;
         }
 
+        // Sorting
+        public string TitleSort { get; set; }
+        public string NumOfMoviesSort { get; set; }
+
         public IList<Genre> Genre { get;set; }
         public SelectList SortOptions { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SortQuery { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortBy)
         {
-            Genre = await _context.Genre.Include("Movies").ToListAsync();
+            IQueryable<Genre> genres = _context.Genre.Include("Movies");
 
-            List<string> options = new List<string>
+            //int g = 0;
+
+            TitleSort = string.IsNullOrWhiteSpace(sortBy) ? "title_desc" : "";
+            NumOfMoviesSort = sortBy == "movies_desc" ? "movies_asc" : "movies_desc";
+
+            genres = sortBy switch
             {
-                "By name (asc)",
-                "By name (desc)",
-                "By number of movies (asc)",
-                "By number of movies (desc)"
+                "title_desc" => genres.OrderByDescending(g => g.GenreTitle),
+                "movies_asc" => genres.OrderBy(g => g.Movies.Count),
+                "movies_desc" => genres.OrderByDescending(g => g.Movies.Count),
+                _ => genres.OrderBy(g => g.GenreTitle),
             };
 
-            int g = 0;
-
-            if (!string.IsNullOrEmpty(SortQuery))
-            {
-
-                if (SortQuery == "By name (asc)")
-                    Genre = Genre.OrderBy(s => s.GenreTitle).ToList();
-                else if (SortQuery == "By name (desc)")
-                    Genre = Genre.OrderByDescending(s => s.GenreTitle).ToList();
-                else if (SortQuery == "By number of movies (asc)")
-                    Genre = Genre.OrderBy(s => s.Movies.Count).ToList();
-                else if (SortQuery == "By number of movies (desc)")
-                    Genre = Genre.OrderByDescending(s => s.Movies.Count).ToList();
-            }
-
-            SortOptions = new SelectList(options);
+            Genre = await genres.ToListAsync();
         }
     }
 }

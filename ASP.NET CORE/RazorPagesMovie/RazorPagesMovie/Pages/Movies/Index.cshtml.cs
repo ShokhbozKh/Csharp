@@ -39,7 +39,20 @@ namespace RazorPagesMovie.Pages.Movies
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
         public PaginatedList<Movie> Movies { get; set; }
-        public SelectList SortOptions { get; set; }
+        public SelectList SortOptions 
+        {
+            get => new SelectList(new List<string>
+            {
+                "Title (asc)",
+                "Title (desc)",
+                "Price (asc)",
+                "Price (desc)",
+                "Rating (asc)",
+                "Rating (desc)",
+                "Release date (asc)",
+                "Release date (desc)",
+            });
+        }
         public int MoviesCount { get; set; }
 
         public async Task OnGetAsync(string sortBy, string searchString, 
@@ -91,17 +104,6 @@ namespace RazorPagesMovie.Pages.Movies
                 movies.AsNoTracking(), pageIndex ?? 1, pageSize);
 
             Genres = new SelectList(await genreQuery.ToListAsync());
-            SortOptions = new SelectList(new List<string>
-            {
-                "Title (asc)",
-                "Title (desc)",
-                "Price (asc)",
-                "Price (desc)",
-                "Release date (asc)",
-                "Release date (desc)",
-                "Rating (asc)",
-                "Rating (desc)",
-            });
             
             //int deb = 0;
         }
