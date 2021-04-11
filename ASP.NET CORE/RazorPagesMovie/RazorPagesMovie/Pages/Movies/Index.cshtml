@@ -7,16 +7,17 @@
 }
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
 </p>
 
 <form class="form-inline my-2 my-lg-0">
     <p>
-        Filter by
-        <select class="mr-4" name="genreTitle" asp-for="CurrentFilter" asp-items="Model.Genres">
+        Genre
+        <select class="form-control form-control-sm mb-4 mr-4 mt-4" aria-label=".form-select-lg example"
+                name="genreTitle" 
+                asp-for="CurrentFilter" asp-items="Model.Genres">
             <option value="">All</option>
         </select>
-        Search by title
         <input class="form-control mr-sm-2" type="search" 
                placeholder="Search" aria-label="Search"
                value="@Model.CurrentSearch">
@@ -24,7 +25,7 @@
     </p>
 </form>
 
-<p>Number of movies found: @Model.MoviesCount</p>
+<p style="font-family: Garamond; font-size: 20px;">Number of movies found: @Model.MoviesCount</p>
 
 <div class="card-columns">
     @foreach (var movie in Model.Movies)
