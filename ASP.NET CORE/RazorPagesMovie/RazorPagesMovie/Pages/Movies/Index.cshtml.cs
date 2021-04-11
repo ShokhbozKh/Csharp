@@ -78,7 +78,8 @@ namespace RazorPagesMovie.Pages.Movies
             // Filter by search input
             if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(m => m.Title.Contains(searchString));
+                movies = movies.Where(m => m.Title.Contains(searchString) 
+                || m.Description.Contains(searchString));
             }
 
             MoviesCount = movies.ToList().Count;

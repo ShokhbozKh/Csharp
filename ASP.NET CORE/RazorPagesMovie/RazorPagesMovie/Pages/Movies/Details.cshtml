@@ -5,10 +5,9 @@
     ViewData["Title"] = "Movie Details";
 }
 
-<h1>Details</h1>
+<h1>Movie Details</h1>
 
 <div>
-    <h4>Movie</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -44,6 +43,12 @@
         </dd>
     </dl>
 </div>
+
+<h6>Description</h6>
+<hr />
+<p class="font-weight-lighter font-italic">
+    @Model.Movie.Description
+</p>
 
 <div>
     <a class="btn btn-warning"
