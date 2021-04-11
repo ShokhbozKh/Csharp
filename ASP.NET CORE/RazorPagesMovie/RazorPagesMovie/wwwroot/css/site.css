@@ -8,6 +8,8 @@
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+
+/* movie card start*/
 .card-columns .card {
     width: 350px;
     height: 380px;
@@ -45,6 +47,7 @@ for details on configuring this project to bundle and minify static web assets. 
     box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
 }
 
+/* movie card end*/
 
 a.navbar-brand {
     white-space: normal;
@@ -55,9 +58,6 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-    color: #0366d6;
-}
 
 .btn-info {
     box-shadow: 0 5px #1d3d26;
@@ -68,8 +68,7 @@ a {
   transform: translateY(4px);
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
+.nav-pills .show > .nav-link {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
@@ -135,17 +134,41 @@ ul {
     line-height: 60px; /* Vertically center the text there */
     font-family: 'Nunito', sans-serif;
 }
-/*Backgrounds*/
+
+/* navbar start */
+
+/* Backgrounds */
 .bg-navbar {
-    background: -webkit-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
+    background: -webkit-linear-gradient(110deg, #02123f 60%, #252152 60%);
     background: -o-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
     background: -moz-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
     background: linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
 }
 
 .bg-footer {
-    background: -webkit-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: -o-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
+    background: -webkit-linear-gradient(110deg, #02123f 60%, #252152 60%);
+    background: -o-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
+    background: -moz-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
+    background: linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
+}
+
+/* links */
+/* change the brand and text color */
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 20px;
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #48556b;
+}
+
+.navbar-nav .nav-item .nav-link:active {
+    color: #48556b;
+}
+
+.navbar-nav .nav-item .active-link {
+    font-size: 20px;
+    color: #48556b;
 }
