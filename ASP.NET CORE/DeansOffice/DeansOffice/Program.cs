@@ -27,7 +27,9 @@ namespace DeansOffice
             try
             {
                 var context = services.GetRequiredService<SchoolContext>();
-                Seed.Initialize(context);
+                var logger = services.GetRequiredService<ILogger<SchoolContext>>();
+
+                Seed.Initialize(context, logger);
             }
             catch (Exception ex)
             {
