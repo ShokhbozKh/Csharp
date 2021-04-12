@@ -5,6 +5,11 @@ namespace DeansOffice.Models
 {
     public class Student
     {
+        public Student()
+        {
+            Enrollments = new List<Enrollment>();
+        }
+
         public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

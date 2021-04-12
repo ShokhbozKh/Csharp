@@ -60,7 +60,7 @@ namespace DeansOffice.Data
                     new Enrollment{StudentId=3,CourseId=5},
                     new Enrollment{StudentId=4,CourseId=1},
                     new Enrollment{StudentId=4,CourseId=4,Grade=Grade.F},
-                    new Enrollment{StudentId=5,CourseId=46,Grade=Grade.C},
+                    new Enrollment{StudentId=5,CourseId=4,Grade=Grade.C},
                     new Enrollment{StudentId=6,CourseId=7},
                     new Enrollment{StudentId=7,CourseId=3,Grade=Grade.A},
                 };
