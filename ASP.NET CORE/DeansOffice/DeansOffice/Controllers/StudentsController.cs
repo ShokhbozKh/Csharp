@@ -57,6 +57,8 @@ namespace DeansOffice.Controllers
 
             int pageSize = 5;
 
+            // Set number of students found after filter
+
             return View(await PaginatedList<Student>
                 .CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
