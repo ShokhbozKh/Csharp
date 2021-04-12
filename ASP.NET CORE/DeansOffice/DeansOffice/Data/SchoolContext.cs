@@ -50,7 +50,7 @@ namespace DeansOffice.Data
             modelBuilder.Entity<Course>()
                 .Property(c => c.Credits).IsRequired();
             modelBuilder.Entity<Course>()
-                .Property(c => c.Price).HasColumnType("money").HasPrecision(5, 2).IsRequired();
+                .Property(c => c.Price).HasColumnType("decimal").HasPrecision(18, 2).IsRequired();
             modelBuilder.Entity<Course>()
                 .HasOne(c => c.Department)
                 .WithMany(d => d.Courses)
@@ -63,9 +63,25 @@ namespace DeansOffice.Data
                 .WithOne(ca => ca.Course);
             modelBuilder.Entity<Course>();
 
+            // Instructor
+            modelBuilder.Entity<Instructor>()
+                .Property(i => i.FirstName).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Instructor>()
+                .Property(i => i.LastName).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Instructor>()
+                .Property(i => i.HireDate).HasColumnType("date").IsRequired();
+            modelBuilder.Entity<Instructor>()
+                .Ignore(i => i.FullName);
+            modelBuilder.Entity<Instructor>()
+                .HasMany(i => i.CourseAssignments)
+                .WithOne(ca => ca.Instructor);
+            modelBuilder.Entity<Instructor>()
+                .HasOne(i => i.OfficeAssignment)
+                .WithOne(oa => oa.Instructor);
+
             // Course Assignment
             modelBuilder.Entity<CourseAssignment>()
-                .HasKey(pk => new { pk.CourseId, pk.InstructorId });
+                .HasKey(c => new { c.CourseId, c.InstructorId });
             modelBuilder.Entity<CourseAssignment>()
                 .HasOne(ca => ca.Course)
                 .WithMany(c => c.CourseAssignments)
@@ -79,7 +95,7 @@ namespace DeansOffice.Data
             modelBuilder.Entity<Department>()
                 .Property(d => d.Name).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Department>()
-                .Property(d => d.Budget).HasColumnType<decimal>("money").HasPrecision(5, 2).IsRequired();
+                .Property(d => d.Budget).HasColumnType<decimal>("decimal").HasPrecision(18, 2).IsRequired();
             modelBuilder.Entity<Department>()
                 .Property(d => d.StartDate).HasColumnType("Date").IsRequired();
             modelBuilder.Entity<Department>()
@@ -105,16 +121,6 @@ namespace DeansOffice.Data
             modelBuilder.Entity<Enrollment>()
                 .Property(e => e.Grade).IsRequired(false);
 
-            // Course Assignment
-            modelBuilder.Entity<CourseAssignment>()
-                .HasOne(ca => ca.Course)
-                .WithMany(c => c.CourseAssignments)
-                .HasForeignKey(ca => ca.CourseId);
-            modelBuilder.Entity<CourseAssignment>()
-                .HasOne(ca => ca.Instructor)
-                .WithMany(i => i.CourseAssignments)
-                .HasForeignKey(ca => ca.InstructorId);
-
             // Office Assignment
             modelBuilder.Entity<OfficeAssignment>()
                 .HasKey(oa => oa.InstructorId);
@@ -122,7 +128,7 @@ namespace DeansOffice.Data
                 .Property(oa => oa.Location).HasMaxLength(250).IsRequired();
             modelBuilder.Entity<OfficeAssignment>()
                 .HasOne(oa => oa.Instructor)
-                .WithOne(i => i.OfficeAssignment);                
+                .WithOne(i => i.OfficeAssignment);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -68,16 +68,16 @@ namespace DeansOffice.Data
 
                 var departments = new Department[]
                 {
-                new Department { Name = "English",     Budget = 350000,
+                new Department { Name = "English",     Budget = 3500,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorId  = instructors.Single( i => i.LastName == "Abercrombie").InstructorId },
-                new Department { Name = "Mathematics", Budget = 100000,
+                new Department { Name = "Mathematics", Budget = 1000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorId  = instructors.Single( i => i.LastName == "Fakhouri").InstructorId },
-                new Department { Name = "Engineering", Budget = 350000,
+                new Department { Name = "Engineering", Budget = 3500,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorId  = instructors.Single( i => i.LastName == "Harui").InstructorId },
-                new Department { Name = "Economics",   Budget = 100000,
+                new Department { Name = "Economics",   Budget = 1000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorId  = instructors.Single( i => i.LastName == "Kapoor").InstructorId }
                 };
@@ -90,25 +90,25 @@ namespace DeansOffice.Data
 
                 var courses = new Course[]
                 {
-                new Course {CourseId = 1050, Title = "Chemistry",      Credits = 3,
+                new Course {CourseCode = "1050", Title = "Chemistry", Credits = 3, Price = 350,
                     DepartmentId = departments.Single( s => s.Name == "Engineering").DepartmentId
                 },
-                new Course {CourseId = 4022, Title = "Microeconomics", Credits = 3,
+                new Course {CourseCode = "4022", Title = "Microeconomics", Credits = 3, Price = 250,
                     DepartmentId = departments.Single( s => s.Name == "Economics").DepartmentId
                 },
-                new Course {CourseId = 4041, Title = "Macroeconomics", Credits = 3,
+                new Course {CourseCode = "4041", Title = "Macroeconomics", Credits = 3, Price = 520,
                     DepartmentId = departments.Single( s => s.Name == "Economics").DepartmentId
                 },
-                new Course {CourseId = 1045, Title = "Calculus",       Credits = 4,
+                new Course {CourseCode = "1045", Title = "Calculus",       Credits = 4, Price = 200,
                     DepartmentId = departments.Single( s => s.Name == "Mathematics").DepartmentId
                 },
-                new Course {CourseId = 3141, Title = "Trigonometry",   Credits = 4,
+                new Course {CourseCode = "3141", Title = "Trigonometry",   Credits = 4, Price = 330,
                     DepartmentId = departments.Single( s => s.Name == "Mathematics").DepartmentId
                 },
-                new Course {CourseId = 2021, Title = "Composition",    Credits = 3,
+                new Course {CourseCode = "2021", Title = "Composition",    Credits = 3, Price = 400,
                     DepartmentId = departments.Single( s => s.Name == "English").DepartmentId
                 },
-                new Course {CourseId = 2042, Title = "Literature",     Credits = 4,
+                new Course {CourseCode = "2042", Title = "Literature",     Credits = 4, Price = 250,
                     DepartmentId = departments.Single( s => s.Name == "English").DepartmentId
                 },
                 };
@@ -135,7 +135,8 @@ namespace DeansOffice.Data
                 foreach (OfficeAssignment o in officeAssignments)
                 {
                     context.OfficeAssignments.Add(o);
-                }
+                }                
+
                 context.SaveChanges();
 
                 var courseInstructors = new CourseAssignment[]
@@ -178,6 +179,7 @@ namespace DeansOffice.Data
                 {
                     context.CourseAssignments.Add(ci);
                 }
+
                 context.SaveChanges();
 
                 var enrollments = new Enrollment[]

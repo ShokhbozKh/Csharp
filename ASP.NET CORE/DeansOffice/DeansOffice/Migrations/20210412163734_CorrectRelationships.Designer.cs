@@ -4,14 +4,16 @@ using DeansOffice.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DeansOffice.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20210412163734_CorrectRelationships")]
+    partial class CorrectRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,15 +55,15 @@ namespace DeansOffice.Migrations
 
             modelBuilder.Entity("DeansOffice.Models.CourseAssignment", b =>
                 {
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<int>("InstructorId")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "InstructorId");
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("InstructorId");
+                    b.HasKey("InstructorId");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("CourseAssignment");
                 });
