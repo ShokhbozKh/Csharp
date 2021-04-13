@@ -35,7 +35,7 @@
             <table class="table">
                 <tr>
                     <th>Course Title</th>
-                    <th>Grade</th>
+                    <th>Grade</th>                    
                 </tr>
                 @foreach (var item in Model.Enrollments)
                 {
@@ -51,11 +51,13 @@
                     </tr>
                 }
             </table>
+            <a class="btn btn-outline-primary float-sm-right" 
+               asp-controller="Enrollments" asp-action="Create">Enroll</a>
         </dd>
     </dl>
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a> |
+    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

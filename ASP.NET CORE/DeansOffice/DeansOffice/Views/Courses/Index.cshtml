@@ -4,11 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Course</h1>
+<h1>Courses</h1>
 
-<p>
-    <a class="btn btn-primary mt-4" asp-action="Create">Add Course</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -23,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CourseCode)
+            </th>
+            <th>
+                Enrolled students
             </th>
             <th></th>
         </tr>
@@ -43,11 +43,18 @@
                 @Html.DisplayFor(modelItem => item.CourseCode)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                2
+            </td>
+            <td>
+                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.CourseId">Edit</a>
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.CourseId">Details</a>
+                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<p>
+    <a class="btn btn-primary mt-4" asp-action="Create">Add Course</a>
+</p>

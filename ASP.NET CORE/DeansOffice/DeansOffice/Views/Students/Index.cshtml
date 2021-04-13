@@ -6,12 +6,8 @@
 
 <h1>Students</h1>
 
-<p>
-    <a class="btn btn-primary mt-4" asp-action="Create">Add Student</a>
-</p>
-
 <form asp-action="Index" method="get">
-    <div class="form-actions no-color">
+    <div class="form-actions no-color mt-4">
         <p>
             Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentSearch"]"/>
             <input type="submit" value="Search" class="btn btn-outline-success" /> |
@@ -71,16 +67,20 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a class="btn btn-secondary @prevDisabled"
-   asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-currentSearch="@ViewData["CurrentSearch"]"
-   asp-route-pageNumber="@(Model.PageIndex-1)">
-    Previous
-</a>
-<a class="btn btn-secondary @nextDisabled"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-currentSearch="@ViewData["CurrentSearch"]"
-   asp-route-pageNumber="@(Model.PageIndex+1)">
-    Next
-</a>
+<a class="btn btn-primary" asp-action="Create">Add Student</a>
+
+<div class="float-sm-right">
+    <a class="btn btn-secondary @prevDisabled"
+       asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-currentSearch="@ViewData["CurrentSearch"]"
+       asp-route-pageNumber="@(Model.PageIndex-1)">
+        Previous
+    </a>
+    <a class="btn btn-secondary @nextDisabled"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-currentSearch="@ViewData["CurrentSearch"]"
+       asp-route-pageNumber="@(Model.PageIndex+1)">
+        Next
+    </a>
+</div>
