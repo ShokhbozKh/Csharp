@@ -13,7 +13,7 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentSearch"]" />
+            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentSearch"]"/>
             <input type="submit" value="Search" class="btn btn-outline-success" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>
@@ -26,17 +26,17 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["FNameSortParam"]" asp-route-currentSort="@ViewData["CurrentSort"]">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FNameSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
                     FirstName
                 </a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LNameSortParam"]" asp-route-currentSort="@ViewData["CurrentSort"]">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LNameSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
                     LastName
                 </a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]" asp-route-currentSort="@ViewData["CurrentSort"]">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
                     EnrollmentDate
                 </a>
             </th>
@@ -74,13 +74,13 @@
 <a class="btn btn-secondary @prevDisabled"
    asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-searchString="@ViewData["CurrentSearch"]"
+   asp-route-currentSearch="@ViewData["CurrentSearch"]"
    asp-route-pageNumber="@(Model.PageIndex-1)">
     Previous
 </a>
 <a class="btn btn-secondary @nextDisabled"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-searchString="@ViewData["CurrentSearch"]"
+   asp-route-currentSearch="@ViewData["CurrentSearch"]"
    asp-route-pageNumber="@(Model.PageIndex+1)">
     Next
 </a>

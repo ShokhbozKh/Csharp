@@ -19,23 +19,22 @@ namespace DeansOffice.Controllers
 
         // GET: Students
         public async Task<IActionResult> Index(string sortOrder, string searchString,
-            string currentSort, int? pageNumber)
+            string currentSearch, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentSearch"] = searchString;
             ViewData["FNameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["LNameSortParam"] = sortOrder == "lname" ? "lname_desc" : "lname";
             ViewData["DateSortParam"] = sortOrder == "date" ? "date_desc" : "date";
 
-            if(searchString != null)
+            if (searchString != null)
             {
                 pageNumber = 1;
             }
             else
             {
-                searchString = currentSort;
+                searchString = currentSearch;
             }
-
-            ViewData["CurrentSearch"] = searchString;
 
             IQueryable<Student> students = _context.Students;
 
@@ -55,7 +54,7 @@ namespace DeansOffice.Controllers
                 _ => students.OrderBy(s => s.FirstName)
             };
 
-            int pageSize = 5;
+            int pageSize = 10;
 
             // Set number of students found after filter
 
