@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.CourseCode)
             </td>
             <td>
-                2
+                @Html.DisplayFor(modelItem => item.Enrollments.Count)
             </td>
             <td>
                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.CourseId">Edit</a>

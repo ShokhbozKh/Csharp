@@ -14,7 +14,7 @@ namespace DeansOffice.Models
         public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get; set; }
+        public string FullName { get => $"{FirstName} {LastName}"; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime EnrollmentDate { get; set; }

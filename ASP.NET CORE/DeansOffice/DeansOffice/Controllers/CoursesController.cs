@@ -19,7 +19,11 @@ namespace DeansOffice.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Courses.ToListAsync());
+            var courses = _context.Courses
+                .AsNoTracking()
+                .Include(c => c.Enrollments);
+
+            return View(await courses.ToListAsync());
         }
 
         // GET: Courses/Details/5
@@ -31,7 +35,12 @@ namespace DeansOffice.Controllers
             }
 
             var course = await _context.Courses
+                .Include(c => c.Department)
+                .Include(c => c.Enrollments)
+                .ThenInclude(e => e.Student)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.CourseId == id);
+            
             if (course == null)
             {
                 return NotFound();
