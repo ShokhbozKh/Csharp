@@ -4,7 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Courses</h1>
+<h3>Courses</h3>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color mt-4">
+        <p>
+            Find by Title or Code: <input type="text" name="SearchString" value="@ViewData["CurrentSearch"]"/>
+            <input type="submit" value="Search" class="btn btn-outline-success" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>

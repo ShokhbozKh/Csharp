@@ -21,12 +21,16 @@ namespace DeansOffice.Controllers
         public async Task<IActionResult> Index(string sortOrder, string searchString,
             string currentSearch, int? pageNumber)
         {
+            // Save current sorting, filtering queries for navigation,
+            // in order not to lose queries on paagination
             ViewData["CurrentSort"] = sortOrder;
             ViewData["CurrentSearch"] = searchString;
             ViewData["FNameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["LNameSortParam"] = sortOrder == "lname" ? "lname_desc" : "lname";
             ViewData["DateSortParam"] = sortOrder == "date" ? "date_desc" : "date";
 
+            // If there is a new search, set the page to 1,
+            // During paagination the search string is passed to currentSearch
             if (searchString != null)
             {
                 pageNumber = 1;

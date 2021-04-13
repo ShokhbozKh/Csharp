@@ -17,9 +17,10 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentSearch)
         {
             ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentSearch"] = searchString;
             ViewData["TitleSort"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["CreditsSort"] = sortOrder == "credits_asc" ? "credits_desc" : "credits_asc";
             ViewData["PriceSort"] = sortOrder == "price_asc" ? "price_desc" : "price_asc";
@@ -29,6 +30,11 @@ namespace DeansOffice.Controllers
             IQueryable<Course> courses = _context.Courses
                 .AsNoTracking()
                 .Include(c => c.Enrollments);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(c => c.Title.Contains(searchString) || c.CourseCode == searchString);
+            }
 
             courses = sortOrder switch
             {
