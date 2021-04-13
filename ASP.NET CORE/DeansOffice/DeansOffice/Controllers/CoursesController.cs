@@ -17,11 +17,32 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var courses = _context.Courses
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["TitleSort"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["CreditsSort"] = sortOrder == "credits_asc" ? "credits_desc" : "credits_asc";
+            ViewData["PriceSort"] = sortOrder == "price_asc" ? "price_desc" : "price_asc";
+            ViewData["CourseCodeSort"] = sortOrder == "courseCode_asc" ? "courseCode_desc" : "courseCode_asc";
+            ViewData["EnrolledStudentsSort"] = sortOrder == "students_asc" ? "students_desc" : "students_asc";
+
+            IQueryable<Course> courses = _context.Courses
                 .AsNoTracking()
                 .Include(c => c.Enrollments);
+
+            courses = sortOrder switch
+            {
+                "title_desc" => courses.OrderByDescending(c => c.Title),
+                "credits_asc" => courses.OrderBy(c => c.Credits),
+                "credits_desc" => courses.OrderByDescending(c => c.Credits),
+                "price_asc" => courses.OrderBy(c => c.Price),
+                "price_desc" => courses.OrderByDescending(c => c.Price),
+                "courseCode_asc" => courses.OrderBy(c => c.CourseCode),
+                "courseCode_desc" => courses.OrderByDescending(c => c.CourseCode),
+                "students_asc" => courses.OrderBy(c => c.Enrollments.Count),
+                "students_desc" => courses.OrderByDescending(c => c.Enrollments.Count),
+                _ => courses.OrderBy(c => c.Title)
+            };
 
             return View(await courses.ToListAsync());
         }
