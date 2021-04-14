@@ -20,9 +20,32 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Instructors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string sortBy)
         {
-            return View(await _context.Instructors.ToListAsync());
+            ViewData["CurrentSearch"] = searchString;
+            ViewData["FnameSort"] = string.IsNullOrEmpty(sortBy) ? "fname_desc" : "";
+            ViewData["LnameSort"] = sortBy == "lname" ? "lname_desc" : "lname";
+            ViewData["HiredateSort"] = sortBy == "hiredate" ? "hiredate_desc" : "hiredate";
+
+            var instructors = _context.Instructors.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                instructors = instructors.Where(s => s.FirstName.Contains(searchString) 
+                || s.LastName.Contains(searchString));
+            }
+
+            instructors = sortBy switch
+            {
+                "fname_desc" => instructors.OrderByDescending(s => s.FirstName),
+                "lname" => instructors.OrderBy(s => s.LastName),
+                "lname_desc" => instructors.OrderByDescending(s => s.LastName),
+                "hiredate" => instructors.OrderBy(s => s.HireDate),
+                "hiredate_desc" => instructors.OrderByDescending(s => s.HireDate),
+                _ => instructors.OrderBy(s => s.FirstName)
+            };
+
+            return View(await instructors.ToListAsync());
         }
 
         // GET: Instructors/Details/5
@@ -50,8 +73,6 @@ namespace DeansOffice.Controllers
         }
 
         // POST: Instructors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("InstructorId,FirstName,LastName,HireDate")] Instructor instructor)
@@ -81,9 +102,7 @@ namespace DeansOffice.Controllers
             return View(instructor);
         }
 
-        // POST: Instructors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Instructors/Edit/5        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("InstructorId,FirstName,LastName,HireDate")] Instructor instructor)

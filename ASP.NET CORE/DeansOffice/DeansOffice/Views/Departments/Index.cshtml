@@ -6,20 +6,32 @@
 
 <h3>Departments</h3>
 
-<table class="table">
+<table class="table mt-lg-4">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index"
+                   asp-route-sortBy="@ViewData["NameSort"]">
+                    @Html.DisplayNameFor(model => model.Name)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Budget)
+                <a asp-action="Index"
+                   asp-route-sortBy="@ViewData["BudgetSort"]">
+                    @Html.DisplayNameFor(model => model.Budget)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                <a asp-action="Index"
+                   asp-route-sortBy="@ViewData["DateSort"]">
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </a>        
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Administrator)
+                <a asp-action="Index"
+                   asp-route-sortBy="@ViewData["AdminSort"]">
+                    @Html.DisplayNameFor(model => model.Administrator)
+                </a>
             </th>
             <th></th>
         </tr>
@@ -37,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Administrator.FirstName)
+                @Html.DisplayFor(modelItem => item.Administrator.FullName)
             </td>
             <td>
                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.DepartmentId">Edit</a>

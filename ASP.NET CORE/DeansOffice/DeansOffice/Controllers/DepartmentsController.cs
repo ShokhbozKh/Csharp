@@ -18,10 +18,32 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortBy)
         {
-            var schoolContext = _context.Departments.Include(d => d.Administrator);
-            return View(await schoolContext.ToListAsync());
+            ViewData["NameSort"] = string.IsNullOrEmpty(sortBy) ? "name_desc" : "";
+            ViewData["BudgetSort"] = sortBy == "budget" ? "budget_desc" : "budget";
+            ViewData["DateSort"] = sortBy == "date" ? "date_desc" : "date";
+            ViewData["AdminSort"] = sortBy == "admin" ? "admin_desc" : "admin";
+
+            var departments = _context.Departments
+                .Include(d => d.Administrator)
+                .AsNoTracking();
+
+            departments = sortBy switch
+            {
+                "name_desc" => departments.OrderByDescending(d => d.Name),
+                "budget" => departments.OrderBy(d => d.Budget),
+                "budget_desc" => departments.OrderByDescending(d => d.Budget),
+                "date" => departments.OrderBy(d => d.StartDate),
+                "date_desc" => departments.OrderByDescending(d => d.StartDate),
+                "admin" => departments.OrderBy(d => d.Administrator.FirstName)
+                    .ThenBy(d => d.Administrator.LastName),
+                "admin_desc" => departments.OrderByDescending(d => d.Administrator.FirstName)
+                    .ThenBy(d => d.Administrator.LastName),
+                _ => departments.OrderBy(d => d.Name)
+            };
+
+            return View(await departments.ToListAsync());
         }
 
         // GET: Departments/Details/5

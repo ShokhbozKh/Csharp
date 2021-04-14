@@ -9,9 +9,16 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color mt-4">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentSearch"]"/>
-            <input type="submit" value="Search" class="btn btn-outline-success" /> |
-            <a asp-action="Index">Back to Full List</a>
+            <div class="d-flex">
+                <div class="form-outline search-input">
+                    <input type="text" class="form-control input" placeholder="Search student"
+                           name="SearchString" value="@ViewData["CurrentSearch"]" />
+                </div>
+                <button type="submit" value="Search" class="btn btn-outline-dark ml-2 mr-2">
+                    <i class="fa fa-search"></i>
+                </button>
+                <a class="btn btn-outline-dark" asp-action="Index"> <i class="fa fa-sync-alt"></i> </a>
+            </div>
         </p>
     </div>
 </form>
@@ -22,17 +29,23 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["FNameSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
+                <a asp-action="Index" 
+                   asp-route-sortOrder="@ViewData["FNameSortParam"]" 
+                   asp-route-searchString="@ViewData["CurrentSearch"]">
                     FirstName
                 </a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LNameSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
+                <a asp-action="Index" 
+                   asp-route-sortOrder="@ViewData["LNameSortParam"]" 
+                   asp-route-searchString="@ViewData["CurrentSearch"]">
                     LastName
                 </a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]" asp-route-currentSearch="@ViewData["CurrentSearch"]">
+                <a asp-action="Index" 
+                   asp-route-sortOrder="@ViewData["DateSortParam"]" 
+                   asp-route-searchString="@ViewData["CurrentSearch"]">
                     EnrollmentDate
                 </a>
             </th>
