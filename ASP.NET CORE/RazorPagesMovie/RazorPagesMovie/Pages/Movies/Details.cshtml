@@ -50,10 +50,10 @@
     @Model.Movie.Description
 </p>
 
-<div>
-    <a class="btn btn-warning"
-       asp-page="./Edit" asp-route-id="@Model.Movie.ID">Edit</a> |
-    <a class="btn btn-danger"
+<div class="mt-md-4">
+    <a class="btn btn-outline-warning"
+       asp-page="./Edit" asp-route-id="@Model.Movie.ID">Edit</a>
+    <a class="btn btn-outline-danger ml-2"
        asp-page="./Delete" asp-route-id="@Model.Movie.ID">Delete</a> 
 </div>
 

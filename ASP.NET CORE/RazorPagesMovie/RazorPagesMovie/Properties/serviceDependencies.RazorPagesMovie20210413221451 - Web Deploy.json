@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/db-server-development/databases/MovieDB",
+      "type": "mssql.azure",
+      "connectionId": "RazorPagesMovieContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

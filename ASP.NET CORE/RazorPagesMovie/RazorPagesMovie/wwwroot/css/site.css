@@ -12,7 +12,7 @@ for details on configuring this project to bundle and minify static web assets. 
 /* movie card start*/
 .card-columns .card {
     width: 350px;
-    height: 380px;
+    height: 400px;
 }
 
 .card-columns .card:hover .card-img {

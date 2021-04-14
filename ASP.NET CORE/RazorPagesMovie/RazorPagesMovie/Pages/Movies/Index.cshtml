@@ -66,20 +66,22 @@
     var nextDisabled = !Model.Movies.HasNextPage ? "disabled" : "";
 }
 
-<a asp-page="./Index"
-   asp-route-sortBy="@Model.CurrentSort"
-   asp-route-genreTitle="@Model.CurrentFilter"
-   asp-route-searchString="@Model.CurrentSearch"
-   asp-route-pageIndex="@(Model.Movies.PageIndex - 1)"
-   class="btn btn-primary @prevDisabled">
-    Previous
-</a>
+<div class="mt-md-4">
+    <a asp-page="./Index"
+       asp-route-sortBy="@Model.CurrentSort"
+       asp-route-genreTitle="@Model.CurrentFilter"
+       asp-route-searchString="@Model.CurrentSearch"
+       asp-route-pageIndex="@(Model.Movies.PageIndex - 1)"
+       class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
 
-<a asp-page="./Index"
-   asp-route-sortBy="@Model.CurrentSort"
-   asp-route-genreTitle="@Model.CurrentFilter"
-   asp-route-searchString="@Model.CurrentSearch"
-   asp-route-pageIndex="@(Model.Movies.PageIndex + 1)"
-   class="btn btn-primary @nextDisabled">
-    Next
-</a>
+    <a asp-page="./Index"
+       asp-route-sortBy="@Model.CurrentSort"
+       asp-route-genreTitle="@Model.CurrentFilter"
+       asp-route-searchString="@Model.CurrentSearch"
+       asp-route-pageIndex="@(Model.Movies.PageIndex + 1)"
+       class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+</div>
