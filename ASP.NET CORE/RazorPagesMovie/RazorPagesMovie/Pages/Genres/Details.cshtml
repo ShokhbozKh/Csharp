@@ -39,9 +39,9 @@
 @*asp-page="../Movies/Details" asp-route-id="@Model?.SelectedMovie?.ID"*@
 
 <div class="mt-lg-5">
-    <a class="btn btn-warning"
-       asp-page="./Edit" asp-route-id="@Model.Genre.GenreId">Edit</a> |
-    <a class="btn btn-primary"
+    <a class="btn btn-outline-warning"
+       asp-page="./Edit" asp-route-id="@Model.Genre.GenreId">Edit</a>
+    <a class="btn btn-primary ml-2"
        asp-page="./Index">Back to List</a>
 </div>
 

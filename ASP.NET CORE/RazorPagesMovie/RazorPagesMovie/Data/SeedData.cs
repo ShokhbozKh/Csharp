@@ -48,7 +48,7 @@ namespace RazorPagesMovie.Data
                         ReleaseDate = GetRandomDate(),
                         Price = GetRandomPrice(5.5, 30.5),
                         Rating = GetRandomRating(),
-                        Description = faker.Lorem.Sentence(20, 100),
+                        Description = faker.Lorem.Sentence(500, 1000),
                         Image = GetRandomImage(),
                         GenreId = GetRandomGenreId()
                     }
@@ -80,7 +80,13 @@ namespace RazorPagesMovie.Data
                 "Chocolat", "The Cook, the Thief, His Wife & Her Lover", "Cook Up a Storm", "Cooking with Stella",
                 "Dinner Rush", "Eat Drink Man Woman", "Estômago", "The God of Cookery", "Le Grand Chef", "Le Grand Chef 2: Kimchi Battle",
                 "La Grande Bouffe", "Gulabjaam (2018)", "Ham and Eggs", "Haute Cuisine", "The Hundred-Foot Journey",
-                "Jiro Dreams of Sushi", "Julie & Julia", "Just Desserts", "Krazy Kat & Ignatz Mouse Discuss the Letter 'G'"
+                "Jiro Dreams of Sushi", "Julie & Julia", "Just Desserts", "Krazy Kat & Ignatz Mouse Discuss the Letter 'G'",
+                "The Seven Samurai", "Bonnie and Clyde", "Reservoir Dogs", "Airplane", "Pan's Labyrinth", "Doctor Zhivago",
+                "The Deer Hunter", "Close Encounters of the Third Kind", "Rocky", "Memento", "Braveheart", "Slumdog Millionaire",
+                "The Lord of the Rings: The Return of the King", "Beauty and the Beast", "Seven", "Inception", "Die Hard",
+                "The Lord of the Rings: The Fellowship of the Ring", "Amadeus", "Amadeus", "On the Waterfront", "Wall-E",
+                "12 Angry Men", "Ghostbusters", "Brokeback Mountain", "The Bridge on the River Kwai", "Blazing Saddles",
+                "All the President's Men", "Young Frankenstein", "Almost Famous", "Vertigo", "Gladiator", "Monty Python and The Holy Grail",
             };
         }
 
@@ -133,7 +139,14 @@ namespace RazorPagesMovie.Data
 
         private static string GetRandomImage()
         {
-            return imageList.ElementAt(random.Next(0, imageList.Count));
+            // Get random image in range of the list
+            int index = random.Next(0, imageList.Count);
+            string image = imageList.ElementAt(index);
+
+            // remove the image index in order to avoid duplicates
+            imageList.RemoveAt(index);
+            
+            return image;
         }
 
         private static List<string> GetMovieImages(IWebHostEnvironment hostEnvironment)
