@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeansOffice.Data;
 using DeansOffice.Models;
+using DeansOffice.Models.ViewModels;
 
 namespace DeansOffice.Controllers
 {
@@ -27,7 +28,13 @@ namespace DeansOffice.Controllers
             ViewData["LnameSort"] = sortBy == "lname" ? "lname_desc" : "lname";
             ViewData["HiredateSort"] = sortBy == "hiredate" ? "hiredate_desc" : "hiredate";
 
-            var instructors = _context.Instructors.AsNoTracking();
+            var instructors = _context.Instructors.AsNoTracking().Select(s => new InstructorViewModel
+            {
+                InstructorId = s.InstructorId,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                HireDate = s.HireDate
+            });
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -58,6 +65,7 @@ namespace DeansOffice.Controllers
 
             var instructor = await _context.Instructors
                 .FirstOrDefaultAsync(m => m.InstructorId == id);
+
             if (instructor == null)
             {
                 return NotFound();

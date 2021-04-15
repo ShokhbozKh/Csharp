@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeansOffice.Models.Instructor>
+﻿@model IEnumerable<DeansOffice.Models.ViewModels.InstructorViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -64,8 +64,8 @@
             </td>
             <td>
                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.InstructorId">Edit</a>
-                <a class="btn btn-outline-info ml-4" asp-action="Details" asp-route-id="@item.InstructorId">Details</a>
-                <a class="btn btn-outline-danger ml-4" asp-action="Delete" asp-route-id="@item.InstructorId">Delete</a>
+                <a class="btn btn-outline-info ml-2" asp-action="Details" asp-route-id="@item.InstructorId">Details</a>
+                <a class="btn btn-outline-danger ml-2" asp-action="Delete" asp-route-id="@item.InstructorId">Delete</a>
             </td>
         </tr>
 }
