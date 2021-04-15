@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeansOffice.Data;
 using DeansOffice.Models;
+using DeansOffice.Models.ViewModels;
 
 namespace DeansOffice.Controllers
 {
@@ -45,10 +46,44 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Enrollments/Create
-        public IActionResult Create()
+        public IActionResult Create(int? studentId, int? courseId)
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+            var courses = _context.Courses.AsNoTracking();
+            var students = _context.Students.AsNoTracking();
+
+            if(studentId != null)
+            {
+                students = students.Where(s => s.StudentId == studentId);
+
+                if(students.Any())
+                {
+                    ViewData["Courses"] = new SelectList(courses, "CourseId", "CourseCode");
+                    ViewData["Students"] = new SelectList(students, "StudentId", "FullName");
+
+                    return View();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            if(courseId != null)
+            {
+                courses = courses.Where(c => c.CourseId == courseId);
+
+                if (courses.Any())
+                {
+                    ViewData["Courses"] = new SelectList(courses, "CourseId", "CourseCode");
+                    ViewData["Students"] = new SelectList(students, "FullName", "StudentId");
+                    
+                    return View();
+                }
+            }
+
+            ViewData["Courses"] = new SelectList(courses, "CourseId", "CourseCode");
+            ViewData["Students"] = new SelectList(students, "StudentId", "FullName");
+
             return View();
         }
 
@@ -57,7 +92,7 @@ namespace DeansOffice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnrollmentId,StudentId,CourseId,Grade")] Enrollment enrollment)
+        public async Task<IActionResult> Create([Bind("StudentId,CourseId,Grade,EnrollmentDate")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -65,9 +100,16 @@ namespace DeansOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", enrollment.StudentId);
-            return View(enrollment);
+            return View(new EnrollmentViewModel
+            {
+                CourseId = enrollment.CourseId,
+                StudentId = enrollment.StudentId,
+                Grade = enrollment.Grade,
+                EnrollmentDate = enrollment.EnrollmentDate
+            });
         }
 
         // GET: Enrollments/Edit/5

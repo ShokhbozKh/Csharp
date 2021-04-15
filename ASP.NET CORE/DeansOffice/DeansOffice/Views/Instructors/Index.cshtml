@@ -30,21 +30,21 @@
                 <a asp-action="Index" 
                    asp-route-sortBy="@ViewData["FnameSort"]"
                    asp-route-searchString="@ViewData["CurrentSearch"]">
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.FirstName) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["LnameSort"]"
                    asp-route-searchString="@ViewData["CurrentSearch"]">
-                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.DisplayNameFor(model => model.LastName) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["HiredateSort"]"
                    asp-route-searchString="@ViewData["CurrentSearch"]">
-                    @Html.DisplayNameFor(model => model.HireDate)
+                    @Html.DisplayNameFor(model => model.HireDate) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th></th>

@@ -120,6 +120,8 @@ namespace DeansOffice.Data
                 .HasForeignKey(e => e.CourseId);
             modelBuilder.Entity<Enrollment>()
                 .Property(e => e.Grade).IsRequired(false);
+            modelBuilder.Entity<Enrollment>()
+                .Property(e => e.EnrollmentDate).IsRequired().HasColumnType("date");
 
             // Office Assignment
             modelBuilder.Entity<OfficeAssignment>()

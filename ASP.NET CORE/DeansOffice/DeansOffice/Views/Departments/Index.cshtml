@@ -12,25 +12,25 @@
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["NameSort"]">
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.Name) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["BudgetSort"]">
-                    @Html.DisplayNameFor(model => model.Budget)
+                    @Html.DisplayNameFor(model => model.Budget) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["DateSort"]">
-                    @Html.DisplayNameFor(model => model.StartDate)
+                    @Html.DisplayNameFor(model => model.StartDate) <i class="fa fa-sort"></i>
                 </a>        
             </th>
             <th>
                 <a asp-action="Index"
                    asp-route-sortBy="@ViewData["AdminSort"]">
-                    @Html.DisplayNameFor(model => model.Administrator)
+                    @Html.DisplayNameFor(model => model.Administrator) <i class="fa fa-sort"></i>
                 </a>
             </th>
             <th></th>
