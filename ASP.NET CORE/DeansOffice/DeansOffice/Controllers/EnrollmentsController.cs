@@ -26,8 +26,11 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Enrollments/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, string sortOrder)
         {
+            ViewData["StudentSort"] = string.IsNullOrEmpty(sortOrder) ? "student_desc" : "";
+            ViewData["GradeSort"] = sortOrder == "grade" ? "grade_desc" : "grade";
+
             if (id == null)
             {
                 return NotFound();
@@ -88,8 +91,6 @@ namespace DeansOffice.Controllers
         }
 
         // POST: Enrollments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,CourseId,Grade,EnrollmentDate")] Enrollment enrollment)

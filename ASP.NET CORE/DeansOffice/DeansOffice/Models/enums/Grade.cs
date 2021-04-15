@@ -6,6 +6,7 @@
         B,
         C,
         D,
-        F
+        F,
+        NOT_GRADED
     }
 }
