@@ -23,7 +23,7 @@
     </div>
 </form>
 
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -64,8 +64,8 @@
             </td>
             <td>
                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.InstructorId">Edit</a>
-                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.InstructorId">Details</a>
-                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.InstructorId">Delete</a>
+                <a class="btn btn-outline-info ml-4" asp-action="Details" asp-route-id="@item.InstructorId">Details</a>
+                <a class="btn btn-outline-danger ml-4" asp-action="Delete" asp-route-id="@item.InstructorId">Delete</a>
             </td>
         </tr>
 }

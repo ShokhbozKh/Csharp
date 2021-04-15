@@ -46,7 +46,7 @@
             <th>
                 <a asp-action="Index"
                    asp-route-sortOrder="@ViewData["SNumberSortParam"]"
-                   asp-route-searchString="@ViewData["CurrentSort"]">
+                   asp-route-searchString="@ViewData["CurrentSearch"]">
                     Student number <i class="fa fa-sort"></i>
                 </a>
             </th>
@@ -79,8 +79,8 @@
                 </td>
                 <td>
                     <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a>
-                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.StudentId">Details</a>
-                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                    <a class="btn btn-outline-info ml-4" asp-action="Details" asp-route-id="@item.StudentId">Details</a>
+                    <a class="btn btn-outline-danger ml-4" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
                 </td>
             </tr>
         }
