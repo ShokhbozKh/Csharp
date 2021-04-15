@@ -25,12 +25,13 @@
 
 <p>Number of students found: @Model.TotalCount</p>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
+            <th></th>
             <th>
-                <a asp-action="Index" 
-                   asp-route-sortOrder="@ViewData["FNameSortParam"]" 
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["FNameSortParam"]"
                    asp-route-searchString="@ViewData["CurrentSearch"]">
                     First name <i class="fa fa-sort"></i>
                 </a>
@@ -50,8 +51,8 @@
                 </a>
             </th>
             <th>
-                <a asp-action="Index" 
-                   asp-route-sortOrder="@ViewData["DateSortParam"]" 
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["DateSortParam"]"
                    asp-route-searchString="@ViewData["CurrentSearch"]">
                     Enrollment date <i class="fa fa-sort"></i>
                 </a>
@@ -63,6 +64,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <th scope="row"></th>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
@@ -93,17 +95,17 @@
 <a class="btn btn-primary" asp-action="Create">Add Student</a>
 
 <div class="float-sm-right">
-    <a class="btn btn-secondary @prevDisabled"
+    <a class="btn btn-outline-dark @prevDisabled mr-lg-2"
        asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-currentSearch="@ViewData["CurrentSearch"]"
        asp-route-pageNumber="@(Model.PageIndex-1)">
-        Previous
+        <i class="fa fa-backward"></i>
     </a>
-    <a class="btn btn-secondary @nextDisabled"
+    <a class="btn btn-outline-dark @nextDisabled"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-currentSearch="@ViewData["CurrentSearch"]"
        asp-route-pageNumber="@(Model.PageIndex+1)">
-        Next
+        <i class="fa fa-forward"></i>
     </a>
 </div>

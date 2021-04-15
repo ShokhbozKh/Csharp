@@ -32,7 +32,7 @@ namespace DeansOffice.Data
                     {
                         FirstName = faker.Name.FirstName(),
                         LastName = faker.Name.LastName(),
-                        StudentNumber = $"u {2021 + i}",
+                        StudentNumber = $"s{2021 + i}",
                         EnrollmentDate = faker.Date.Between(new DateTime(2000, 01, 01), new DateTime(2021, 01, 01))
                     };
                 }
