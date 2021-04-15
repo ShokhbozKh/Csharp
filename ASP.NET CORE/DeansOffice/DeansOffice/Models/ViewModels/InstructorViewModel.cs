@@ -8,9 +8,11 @@ namespace DeansOffice.Models.ViewModels
     {
         public int InstructorId { get; set; }
         [MaxLength(150)]
+        [Display(Name = "First name")]
         [Required (ErrorMessage = "First name is required")]
         public string FirstName { get; set; }
         [MaxLength(150)]
+        [Display(Name = "Last name")]
         [Required(ErrorMessage = "First name is required")]
         public string LastName { get; set; }
         [DataType(DataType.Date)]

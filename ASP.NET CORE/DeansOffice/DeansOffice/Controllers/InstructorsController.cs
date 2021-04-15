@@ -66,6 +66,7 @@ namespace DeansOffice.Controllers
             var instructor = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.CourseAssignments)
+                .ThenInclude(ca => ca.Course)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.InstructorId == id);
 
@@ -74,7 +75,16 @@ namespace DeansOffice.Controllers
                 return NotFound();
             }
 
-            return View(instructor);
+            var instructorViewModel = new InstructorViewModel
+            {
+                FirstName = instructor.FirstName,
+                LastName = instructor.LastName,
+                HireDate = instructor.HireDate,
+                OfficeAssignment = instructor.OfficeAssignment,
+                CourseAssignments = instructor.CourseAssignments
+            };
+
+            return View(instructorViewModel);
         }
 
         // GET: Instructors/Create
