@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DeansOffice.Models.ViewModels
@@ -16,11 +17,12 @@ namespace DeansOffice.Models.ViewModels
         public string FullName { get => $"{FirstName} {LastName}"; }
         [DataType(DataType.Date)]
         [Display(Name = "Enrollment date")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
         [Required]
         [MaxLength(6)]
         [Display(Name = "Student number")]
         public string StudentNumber { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

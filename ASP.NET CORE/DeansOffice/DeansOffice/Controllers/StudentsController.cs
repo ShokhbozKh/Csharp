@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using DeansOffice.Data;
 using DeansOffice.Models;
 using DeansOffice.Helpers;
+using DeansOffice.Models.ViewModels;
 
 namespace DeansOffice.Controllers
 {
@@ -85,6 +86,15 @@ namespace DeansOffice.Controllers
                 .Include(s => s.Enrollments)
                 .ThenInclude(e => e.Course)
                 .AsNoTracking()
+                .Select(s => new StudentViewModel
+                {
+                    StudentId = s.StudentId,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    StudentNumber = s.StudentNumber,
+                    EnrollmentDate = s.EnrollmentDate,
+                    Enrollments = s.Enrollments
+                })
                 .FirstOrDefaultAsync(m => m.StudentId == id);
 
             student.Enrollments = sortOrder switch
@@ -157,7 +167,16 @@ namespace DeansOffice.Controllers
                     "Try again, if the problem persists see your administrator";
             }
 
-            return View(student);
+            var studentvmToUpdate = new StudentViewModel
+            {
+                StudentId = student.StudentId,
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                StudentNumber = student.StudentNumber,
+                EnrollmentDate = student.EnrollmentDate
+            };
+
+            return View(studentvmToUpdate);
         }
 
         // POST: Students/Edit/5
@@ -189,6 +208,15 @@ namespace DeansOffice.Controllers
                         "Try again, and if the problem presists see your administrator");
                 }
             }
+
+            var studentvmToUpdate = new StudentViewModel
+            {
+                StudentId = studentToUpdate.StudentId,
+                FirstName = studentToUpdate.FirstName,
+                LastName = studentToUpdate.LastName,
+                StudentNumber = studentToUpdate.StudentNumber,
+                EnrollmentDate = studentToUpdate.EnrollmentDate
+            };
 
             return View(studentToUpdate);
         }
