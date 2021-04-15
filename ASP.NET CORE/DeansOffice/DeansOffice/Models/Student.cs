@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace DeansOffice.Models
 {
@@ -15,10 +14,9 @@ namespace DeansOffice.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get => $"{FirstName} {LastName}"; }        
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
-        
+        public string StudentNumber { get; set; }
+
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

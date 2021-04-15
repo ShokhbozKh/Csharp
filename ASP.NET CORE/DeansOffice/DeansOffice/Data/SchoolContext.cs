@@ -41,6 +41,8 @@ namespace DeansOffice.Data
                 .Ignore(s => s.FullName);
             modelBuilder.Entity<Student>()
                 .Property(s => s.EnrollmentDate).HasColumnType("Date").IsRequired();
+            modelBuilder.Entity<Student>()
+                .Property(s => s.StudentNumber).HasMaxLength(6).IsRequired();
 
             // Course
             modelBuilder.Entity<Course>()
