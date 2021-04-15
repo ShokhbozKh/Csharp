@@ -64,6 +64,9 @@ namespace DeansOffice.Controllers
             }
 
             var instructor = await _context.Instructors
+                .Include(i => i.OfficeAssignment)
+                .Include(i => i.CourseAssignments)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.InstructorId == id);
 
             if (instructor == null)
