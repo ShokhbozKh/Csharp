@@ -35,8 +35,13 @@
                 <tr>
                     <th>
                         <a asp-action="Details" asp-route-sortOrder="@ViewData["StudentSort"]">
-                            Student <i class="fa fa-sort"></i>
+                            Course <i class="fa fa-sort"></i>
                         </a> 
+                    </th>
+                    <th>
+                        <a asp-action="Details" asp-route-sortOrder="@ViewData["CourseCodeSort"]">
+                            Code <i class="fa fa-sort"></i>
+                        </a>
                     </th>
                     <th>
                         <a asp-action="Details" asp-route-sortOrder="@ViewData["GradeSort"]">
@@ -51,6 +56,9 @@
                             <a asp-controller="Courses" asp-action="Details" asp-route-id="@item.CourseId">
                                 @Html.DisplayFor(modelItem => item.Course.Title)
                             </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.CourseCode)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Grade) 

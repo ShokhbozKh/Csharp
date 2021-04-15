@@ -26,11 +26,8 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Enrollments/Details/5
-        public async Task<IActionResult> Details(int? id, string sortOrder)
+        public async Task<IActionResult> Details(int? id)
         {
-            ViewData["StudentSort"] = string.IsNullOrEmpty(sortOrder) ? "student_desc" : "";
-            ViewData["GradeSort"] = sortOrder == "grade" ? "grade_desc" : "grade";
-
             if (id == null)
             {
                 return NotFound();

@@ -27,6 +27,7 @@ namespace DeansOffice.Controllers
             ViewData["CurrentSearch"] = searchString;
             ViewData["FNameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["LNameSortParam"] = sortOrder == "lname" ? "lname_desc" : "lname";
+            ViewData["SNumberSortParam"] = sortOrder == "snumber" ? "snumber_desc" : "snumber";
             ViewData["DateSortParam"] = sortOrder == "date" ? "date_desc" : "date";
 
             // If there is a new search, set the page to 1,
@@ -53,6 +54,8 @@ namespace DeansOffice.Controllers
                 "name_desc" => students.OrderByDescending(s => s.FirstName),
                 "lname" => students.OrderBy(s => s.LastName),
                 "lname_desc" => students.OrderByDescending(s => s.LastName),
+                "snumber" => students.OrderBy(s => s.StudentNumber),
+                "snumber_desc" => students.OrderByDescending(s => s.StudentNumber),
                 "date" => students.OrderBy(s => s.EnrollmentDate),
                 "date_desc" => students.OrderByDescending(s => s.EnrollmentDate),
                 _ => students.OrderBy(s => s.FirstName)
@@ -67,8 +70,12 @@ namespace DeansOffice.Controllers
         }
 
         // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, string sortOrder)
         {
+            ViewData["StudentSort"] = string.IsNullOrEmpty(sortOrder) ? "student_desc" : "";
+            ViewData["GradeSort"] = sortOrder == "grade" ? "grade_desc" : "grade";
+            ViewData["CourseCodeSort"] = sortOrder == "code" ? "code_desc" : "code";
+
             if (id == null)
             {
                 return NotFound();
@@ -79,6 +86,16 @@ namespace DeansOffice.Controllers
                 .ThenInclude(e => e.Course)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.StudentId == id);
+
+            student.Enrollments = sortOrder switch
+            {
+                "student_desc" => student.Enrollments.OrderByDescending(e => e.Course.Title).ToList(),
+                "grade" => student.Enrollments.OrderBy(e => e.Grade).ToList(),
+                "grade_desc" => student.Enrollments.OrderByDescending(e => e.Grade).ToList(),
+                "code" => student.Enrollments.OrderBy(e => e.Course.CourseCode).ToList(),
+                "code_desc" => student.Enrollments.OrderByDescending(e => e.Course.CourseCode).ToList(),
+                _ => student.Enrollments.OrderBy(e => e.Course.Title).ToList()
+            };
 
             if (student == null)
             {
