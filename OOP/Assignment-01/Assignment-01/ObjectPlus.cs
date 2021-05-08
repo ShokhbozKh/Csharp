@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Security;
 
 namespace Assignment_01
 {
@@ -27,11 +26,11 @@ namespace Assignment_01
             {
                 var result = new Dictionary<Type, IEnumerable<ObjectPlus>>();
                 foreach (var k in _extent)
-                    result.Add(k.Key, k.Value.ToImmutableList());
+                    result.Add(k.Key, k.Value.ToList());
 
                 return result;
             }
-        }
+        }        
 
         public static void SerializeToFile(string fileName)
         {

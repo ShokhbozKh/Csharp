@@ -113,39 +113,29 @@ namespace Assignment_02
 
             Console.WriteLine("---- Qualified ----");
 
-            List<City> cityList = new List<City>
-            {
-                new City("Warsaw", "Mazowian"),
-                new City("Nowy Dwor Mazowiecki", "Mazowian"),
-                new City("Lodz", "Lodz Province"),
-                new City("Krakow", "Krakow Province")
-            };
+            City warsaw = new City("Warsaw", "Mazowian");
+            City nowyDwor = new City("Nowy Dwor", "Mazowian");
+            City gdansk = new City("Gdansk", "Pomorski");
+            City krakow = new City("Krakow", "Krakowskie");
+            City gdynia = new City("Gdynia", "Pomorski");
 
-            foreach (Driver driver in drivers)
-                driver.AddCityQualif(cityList[new Random().Next(4)]);
+            driver1.AddCityQualif(warsaw);
+            driver1.AddCityQualif(gdansk);
+            driver1.AddCityQualif(krakow);
 
-            Console.WriteLine(drivers[0].FindCityQualif("Warsaw"));
-            Console.WriteLine(drivers[1].CitiesQualif.Count);
-            Console.WriteLine();
+            Console.WriteLine(driver1.FindQualif("Warsaw") == null ? "no" : "yes");
+            Console.WriteLine(driver1.FindQualif("Gdynia") == null ? "no" : "yes");
+
+            driver1.RemoveCityQualif("Warsaw");
+            Console.WriteLine(driver1.FindQualif("Warsaw") == null ? "no" : "yes");
 
             /*
              * Composition
              */
 
-            Console.WriteLine("---- Composition ---- ");
-            List<string> reviewsDescr = new List<string>
-            {
-                "I forgot my phone in the car", "Driver was slow",
-                "I waited my car for 30 minutes", "Driver charged me more than it was shown by app",
-                "Awesome ride", "Cool", "Nice", "Driver was very nice"
-            };
+            Ride ride = Ride.AddRide(client1, driver1, "Centrum", "Mokotow", 15.2m);
 
-            for (int i = 0; i < rides.Count; i++)
-            {
-                Review.AddReview(rides[i], reviewsDescr[new Random().Next(8)], new Random().Next(6));
-            }
-
-            Console.WriteLine($"{drivers[2]} has an average rate in {drivers[2].Reviews.Count} rides: {drivers[2].GetAverageRate()}");
+            Issue.ReportIssue(ride, "I forgot my wallet!");
         }
     }
 }

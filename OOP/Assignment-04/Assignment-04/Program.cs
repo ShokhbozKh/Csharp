@@ -174,7 +174,6 @@ namespace Assignment_04
                     client.Email = RandomString(10);
                 }
                 catch(Exception)
-                    when (client.Email == null)
                 {
                     Console.WriteLine("Wrong email was provided!");
                 }
@@ -188,7 +187,6 @@ namespace Assignment_04
                     client.Email = "myemail42@gmail.com";
                 }
                 catch (Exception)
-                    when (client.Email == null)
                 {
                     Console.WriteLine("Wrong email was provided!");
                 }

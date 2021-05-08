@@ -23,12 +23,6 @@ namespace Assignment_01
             Car car2 = new Car("BA 777", "Mercedez Benz", Category.Bussiness);
 
             // Rides
-
-            /*
-             * Class attribute
-             */
-            Ride.Taxrate = 15;
-
             Ride ride1 = new Ride(client1, driver1, "Centrum", "Stadion Narodowe", DateTime.Now, 20);
 
             /*
@@ -37,25 +31,39 @@ namespace Assignment_01
             Ride ride2 = new Ride(client1, driver2, "Rondo ONZ", "Warszawa Centralna", DateTime.Now.AddDays(1), 30);
 
             Ride ride4 = new Ride(client2, driver2, "Ursynow", "Mokotow", DateTime.Now, 15);
+
+            /*
+             * Complex
+             */
+
+            ride1.StartPoint.City = "Warsaw";
+            ride1.StartPoint.Street = "Centrum 15A";
+            Console.WriteLine(ride1.StartPoint);
+
             /*
              * Optional attribute -> bonus rate
              */
             Ride ride3 = new Ride(client2, driver1, "Pole Mokotowskie", "Kozykowa", DateTime.Now, 15, 10);
 
-            /*
-             * Derived attribute -> total price + tax rate - bonus rate(optional)
-             */
-            Console.WriteLine($"Pice for the ride: {ride3.TotalPrice}");
-
             // Reviews
-
             /*
-             * multi value Driver -> * reviews
+             * Ride -> * Bonus types
              */
             Review review1 = new Review(ride1, "Very well", 5, DateTime.Now);   // Complex attributes
             Review review2 = new Review(ride2, "Very bad!!!", 0, DateTime.Now);
             Review review3 = new Review(ride3, "So so", 2, DateTime.Now);
             Review review4 = new Review(ride4, "Nice", 4, DateTime.Now);
+
+            Review.RemoveReviews(3);
+            /*
+             * Class attribute
+             */
+            Ride.Taxrate = 15;
+
+            /*
+             * Derived attribute -> total price + tax rate - bonus rate(optional)
+             */
+            Console.WriteLine($"Pice for the ride: {ride3.TotalPrice}");
 
             /*
              * Class method
@@ -65,6 +73,7 @@ namespace Assignment_01
             /*
              * Extent
              */
+            Console.WriteLine("--- Extent ----");
             ride1.ShowExtent();
 
             var fileName = "TextFile.txt";

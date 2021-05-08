@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment_02
 {
     [Serializable]
     class Ride : ObjectPlus
     {
+        #region Properties
+
         public Guid IdRide { get; set; }
         
         public Client Client { get; set; }
         public Driver Driver { get; set; }
-        
+        public List<Issue> Issues { get; set; }
+
         public string StartPoint { get; set; }
         public string DestinationPoint { get; set; }
         
@@ -38,6 +42,8 @@ namespace Assignment_02
             set => _totalPrice = value + (value / Taxrate) - (Bonus ?? 0);
         }
 
+        #endregion
+
         #region Constructors
 
         private Ride(string startPoint, string destinationPoint, decimal totalPrice)
@@ -46,6 +52,8 @@ namespace Assignment_02
             DestinationPoint = destinationPoint;
             RideDate = DateTime.Now;
             TotalPrice = totalPrice;
+
+            Issues = new List<Issue>();
         }
 
         private Ride(string startPoint, string destinationPoint, decimal totalPrice, int bonus)
@@ -55,6 +63,8 @@ namespace Assignment_02
             RideDate = DateTime.Now;
             TotalPrice = totalPrice;
             Bonus = bonus;
+
+            Issues = new List<Issue>();
         }
 
         #endregion
@@ -81,6 +91,18 @@ namespace Assignment_02
             ride.Driver.RemoveRide(ride);
             ride.Client = null;
             ride.Driver = null;
+        }
+
+        #endregion
+
+        #region Composition
+
+        public void AddIssue(Issue newIssue)
+        {
+            if(newIssue != null && !Issues.Contains(newIssue))
+            {
+                Issues.Add(newIssue);
+            }
         }
 
         #endregion

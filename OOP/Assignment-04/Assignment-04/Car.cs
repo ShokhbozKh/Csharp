@@ -33,12 +33,12 @@ namespace Assignment_04
             {
                 if(value > 0 && value < MAX_PRICE)
                 {
-                    Console.WriteLine("Price for per km should be non-negative and less than max price!");
+                    _price = value;
                     
                     return;
                 }
 
-                _price = value;
+                throw new Exception($"Price for per km should be non-negative and less than {MAX_PRICE}!");
             }
         }
 

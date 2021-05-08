@@ -50,13 +50,9 @@ namespace Assignment_03
         }
 
         #region Constructors
-        public Driver(string login, string password) : base(login, password, Position.Driver)
+        public Driver(Employee employee, Car car) : base(employee.Login, employee.Password, employee.FirstName, employee.LastName, employee.Car)
         {
-        }
-
-        public Driver(string login, string password,
-            string firstName, string lastName) : base(login, password, firstName, lastName, Position.Driver)
-        {
+            _cars.Add(car);
         }
 
         #endregion

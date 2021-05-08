@@ -6,7 +6,7 @@ namespace Exercise_17
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(3424%6);
         }
     }
 }

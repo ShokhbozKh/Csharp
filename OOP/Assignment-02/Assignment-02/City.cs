@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Assignment_02
 {
@@ -18,29 +17,25 @@ namespace Assignment_02
             drivers = new List<Driver>();
         }
 
-        #region Qualified
-
         public void AddDriver(Driver driver)
         {
-            if (drivers.Contains(driver))
-            {
-                Console.WriteLine("The driver already belongs to this city");
+            if (driver == null) throw new ArgumentNullException("Driver cannot be null");
 
-                return;
-            }
+            if (drivers.Contains(driver)) return;
 
             drivers.Add(driver);
+            driver.AddCityQualif(this);
         }
 
-        public void ShowDrivers()
+        public void RemoveDriver(Driver driver)
         {
-            Console.Write($"Drivers belonging to the {CityName}: ");
+            if (driver == null) throw new ArgumentNullException("Driver cannot be null");
 
-            foreach(Driver driver in drivers)
-                Console.Write($"{driver} ");
+            if (!drivers.Contains(driver)) return;
+
+            drivers.Remove(driver);
+            driver.RemoveCityQualif(this);
         }
-
-        #endregion
 
         public override string ToString()
         {

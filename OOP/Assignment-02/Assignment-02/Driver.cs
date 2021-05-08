@@ -8,6 +8,8 @@ namespace Assignment_02
     [Serializable]
     class Driver : User
     {
+        #region Properties
+
         public DateTime LicenceValidationDate { get; set; }
 
         /*
@@ -34,20 +36,19 @@ namespace Assignment_02
          * Qualified
          */
 
-        private IDictionary<string, City> _citiesQualif = new Dictionary<string, City>();
+        private readonly IDictionary<string, City> CitiesQualif = new Dictionary<string, City>();
 
-        public IDictionary<string, City> CitiesQualif
-        {
-            get => _citiesQualif;
-            set => _citiesQualif = value ?? throw new NullReferenceException("Cities qualifier cannot be null!");
-        }
-
+        /*
+         * Composition
+         */
         private List<Review> _reviews = new List<Review>();
         public List<Review> Reviews
         {
             get => _reviews;
             set => _reviews = value;
         }
+
+        #endregion
 
         #region Constructors
         public Driver(string login, string password) : base(login, password)
@@ -60,45 +61,14 @@ namespace Assignment_02
 
         #endregion
 
-        #region Qualified
-
-        public void AddCityQualif(City newCity)
-        {
-            if (newCity is null) return;
-
-            if (_citiesQualif.ContainsKey(newCity.CityName))
-            {
-                Console.WriteLine("Driver already belongs to this city");
-
-                return;
-            }
-
-            _citiesQualif.Add(newCity.CityName, newCity);
-        }
-
-        public City FindCityQualif(string cityName)
-        {
-            if (!_citiesQualif.ContainsKey(cityName))
-            {
-                Console.WriteLine("There is no given city in the system.");
-
-                return null;
-            }
-
-            return _citiesQualif[cityName];
-        }
-
-        #endregion
-
         #region Composition
 
         public void AddReview(Review review)
         {
-            if (review is null || _reviews.Contains(review))
-                return;
-
-            _reviews.Add(review);
-            
+            if (review != null && !_reviews.Contains(review))
+            {
+                _reviews.Add(review);
+            }
         }
 
         public void RemoveReview(Review review)
@@ -106,7 +76,7 @@ namespace Assignment_02
             if (_reviews.Contains(review))
                 _reviews.Remove(review);
             else
-                Console.WriteLine($"The driver ${ToString()} does not contain review with id: {review.IdReview}");
+                throw new Exception($"The driver does not contain review {review}");
         }
 
         #endregion
@@ -171,14 +141,82 @@ namespace Assignment_02
 
         #endregion
 
+        #region Qualified
+
+        public void AddCityQualif(City city)
+        {
+            if (city == null) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+            if (CitiesQualif.ContainsKey(city.CityName)) return;
+
+            CitiesQualif.Add(city.CityName, city);
+            city.AddDriver(this);
+        }
+
+        public void RemoveCityQualif(City city)
+        {
+            if (city == null) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+            if (!CitiesQualif.ContainsKey(city.CityName)) return;
+
+            CitiesQualif.Remove(city.CityName);
+            city.RemoveDriver(this);
+        }
+
+        public void RemoveCityQualif(string cityName)
+        {
+            if (string.IsNullOrEmpty(cityName)) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+            if (!CitiesQualif.ContainsKey(cityName)) return;
+
+            City city = CitiesQualif[cityName];
+            CitiesQualif.Remove(cityName);
+            city.RemoveDriver(this);
+        }
+
+        public City FindQualif(string cityName)
+        {
+            if (string.IsNullOrEmpty(cityName)) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+            if (!CitiesQualif.ContainsKey(cityName)) return null;
+
+            return CitiesQualif[cityName];
+        }
+
+        #endregion
+
+        #region Helper methods
+
+        public void CheckIfExistsQualifArgs(object city)
+        {
+            if(city is City cityArg)
+            {
+                if (cityArg == null) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+                if (!CitiesQualif.ContainsKey(cityArg.CityName)) throw new Exception($"The driver {this} does not contain city qualifier {cityArg.CityName}");
+            }
+            else if(city is String cityStringArg)
+            {
+                if (string.IsNullOrEmpty(cityStringArg)) throw new ArgumentNullException("City qualifier cannot be null or empty");
+
+                if(!CitiesQualif.ContainsKey(cityStringArg)) throw new Exception($"The driver {this} does not contain city qualifier {cityStringArg}");
+            }
+        }
+
         public double GetAverageRate()
         {
             return _reviews.Average(s => s.Rate);
         }
 
+        #endregion
+
+        #region Object ovverridings
+        
         public override string ToString()
         {
             return Login;
         }
+
+        #endregion
     }
 }

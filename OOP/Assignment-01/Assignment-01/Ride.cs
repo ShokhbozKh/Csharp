@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 
 namespace Assignment_01
 {
@@ -12,16 +9,18 @@ namespace Assignment_01
         public Guid IdRide { get; set; }
         public Client Client { get; set; }
         public Driver Driver { get; set; }
-        public string StartPoint { get; set; }
-        public string DestinationPoint { get; set; }
+        public Address StartPoint { get; set; }
+        public Address DestinationPoint { get; set; }
         public DateTime RideDate { get; set; }  // Complex attribute
+        public string BonusType { get; set; }
+        public static ICollection<string> BonusTypes = new List<string>();
 
         /*
          * optional attribute
          */
         public int? Bonus { get; set; }
 
-        private static int _taxRate;
+        private static int _taxRate = 15;
         /*
          * class attribute
          */
@@ -39,15 +38,15 @@ namespace Assignment_01
             }
         }
 
+        public decimal Price { get; set; }
+
         /*
-         * deriver attribute
-         */
-        private decimal _totalPrice;
-        public decimal TotalPrice 
+         * derived attribute
+         */        
+        public decimal TotalPrice
         {
-            get => _totalPrice;
-            set => _totalPrice = value + (value / Taxrate) - (value / Bonus ?? 0);
-        }
+            get => Price - Taxrate;
+        }        
 
         public Ride(Client client, Driver driver, string startPoint, string destinationPoint, DateTime rideDate, decimal totalPrice)
         {
@@ -58,20 +57,20 @@ namespace Assignment_01
 
             Client = client;
             Driver = driver;
-            StartPoint = startPoint;
-            DestinationPoint = destinationPoint;
+            StartPoint = new Address(startPoint);
+            DestinationPoint = new Address(destinationPoint);
             RideDate = rideDate;
-            TotalPrice = totalPrice;
+            Price = totalPrice;
         }
 
         public Ride(Client client, Driver driver, string startPoint, string destinationPoint, DateTime rideDate, decimal totalPrice, int bonus)
         {
             Client = client;
             Driver = driver;
-            StartPoint = startPoint;
-            DestinationPoint = destinationPoint;
+            StartPoint = new Address(startPoint);
+            DestinationPoint = new Address(destinationPoint);
             RideDate = rideDate;
-            TotalPrice = totalPrice;
+            Price = totalPrice;
             Bonus = bonus;
         }
 
