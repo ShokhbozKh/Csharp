@@ -6,6 +6,8 @@ namespace Assignment_03
     [Serializable]
     abstract class Employee : User
     {
+        #region Properties
+
         public static int _taxRate;
         public static int TaxRate 
         {
@@ -61,6 +63,7 @@ namespace Assignment_03
 
         public List<Position> Positions { get; private set; }
 
+        #endregion
 
         #region Constructors
         // Driver
@@ -100,8 +103,9 @@ namespace Assignment_03
 
         #region Methods
 
-        internal abstract decimal GetIncome();
+        public abstract decimal GetIncome();
 
+        // Dynamic inheritance
         public Driver MakeDriver()
         {
             if (this is CustomerSupport)

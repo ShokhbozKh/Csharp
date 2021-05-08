@@ -162,6 +162,7 @@ namespace Assignment_03
             _cars.Remove(car);
             car.Driver = null;
         }
+
         #endregion
 
         #region Class Method
@@ -181,20 +182,6 @@ namespace Assignment_03
 
         #endregion
 
-        internal override decimal GetIncome()
-        {
-            decimal totalSum = 0;
-
-            foreach(Ride ride in _rides)
-            {
-                totalSum += ride.TotalPrice;
-            }
-
-            totalSum -= ((totalSum * TaxRate) / 100);
-
-            return totalSum;
-        }
-
         public double GetAverageRate()
         {
             return _reviews.Average(s => s.Rate);
@@ -208,6 +195,20 @@ namespace Assignment_03
 
                 foreach (Car car in Cars) Console.WriteLine(car.ToString());
             }
+        }
+
+        internal override decimal GetIncome()
+        {
+            decimal totalSum = 0;
+
+            foreach (Ride ride in _rides)
+            {
+                totalSum += ride.TotalPrice;
+            }
+
+            totalSum -= ((totalSum * TaxRate) / 100);
+
+            return totalSum;
         }
 
         public override string ToString()

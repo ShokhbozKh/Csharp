@@ -31,10 +31,7 @@ namespace Assignment_03
 
         #endregion
 
-        public virtual void OrderRide()
-        {
-            
-        }
+        //public abstract void RequestRide();
 
         public override string ToString()
         {
