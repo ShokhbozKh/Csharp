@@ -25,13 +25,13 @@ namespace Assignment_03
 
         #region Constructors
         public CustomerSupport(string login, string password, decimal salary)
-            : base(login, password, Position.CustomerSupport)
+            : base(login, password)
         {
             _salary = salary;
         }
 
         public CustomerSupport(string login, string password, string firstName, string lastName, decimal salary)
-            : base(login, password, firstName, lastName, Position.CustomerSupport)
+            : base(login, password, firstName, lastName)
         {
             _salary = salary;
         }

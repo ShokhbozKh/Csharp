@@ -8,6 +8,7 @@ namespace Assignment_03
     [Serializable]
     class Driver : Employee
     {
+        #region Properties
         public DateTime LicenceValidationDate { get; set; }
 
         /*
@@ -49,10 +50,21 @@ namespace Assignment_03
             set => _reviews = value;
         }
 
+        #endregion
+
         #region Constructors
         public Driver(Employee employee, Car car) : base(employee.Login, employee.Password, employee.FirstName, employee.LastName, employee.Car)
         {
             _cars.Add(car);
+        }
+
+        public Driver(string login, string password) : base(login, password)
+        {
+        }
+
+        public Driver(string login, string password, string firstName, string lastName)
+            : base(login, password, firstName, lastName)
+        {
         }
 
         #endregion

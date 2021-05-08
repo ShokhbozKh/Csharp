@@ -31,6 +31,11 @@ namespace Assignment_03
 
         #endregion
 
+        public virtual void OrderRide()
+        {
+            
+        }
+
         public override string ToString()
         {
             return $"Login: [{Login}], Password: [{Password}]";

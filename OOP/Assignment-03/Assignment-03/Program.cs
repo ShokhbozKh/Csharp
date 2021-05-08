@@ -195,14 +195,6 @@ namespace Assignment_03
              * Full-time -> WorkMode <- Part-time
              */
 
-            Console.WriteLine();
-            Console.WriteLine("--------- Multi aspect --------");
-            Console.WriteLine();
-
-            driver1.WorkMode = new PartTime(20);
-            driver1.ShowCars();
-
-            Console.WriteLine($"Driver's plan: {driver1.WorkMode.CalculateMinimalPlan()}");
 
             #endregion
 

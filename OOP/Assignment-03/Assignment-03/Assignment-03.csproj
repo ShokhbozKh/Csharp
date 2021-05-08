@@ -6,4 +6,10 @@
     <RootNamespace>Assignment_03</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Multi-Aspect\" />
+    <Folder Include="Dynamic\" />
+    <Folder Include="Overlapping\" />
+  </ItemGroup>
+
 </Project>

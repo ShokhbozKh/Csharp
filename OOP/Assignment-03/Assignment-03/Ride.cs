@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment_03
 {
     [Serializable]
     class Ride : ObjectPlus
     {
+        #region Properties
         public Guid IdRide { get; set; }
         
         public Client Client { get; set; }
@@ -37,6 +39,10 @@ namespace Assignment_03
             get => _totalPrice;
             set => _totalPrice = value + (value / Taxrate) - (Bonus ?? 0);
         }
+
+        public static List<string> RequestedRides { get; } = new List<string>();
+
+        #endregion
 
         #region Constructors
 
@@ -97,6 +103,11 @@ namespace Assignment_03
                 Console.WriteLine($"----- Ride: {++count} ------");
                 Console.WriteLine(ride.ToString());
             }
+        }
+
+        public static void RequestRide(User user, int price)
+        {
+            RequestedRides.Add($"Ride requested by: {user}. \n Price for the ride: {price}");
         }
 
         public override string ToString()

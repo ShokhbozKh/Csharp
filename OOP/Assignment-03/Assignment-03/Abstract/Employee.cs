@@ -6,7 +6,12 @@ namespace Assignment_03
     [Serializable]
     abstract class Employee : User
     {
-        public static int TaxRate { get; private set; }
+        public static int _taxRate;
+        public static int TaxRate 
+        {
+            get => _taxRate;
+            set => _taxRate = value;
+        }
 
         private Car _car;
         public Car Car 
@@ -59,7 +64,12 @@ namespace Assignment_03
 
         #region Constructors
         // Driver
-        public Employee(string login, string password, string firstName, string lastName, Car car)
+        public Employee(string login, string password)
+            : base(login, password)
+        {
+        }
+
+        public Employee(string login, string password, string firstName, string lastName, Car car = null)
             : base(login, password, firstName, lastName)
         {
             _car = car;
@@ -67,7 +77,7 @@ namespace Assignment_03
             Positions.Add(Position.Driver);
         }
        
-        // Customer
+        // Customer Support
         public Employee(string login, string password, string firstName, string lastName, double workHours)
             : base(login, password, firstName, lastName)
         {
