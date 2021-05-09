@@ -6,6 +6,7 @@ namespace Assignment_03
     {
         #region Properties
 
+        // per hour
         private decimal _salary;
         public decimal Salary 
         {

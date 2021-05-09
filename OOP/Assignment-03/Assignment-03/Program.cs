@@ -21,6 +21,9 @@ namespace Assignment_03
             CustomerSupport customerSupport1 = new CustomerSupport("cs1", "password1", 1750.50m);
             CustomerSupport customerSupport2 = new CustomerSupport("cs2", "password2", 1850.50m);
 
+            customerSupport1.WorkHours = 40;
+            customerSupport2.WorkHours = 38;
+
             List<CustomerSupport> customerSupports = new List<CustomerSupport>
             {
                 customerSupport1,
@@ -73,7 +76,7 @@ namespace Assignment_03
 
             #endregion
 
-            #region Abstract
+            #region Abstract Polymorphic method call
 
             /*
              * Abstract User class
@@ -89,23 +92,7 @@ namespace Assignment_03
 
             employee = customerSupport1;
 
-            Console.WriteLine($"Income of customer support {employee} is {employee.GetIncome()}");
-
-            #endregion
-
-            #region Polymorphic method call
-
-            Console.WriteLine();
-            Console.WriteLine("------- Polymorphic method call ----------");
-
-            // Set tax rate for employees
-            Employee.TaxRate = 30;
-
-            Employee user1 = driver1;   // Driver class object defined above
-            Employee user2 = customerSupport1; // CustomerSupport class object defined above
-
-            Console.WriteLine($"Income method result for driver: {user1.GetIncome()}");
-            Console.WriteLine($"Income method result for customer support: {user2.GetIncome()}");
+            Console.WriteLine($"Income of customer support {employee.Login} is: {employee.GetIncome()}");
 
             #endregion
 
@@ -144,12 +131,7 @@ namespace Assignment_03
             #endregion
 
             #region Multi aspect
-            /*
-             * Driver  ->  Employee <- CustomerSupport
-             *                 |
-             * Full-time -> WorkMode <- Part-time
-             */
-
+            
 
             #endregion
 
@@ -160,7 +142,7 @@ namespace Assignment_03
             Console.WriteLine();
 
             Employee driver5 = new Driver("driver5", "password5");
-            (driver5 as Driver).AddCar(car4);
+            //(driver5 as Driver).AddCar(car4);
             (driver5 as Driver).AddCar(car2);
 
             Console.WriteLine($"Driver: {driver5}");
@@ -177,11 +159,11 @@ namespace Assignment_03
             Console.WriteLine("-------- After converting specializations --------");
             Console.WriteLine();
 
-            driver5 = driver5.MakeCustomerSupport(3500);
-            customerSupport = customerSupport.MakeDriver();
+            //driver5 = driver5.MakeCustomerSupport(3500);
+            //customerSupport = customerSupport.MakeDriver();
             
             (customerSupport as Driver).AddCar(car1);
-            (customerSupport as Driver).AddCar(car3);
+            //(customerSupport as Driver).AddCar(car3);
 
             Console.WriteLine($"Driver: {customerSupport}");
             (customerSupport as Driver).ShowCars();

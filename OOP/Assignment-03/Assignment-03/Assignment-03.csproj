@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Multi-Aspect\" />
     <Folder Include="Dynamic\" />
+    <Folder Include="Multi-Aspect\" />
     <Folder Include="Overlapping\" />
   </ItemGroup>
 

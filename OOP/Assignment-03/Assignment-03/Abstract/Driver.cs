@@ -197,7 +197,7 @@ namespace Assignment_03
             }
         }
 
-        internal override decimal GetIncome()
+        public override decimal GetIncome()
         {
             decimal totalSum = 0;
 

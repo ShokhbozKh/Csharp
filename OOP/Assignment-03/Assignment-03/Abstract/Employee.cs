@@ -38,7 +38,7 @@ namespace Assignment_03
             }
         }
 
-        public List<Position> Positions { get; private set; }
+        public List<Position> Positions { get; private set; } = new List<Position>();
 
         #endregion
 
