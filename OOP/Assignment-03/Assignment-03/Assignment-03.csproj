@@ -6,8 +6,4 @@
     <RootNamespace>Assignment_03</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Dynamic\" />
-  </ItemGroup>
-
 </Project>
