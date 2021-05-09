@@ -8,8 +8,8 @@ namespace Assignment_03
     {
         #region Properties
 
-        public static int _taxRate;
-        public static int TaxRate 
+        public static decimal _taxRate;
+        public static decimal TaxRate 
         {
             get => _taxRate;
             set => _taxRate = value;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Assignment_03
 {
     [Serializable]
-    class Client : User // Disjoint
+    class Client : User
     {
         #region Properties
 

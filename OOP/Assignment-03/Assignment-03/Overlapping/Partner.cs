@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Assignment_03
 {
 
     class Partner
     {
+        #region Properties
+
         public Guid IdPartner { get; set; }
         public int EntryPrice { get; set; }
         public string PartnerName { get; set; }
@@ -16,6 +17,8 @@ namespace Assignment_03
         private readonly ICollection<PartnerType> _partnerTypes;
 
         public ICollection<PartnerType> PartnerTypes => _partnerTypes.ToHashSet();
+
+        #endregion
 
         #region Constructors
         public Partner(int entryPrice, string partnerName, int partnerInterest)

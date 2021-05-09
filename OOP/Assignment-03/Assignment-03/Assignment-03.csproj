@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Dynamic\" />
-    <Folder Include="Multi-Aspect\" />
-    <Folder Include="Overlapping\" />
   </ItemGroup>
 
 </Project>

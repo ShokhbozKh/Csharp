@@ -131,7 +131,12 @@ namespace Assignment_03
             #endregion
 
             #region Multi aspect
-            
+
+            Employee csEmp = customerSupport1;
+            Employee driverEmp = driver1;
+
+            WorkMode.AssignWorkMode(csEmp, new PartTime());
+            WorkMode.AssignWorkMode(driverEmp, new FullTime());
 
             #endregion
 
