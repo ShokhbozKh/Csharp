@@ -25,7 +25,7 @@ namespace Assignment_03
          * With an attribute
          */
         private ICollection<Ride> _rides = new List<Ride>();
-        public ICollection<Ride> Rides 
+        public ICollection<Ride> Rides
         {
             get => _rides;
             set => _rides = value ?? throw new NullReferenceException("Rides cannot be null!");
@@ -107,7 +107,7 @@ namespace Assignment_03
                 return;
 
             _reviews.Add(review);
-            
+
         }
 
         public void RemoveReview(Review review)
@@ -189,7 +189,7 @@ namespace Assignment_03
 
         public void ShowCars()
         {
-            if(Cars.Count > 0)
+            if (Cars.Count > 0)
             {
                 Console.WriteLine($"{Login} Cars:");
 

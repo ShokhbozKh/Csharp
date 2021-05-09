@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Assignment_03
 {
     class CustomerSupport : Employee
     {
+        #region Properties
+
         private decimal _salary;
         public decimal Salary 
         {
@@ -23,6 +23,20 @@ namespace Assignment_03
             }
         }
 
+        private decimal _workHours;
+        public decimal WorkHours
+        {
+            get => _workHours;
+            set
+            {
+                if(value < 0) throw new Exception("Work hours cannot be negative!");
+
+                _workHours = value;
+            }
+        }
+
+        #endregion
+
         #region Constructors
         public CustomerSupport(string login, string password, decimal salary)
             : base(login, password)
@@ -38,9 +52,9 @@ namespace Assignment_03
 
         #endregion
 
-        internal override decimal GetIncome()
+        public override decimal GetIncome()
         {
-            return Salary - ((Salary * TaxRate) / 100);
+            return (Salary * WorkHours) - (TaxRate * Salary * WorkHours);
         }
     }
 }

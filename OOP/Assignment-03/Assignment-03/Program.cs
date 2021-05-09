@@ -9,68 +9,53 @@ namespace Assignment_03
         {
             #region Objects Instantiating
 
-            // Generating Clients instances
-            Client client1 = new Client("client1", "password1");
-            Client client2 = new Client("client2", "password2", "John", "Done");
-            Client client3 = new Client("client3", "password3", "Andrew", "Johnson");
-            Client client4 = new Client("client3", "password3", "James", "Bond");
+            Client client1 = new Client("client_login1", "password1", "John", "Done");
+            Client client2 = new Client("client_login2", "password2", "Robert", "Robertson");
 
             List<Client> clients = new List<Client>
             {
                 client1,
-                client2,
-                client3,
-                client4
+                client2
             };
 
-            // Generating Drivers instances
-            Driver driver1 = new Driver("Driver1", "password1");
-            Driver driver2 = new Driver("Driver2", "password2");
-            Driver driver3 = new Driver("Driver3", "password3", "Matt", "Anderson");
-            Driver driver4 = new Driver("Driver4", "password4", "Jim", "Gray");
+            CustomerSupport customerSupport1 = new CustomerSupport("cs1", "password1", 1750.50m);
+            CustomerSupport customerSupport2 = new CustomerSupport("cs2", "password2", 1850.50m);
+
+            List<CustomerSupport> customerSupports = new List<CustomerSupport>
+            {
+                customerSupport1,
+                customerSupport2
+            };
+
+            Driver driver1 = new Driver("d1", "password1", "Anderson", "Silva");
+            Driver driver2 = new Driver("d2", "password2", "Steve", "Spligberg");
 
             List<Driver> drivers = new List<Driver>
             {
                 driver1,
-                driver2,
-                driver3,
-                driver4
+                driver2
             };
 
-            // Generating Cars instances
-            Car car1 = new Car("AA 212 24", "Szkoda fabia", Category.Economy);
-            Car car2 = new Car("BA 777", "Mercedez Benz", Category.Bussiness);
-            Car car3 = new Car("AA 212 24", "Bently", Category.Lux);
-            Car car4 = new Car("WW 123 421", "Porche", Category.Bussiness);
+            Car car1 = new Car("c13212", "ferarri", Category.Bussiness);
+            Car car2 = new Car("c13432", "BMW", Category.Economy);
 
             List<Car> cars = new List<Car>
             {
                 car1,
-                car2,
-                car3,
-                car4
+                car2
             };
 
-            // Assigning cars to drivers
-            for (int i = 0; i < cars.Count; i++)
-            {
-                if (i % 2 == 0)
-                    cars[i].Driver = driver1;
-                else
-                    cars[i].Driver = driver2;
-            }
+            driver1.AddCar(car1);
+            driver2.AddCar(car2);
 
-            // Generating Customer support employee
-            CustomerSupport customerSupport1 = new CustomerSupport("Support1", "password1", 4500);
-            _ = new CustomerSupport("Support2", "password1", 5000);
-
-            // Generating Rides
             List<string> streets = new List<string>
             {
                 "Centrum", "Stadion Narodowe", "Rondo ONZ", "Warszawa Centralna",
                 "Ursynow", "Mokotow", "Pole Mokotowskie", "Kozykowa", "Biblioteka Narodowe"
             };
 
+
+            // Generate rides
             List<Ride> rides = new List<Ride>();
 
             foreach (Client client in clients)
@@ -85,26 +70,6 @@ namespace Assignment_03
                     }
                 }
             }
-            #endregion
-
-            #region Disjoint
-
-            /*
-             * Client -> User <- Employee
-             */
-
-            Console.WriteLine("----- Disjoint ------");
-            Console.WriteLine();
-
-            Client client5 = new Client("client3", "password3", "Andrew", "Johnson");
-
-            Employee employee = new CustomerSupport("cs1", "password1", 3520);
-
-            User userEmp = employee;
-            User userClient = client5;
-
-            Console.WriteLine(userEmp.ToString());
-            Console.WriteLine(userClient.ToString());
 
             #endregion
 
@@ -118,15 +83,13 @@ namespace Assignment_03
             Console.WriteLine("------- Abstract -----------");
             Console.WriteLine();
 
-            Client client6 = new Client("client4", "password4", "Andrew", "Johnson");
+            Employee employee = driver1;
 
-            Employee employee2 = new CustomerSupport("CS2", "password2", 3525);
+            Console.WriteLine($"Income of driver {employee} is: {employee.GetIncome()}");
 
-            User userEmp2 = employee2;
-            User userClient2 = client6;
+            employee = customerSupport1;
 
-            Console.WriteLine(userEmp2.ToString());
-            Console.WriteLine(userClient2.ToString());
+            Console.WriteLine($"Income of customer support {employee} is {employee.GetIncome()}");
 
             #endregion
 
@@ -177,14 +140,6 @@ namespace Assignment_03
             Console.WriteLine();
             Console.WriteLine("------- Multi inheritance ----------");
             Console.WriteLine();
-
-            Amphicar amphicar = new Amphicar("waw42 1252", "Toyota", 10, Category.Bussiness, 13.6, 241.23);
-
-            // Vehicle must have its owner
-            driver1.AddCar(amphicar);
-
-            Console.WriteLine($"Amphicar speed: { amphicar.GetSpeed()}");
-            Console.WriteLine(amphicar.ToString());
 
             #endregion
 

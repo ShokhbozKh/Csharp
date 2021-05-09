@@ -6,16 +6,21 @@ namespace Assignment_03
     [Serializable]
     class Client : User // Disjoint
     {
+        #region Properties
+
         private List<Ride> _rides = new List<Ride>();
         public List<Ride> Rides 
         {
             get => _rides;
             set => _rides = value ?? throw new NullReferenceException("Client cannot contain null rides!");
         }
+
         public DateTime RegistrationDate { get; set; }
 
+        #endregion
+
         #region Constructors
-        
+
         public Client(string login, string password) : base(login, password) 
         {
         }

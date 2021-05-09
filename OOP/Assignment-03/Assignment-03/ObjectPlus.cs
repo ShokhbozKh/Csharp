@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Assignment_03
 {
     [Serializable]
-    abstract class ObjectPlus
+    public abstract class ObjectPlus
     {
         private static Dictionary<Type, ICollection<ObjectPlus>> _extent = new Dictionary<Type, ICollection<ObjectPlus>>();
 
