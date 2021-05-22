@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment_03.Dynamic;
+using System;
 using System.Collections.Generic;
 
 namespace Assignment_03
@@ -146,35 +147,15 @@ namespace Assignment_03
             Console.WriteLine("--------- Dynamic inheritance -------- ");
             Console.WriteLine();
 
-            Employee driver5 = new Driver("driver5", "password5");
-            //(driver5 as Driver).AddCar(car4);
-            (driver5 as Driver).AddCar(car2);
+            Company limitedCompany = new Company("Boring LTD", 1500000);
+            Limited.EstablishLimitedCompany(limitedCompany, 150, 20000);
 
-            Console.WriteLine($"Driver: {driver5}");
-            (driver5 as Driver).ShowCars();
-
-            Employee customerSupport = new CustomerSupport("CS1", "password1", 3420);
-
-            Console.WriteLine($"Customer support: {customerSupport}");
-            Console.WriteLine((customerSupport as CustomerSupport).GetIncome());
-
-            // Change the specializations
-
-            Console.WriteLine();
-            Console.WriteLine("-------- After converting specializations --------");
+            Console.WriteLine("Limited company details: ", limitedCompany);
+            Console.WriteLine("--- Transform to registered");
             Console.WriteLine();
 
-            //driver5 = driver5.MakeCustomerSupport(3500);
-            //customerSupport = customerSupport.MakeDriver();
-            
-            (customerSupport as Driver).AddCar(car1);
-            //(customerSupport as Driver).AddCar(car3);
-
-            Console.WriteLine($"Driver: {customerSupport}");
-            (customerSupport as Driver).ShowCars();
-
-            Console.WriteLine($"Customer support: {driver5}");
-            Console.WriteLine((driver5 as CustomerSupport).GetIncome());
+            limitedCompany.TransformToRegistered("Education");
+            Console.WriteLine(limitedCompany);
             #endregion
         }
     }
