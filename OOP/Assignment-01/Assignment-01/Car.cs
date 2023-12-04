@@ -14,9 +14,9 @@ namespace Assignment_01
 
         public Car(string carNumber, string brand,Category category)
         {
-            CarNumber = carNumber;
-            Brand = brand;
-            Category = category;
+            this.carNumber = carNumber;
+            this.brand = brand;
+            this.category = category;
         }
     }
 
